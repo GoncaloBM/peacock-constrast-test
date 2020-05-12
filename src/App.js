@@ -26,51 +26,48 @@ class App extends React.Component {
   //     window.addEventListener("keydown", this.keydown.bind(this));
   //   }
 
-
-// to define which component is active
+  // to define which component is active
   keydown = (event) => {
     let state = this.state.activeComponent;
     if (event.key === "ArrowUp") {
-      if(state === ""){
+      if (state === "") {
         this.setState({
           activeComponent: "font",
-        })
-      } else if(state === "font"){
+        });
+      } else if (state === "font") {
         this.setState({
           activeComponent: "text",
-        })
-      } else if(state === "text"){
+        });
+      } else if (state === "text") {
         this.setState({
           activeComponent: "background",
-        })
-      } else if(state === "background"){
+        });
+      } else if (state === "background") {
         this.setState({
           activeComponent: "font",
-        })
+        });
       }
-
     } else if (event.key === "ArrowDown") {
-      if(state === ""){
+      if (state === "") {
         this.setState({
           activeComponent: "background",
-        })
-      } else if(state === "background"){
+        });
+      } else if (state === "background") {
         this.setState({
           activeComponent: "backgroundAlpha",
-        })
-      } 
-      else if(state === "backgroundAlpha"){
-        this.setState({
-          activeComponent: "text",
-        })}
-        else if(state === "text"){
+        });
+      } else if (state === "backgroundAlpha") {
         this.setState({
           activeComponent: "font",
-        })
-      } else if(state === "font"){
+        });
+      } else if (state === "text") {
+        this.setState({
+          activeComponent: "font",
+        });
+      } else if (state === "font") {
         this.setState({
           activeComponent: "background",
-        })
+        });
       }
     }
   };

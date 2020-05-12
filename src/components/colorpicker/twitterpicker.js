@@ -1,5 +1,6 @@
 import React from "react";
 import { TwitterPicker } from "react-color";
+import "./colorpicker.css"
 
 class Twitterpicker extends React.Component {
   constructor() {
@@ -119,7 +120,7 @@ class Twitterpicker extends React.Component {
   render() {
     let color = this.state.color;
     return (
-      <div
+      <div className="twitterpicker"
         style={{
           backgroundColor:color,
         }}
