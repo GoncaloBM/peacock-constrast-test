@@ -1,16 +1,11 @@
 import React from "react";
-import { TwitterPicker} from "react-color";
+import { TwitterPicker } from "react-color";
 
 class Twitterpicker extends React.Component {
   constructor() {
     super();
     this.state = {
-      color: {
-        r: 100,
-        g: 100,
-        b: 100,
-        a: 1,
-      },
+      color: "#000000",
     };
     this.keydown = this.keydown.bind(this);
   }
@@ -21,12 +16,100 @@ class Twitterpicker extends React.Component {
     window.removeEventListener("keydown", this.keydown);
   }
 
-//   componentDidUpdate(prevProps, prevState) {
-//     window.addEventListener("keydown", this.keydown.bind(this));
-//   }
+  //   componentDidUpdate(prevProps, prevState) {
+  //     window.addEventListener("keydown", this.keydown.bind(this));
+  //   }
 
   keydown = (event) => {
-    console.log(event.key);
+    let isActive = this.props.activeComponent;
+    let color = this.state.color;
+    let color1 = "#000000";
+    let color2 = "#888888";
+    let color3 = "#E7E7E7";
+    let color4 = "#FCCC12";
+    let color5 = "#111111";
+    let color6 = "#222222";
+    let color7 = "#4739DA";
+    let color8 = "#FC8542";
+    let color9 = "#666666";
+
+    if (isActive === "background" && event.key === "ArrowRight") {
+      if (color === color1) {
+        this.setState({
+          color: color2,
+        });
+      } else if (color === color2) {
+        this.setState({
+          color: color3,
+        });
+      } else if (color === color3) {
+        this.setState({
+          color: color4,
+        });
+      } else if (color === color4) {
+        this.setState({
+          color: color5,
+        });
+      } else if (color === color5) {
+        this.setState({
+          color: color6,
+        });
+      } else if (color === color6) {
+        this.setState({
+          color: color7,
+        });
+      } else if (color === color7) {
+        this.setState({
+          color: color8,
+        });
+      } else if (color === color8) {
+        this.setState({
+          color: color9,
+        });
+      } else if (color === color9) {
+        this.setState({
+          color: color1,
+        });
+      }
+    } else if (isActive === "background" && event.key === "ArrowLeft") {
+      if (color === color1) {
+        this.setState({
+          color: color9,
+        });
+      } else if (color === color2) {
+        this.setState({
+          color: color1,
+        });
+      } else if (color === color3) {
+        this.setState({
+          color: color2,
+        });
+      } else if (color === color4) {
+        this.setState({
+          color: color3,
+        });
+      } else if (color === color5) {
+        this.setState({
+          color: color4,
+        });
+      } else if (color === color6) {
+        this.setState({
+          color: color5,
+        });
+      } else if (color === color7) {
+        this.setState({
+          color: color6,
+        });
+      } else if (color === color8) {
+        this.setState({
+          color: color7,
+        });
+      } else if (color === color9) {
+        this.setState({
+          color: color8,
+        });
+      }
+    }
   };
 
   handleChangeComplete = (color) => {
@@ -38,7 +121,7 @@ class Twitterpicker extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`,
+          backgroundColor:color,
         }}
       >
         <TwitterPicker

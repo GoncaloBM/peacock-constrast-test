@@ -1,58 +1,67 @@
 import React from "react";
 import { AlphaPicker } from "react-color";
 
-
 class Alphapicker extends React.Component {
-    constructor() {
-      super();
-      this.state = {
-        color: {
-          r: 100,
-          g: 100,
-          b: 100,
-          a: 1,
-        },
-        activePicker:"twitter"
-      };
-      this.keydown = this.keydown.bind(this);
-    }
-  
-    componentDidMount() {
-      window.addEventListener("keydown", this.keydown);
-    }
-  
-    componentWillUnmount() {
-      window.removeEventListener("keydown", this.keydown);
-    }
-  
+  constructor() {
+    super();
+    this.state = {
+      color: {
+        r: 100,
+        g: 100,
+        b: 100,
+        a: 1,
+      },
+    };
+    this.keydown = this.keydown.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("keydown", this.keydown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.keydown);
+  }
+
   //   componentDidUpdate(prevProps, prevState) {
   //     window.addEventListener("keydown", this.keydown.bind(this));
   //   }
-  
-    keydown = (event) => {
-  
-      console.log(event.key);
-    };
-    
-    handleColorChange = (color) => {
-      this.setState({ color: color.rgb });
-    };
-  
-    render() {
-      let color = this.state.color;
-      return (
-        <div
-          style={{
-            backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`,
-          }}
-        >
-          <AlphaPicker
-            onChange={this.handleColorChange}
-            color={this.state.color}
-          />
-        </div>
-      );
+
+  keydown = (event) => {
+    let isActive = this.props.activeComponent;
+    let color = this.state.color;
+    if (isActive === "backgroundAlpha" && event.key === "ArrowLeft" && color.a>0) {
+      color.a = color.a - 0.02;
+      this.setState({
+        color: color,
+      });
+    } else if(isActive === "backgroundAlpha" && event.key === "ArrowRight"&& color.a<1) {
+      color.a = color.a + 0.02;
+      this.setState({
+        color: color,
+      });
     }
+  };
+
+  handleColorChange = (color) => {
+    this.setState({ color: color });
+  };
+
+  render() {
+    let color = this.state.color;
+    return (
+      <div
+        style={{
+          backgroundColor: color,
+        }}
+      >
+        <AlphaPicker
+          onChange={this.handleColorChange}
+          color={this.state.color}
+        />
+      </div>
+    );
   }
-  
-  export default Alphapicker;
+}
+
+export default Alphapicker;
