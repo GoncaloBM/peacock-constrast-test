@@ -1,11 +1,14 @@
 import React from 'react';
-import Colorpicker from "./components/colorpicker/colorpicker"
+import Twitterpicker from "./components/colorpicker/twitterpicker"
+import Alphapicker from "./components/colorpicker/alphapicker"
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     <Colorpicker></Colorpicker>
+     <Twitterpicker></Twitterpicker>
+     <Alphapicker></Alphapicker>
     </div>
   );
 }
