@@ -31,6 +31,8 @@ export const VirtualKeyboard = () => {
         // delete last value
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
+      } else if (currentKeyValue === 19) {
+        console.log(keyboardValue.join(""));
       }
     }
   };
@@ -64,6 +66,7 @@ export const VirtualKeyboard = () => {
               value={key}
               style={{
                 backgroundColor: index + 1 === currentKeyValue && "red",
+                color: index + 1 === currentKeyValue && "white",
               }}
             >
               {key}
@@ -79,6 +82,7 @@ export const VirtualKeyboard = () => {
               value={key}
               style={{
                 backgroundColor: index + 11 === currentKeyValue && "red",
+                color: index + 11 === currentKeyValue && "white",
               }}
             >
               {key}
@@ -86,7 +90,12 @@ export const VirtualKeyboard = () => {
           );
         })}
       </div>
-      <div className="color">#{keyboardValue}</div>
+      <div className="color">
+        <div className="hashtag">#</div>
+        <div className="hexa" style={{ color: `#${keyboardValue.join("")}` }}>
+          {keyboardValue}
+        </div>
+      </div>
     </div>
   );
 };
