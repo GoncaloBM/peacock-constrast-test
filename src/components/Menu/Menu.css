@@ -1,0 +1,15 @@
+.Menu{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+
+}
+
+.Menu > ul >li{
+    list-style: none;
+}
+.Menu > ul>.focused{
+    border: 1px solid black;
+}
+
