@@ -3,7 +3,7 @@ import "./Menu.css";
 import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import {VirtualKeyboard} from "../virtual-keyboard/VirtualKeyboard.jsx";
-const Menu = () => {
+const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(0);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
 
@@ -13,6 +13,7 @@ const Menu = () => {
     setShowVirtualKeyboard(false)
 
   }
+  
 
   useEffect(() => {
     const keyNavigate = (e) => {
@@ -58,7 +59,7 @@ const Menu = () => {
           Background
         </li>
         <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
-          <Twitterpicker isKeyboardActive= {showVirtualKeyboard} isActive={indexFocusedItem === 1 ? true : false}/>
+          <Twitterpicker getBackgroundColor={(color)=>props.getBackgroundColor(color)} isKeyboardActive= {showVirtualKeyboard} isActive={indexFocusedItem === 1 ? true : false}/>
           {showVirtualKeyboard && indexFocusedItem === 1 ? <VirtualKeyboard exitKeyboard={()=>exitKeyboard()} /> : "" }
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>

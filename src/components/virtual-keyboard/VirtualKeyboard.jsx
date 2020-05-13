@@ -3,7 +3,7 @@ import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
 export const VirtualKeyboard = (props) => {
-  const bananas = props.exitKeyboard
+  const exitKeyboard = props.exitKeyboard
   const [keyboardValue, setKeyboardValue] = useState([]);
   const [currentKeyValue, setCurrentKeyValue] = useState(1);
 
@@ -33,7 +33,7 @@ export const VirtualKeyboard = (props) => {
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
       } else if (currentKeyValue === 19) {
-        bananas()
+        exitKeyboard()
         console.log(keyboardValue.join(""));
       }
     }

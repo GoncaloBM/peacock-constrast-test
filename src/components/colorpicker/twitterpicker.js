@@ -2,7 +2,7 @@ import React from "react";
 import { TwitterPicker } from "react-color";
 
 class Twitterpicker extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       color: "#000000",
@@ -115,6 +115,8 @@ class Twitterpicker extends React.Component {
 
   handleChangeComplete = (color) => {
     this.setState({ color: color.rgb });
+    console.log(color.rgb)
+    this.props.getBackgroundColor(color.rgb)
   };
 
   render() {
