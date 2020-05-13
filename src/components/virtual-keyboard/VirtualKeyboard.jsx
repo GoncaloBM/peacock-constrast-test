@@ -53,11 +53,11 @@ export const VirtualKeyboard = (props) => {
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
       } else if (currentKeyValue === 19) {
+        //button ok
        let color = hexToRgb(keyboardValue.join(""));
        color.a = 1;
         sendColorFromVirtualKeyboard(color);     
         exitKeyboard()
-        // console.log(keyboardValue.join(""));
       }
     }
   };
