@@ -9,3 +9,21 @@
         border: 1px black solid
 
 }
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    margin: 0 90px 0 90px;
+    border: 1px solid black;
+}
+
+.Board{
+
+    width: 65%;
+
+}
+
+.menu{
+    width: 35%
+}
