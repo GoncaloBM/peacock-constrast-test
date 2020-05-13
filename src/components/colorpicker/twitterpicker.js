@@ -6,7 +6,8 @@ class Twitterpicker extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      color: "#000000",
+      previewColor: props.previewColor
+
     };
     this.keydown = this.keydown.bind(this);
   }
@@ -117,7 +118,7 @@ class Twitterpicker extends React.Component {
   handleChangeComplete = (color) => {
     this.setState({ color: color.rgb });
     console.log(color.rgb)
-    this.props.getBackgroundColor(color.rgb)
+    this.props.getColor(color.rgb)
   };
 
   render() {
@@ -125,7 +126,7 @@ class Twitterpicker extends React.Component {
     return (
       <div className="twitterpicker"
         style={{
-          backgroundColor:color,
+          backgroundColor:`rgb(${this.state.previewColor.r},${this.state.previewColor.g},${this.state.previewColor.b},${this.state.previewColor.a})`,
         }}
       >
         <TwitterPicker

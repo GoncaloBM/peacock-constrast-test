@@ -3,7 +3,8 @@ import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
 export const VirtualKeyboard = (props) => {
-  const getBackgroundColor = props.getBackgroundColor
+  const isText = props.isText
+  const getColor = props.getColor
   const exitKeyboard = props.exitKeyboard
   const [keyboardValue, setKeyboardValue] = useState([]);
   const [currentKeyValue, setCurrentKeyValue] = useState(1);
@@ -15,7 +16,8 @@ export const VirtualKeyboard = (props) => {
 
   //after press ok on keyboard sets background with the value
   const sendColorFromVirtualKeyboard = (color) =>{
-    getBackgroundColor(color);
+    console.log(isText)
+    getColor(color, isText);
   };
 
 
