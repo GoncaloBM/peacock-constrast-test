@@ -3,40 +3,52 @@ import "./Menu.css";
 import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import {VirtualKeyboard} from "../virtual-keyboard/VirtualKeyboard.jsx";
-const Menu = () => {
+const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(0);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
 
+  const exitKeyboard = () =>{
+    // console.log('joao')
+    setShowVirtualKeyboard(false)
+  }
+  
 
   useEffect(() => {
     const keyNavigate = (e) => {
       if ((e.keyCode === 13 && indexFocusedItem ===1) || (e.keyCode === 13 && indexFocusedItem ===4)) {
-        setShowVirtualKeyboard(true)
+        if(showVirtualKeyboard === false){
+          setShowVirtualKeyboard(true)
+        }
+        
       }
-      if (e.keyCode === 38) {
-        console.log("Up ");
-        if (indexFocusedItem > 0) {
-          console.log(indexFocusedItem);
-          indexFocusedItem--;
 
-          setIndexFocusedItem(indexFocusedItem);
-          console.log(indexFocusedItem);
-        }
-      } else if (e.keyCode === 40) {
-        console.log("Down");
-        if (indexFocusedItem < 8) {
-          console.log(indexFocusedItem);
-          indexFocusedItem++;
-          setIndexFocusedItem(indexFocusedItem);
-          console.log(indexFocusedItem);
+      if(showVirtualKeyboard){
+      }else{
+        if (e.keyCode === 38) {
+          
+          if (indexFocusedItem > 0) {
+            indexFocusedItem--;
+  
+            setIndexFocusedItem(indexFocusedItem);
+
+          }
+        } else if (e.keyCode === 40) {
+        
+          if (indexFocusedItem < 8) {
+
+            indexFocusedItem++;
+            setIndexFocusedItem(indexFocusedItem);
+
+          }
         }
       }
+      
     };
     window.addEventListener("keydown", keyNavigate);
     return () => {
       window.removeEventListener("keydown", keyNavigate);
     };
-  }, [indexFocusedItem]);
+  }, [indexFocusedItem, showVirtualKeyboard]);
 
   return (
     <div className="Menu">
@@ -45,8 +57,9 @@ const Menu = () => {
           Background
         </li>
         <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
-          <Twitterpicker isActive={indexFocusedItem === 1 ? true : false}/>
-          {showVirtualKeyboard && indexFocusedItem === 1 ? <VirtualKeyboard /> : "" }
+          <Twitterpicker getBackgroundColor={(color)=>props.getBackgroundColor(color)} isKeyboardActive= {showVirtualKeyboard} isActive={indexFocusedItem === 1 ? true : false}/>
+          {showVirtualKeyboard && indexFocusedItem === 1 ? <VirtualKeyboard getBackgroundColor={(color)=>props.getBackgroundColor(color)}
+           exitKeyboard={()=>exitKeyboard()} /> : "" }
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
           <Alphapicker isActive={indexFocusedItem === 2 ? true : false} />
@@ -55,8 +68,8 @@ const Menu = () => {
       <ul>
         <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
         <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
-          <Twitterpicker isActive={indexFocusedItem === 4 ? true : false}/>
-          {showVirtualKeyboard && indexFocusedItem ===4 ? <VirtualKeyboard /> : "" }
+          <Twitterpicker isKeyboardActive= {showVirtualKeyboard} isActive={indexFocusedItem === 4 ? true : false}/>
+          {showVirtualKeyboard && indexFocusedItem ===4 ? <VirtualKeyboard exitKeyboard={()=>exitKeyboard()} /> : "" }
         </li>
         <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
           <Alphapicker isActive={indexFocusedItem === 5 ? true : false} />

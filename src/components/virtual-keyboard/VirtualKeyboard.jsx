@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
-export const VirtualKeyboard = () => {
+export const VirtualKeyboard = (props) => {
+  const getBackgroundColor = props.getBackgroundColor
+  const exitKeyboard = props.exitKeyboard
   const [keyboardValue, setKeyboardValue] = useState([]);
   const [currentKeyValue, setCurrentKeyValue] = useState(1);
 
   const keyNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const keyLetters = ["a", "b", "c", "d", "e", "f", "C", "Back", "OK"];
+
+
+  //after press ok on keyboard sets background with the value
+  const sendColorFromVirtualKeyboard = (color) =>{
+    getBackgroundColor(color);
+  };
+
+
+// convert hex from keyboard to rgb
+  function hexToRgb(hex) {
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+
 
   const insertCharacter = (e) => {
     if (e.keyCode === 13) {
@@ -32,11 +53,16 @@ export const VirtualKeyboard = () => {
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
       } else if (currentKeyValue === 19) {
-        console.log(keyboardValue.join(""));
+       let color = hexToRgb(keyboardValue.join(""));
+       color.a = 1;
+        sendColorFromVirtualKeyboard(color);     
+        exitKeyboard()
+        // console.log(keyboardValue.join(""));
       }
     }
   };
 
+  
   const changeKeys = (e) => {
     if (e.keyCode === 37 && currentKeyValue > 1) {
       setCurrentKeyValue(currentKeyValue - 1); // right
@@ -49,6 +75,7 @@ export const VirtualKeyboard = () => {
       setCurrentKeyValue(19); // When pressing down on 9, it will go to OK
     } else if (e.keyCode === 38 && currentKeyValue > 10) {
       // up
+    
       setCurrentKeyValue(currentKeyValue - 10);
     }
   };
@@ -62,6 +89,7 @@ export const VirtualKeyboard = () => {
         {keyNumbers.map((key, index) => {
           return (
             <div
+            key={index}
               className="key"
               value={key}
               style={{
@@ -78,6 +106,8 @@ export const VirtualKeyboard = () => {
         {keyLetters.map((key, index) => {
           return (
             <div
+            key={index}
+
               className="key"
               value={key}
               style={{
