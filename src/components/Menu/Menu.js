@@ -8,10 +8,8 @@ const Menu = (props) => {
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
 
   const exitKeyboard = () =>{
-    console.log('joao')
-    
+    // console.log('joao')
     setShowVirtualKeyboard(false)
-
   }
   
 
@@ -60,7 +58,8 @@ const Menu = (props) => {
         </li>
         <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
           <Twitterpicker getBackgroundColor={(color)=>props.getBackgroundColor(color)} isKeyboardActive= {showVirtualKeyboard} isActive={indexFocusedItem === 1 ? true : false}/>
-          {showVirtualKeyboard && indexFocusedItem === 1 ? <VirtualKeyboard exitKeyboard={()=>exitKeyboard()} /> : "" }
+          {showVirtualKeyboard && indexFocusedItem === 1 ? <VirtualKeyboard getBackgroundColor={(color)=>props.getBackgroundColor(color)}
+           exitKeyboard={()=>exitKeyboard()} /> : "" }
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
           <Alphapicker isActive={indexFocusedItem === 2 ? true : false} />

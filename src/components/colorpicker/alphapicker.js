@@ -1,5 +1,6 @@
 import React from "react";
 import { AlphaPicker } from "react-color";
+import "./colorpicker.css"
 
 class Alphapicker extends React.Component {
   constructor() {
@@ -50,7 +51,7 @@ class Alphapicker extends React.Component {
   render() {
     let color = this.state.color;
     return (
-      <div
+      <div className="alphapicker"
         style={{
           backgroundColor: color,
         }}

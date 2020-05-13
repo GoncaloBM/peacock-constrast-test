@@ -21,8 +21,8 @@ function App() {
   const getBackgroundColor = (color) =>{
     console.log(color)
     let colorRGB = `rgb(${color.r},${color.g},${color.b},${color.a})` 
+    console.log(colorRGB)
     setBackgroundColor(colorRGB)
-
   }
 
   return (
