@@ -29,14 +29,14 @@ class Alphapicker extends React.Component {
   //   }
 
   keydown = (event) => {
-    let isActive = this.props.activeComponent;
+    let isActive = this.props.isActive;
     let color = this.state.color;
-    if (isActive === "backgroundAlpha" && event.key === "ArrowLeft" && color.a>0) {
+    if (isActive && event.key === "ArrowLeft" && color.a>0) {
       color.a = color.a - 0.02;
       this.setState({
         color: color,
       });
-    } else if(isActive === "backgroundAlpha" && event.key === "ArrowRight"&& color.a<1) {
+    } else if(isActive  && event.key === "ArrowRight"&& color.a<1) {
       color.a = color.a + 0.02;
       this.setState({
         color: color,
