@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
-export const VirtualKeyboard = () => {
+export const VirtualKeyboard = (props) => {
+  const bananas = props.exitKeyboard
   const [keyboardValue, setKeyboardValue] = useState([]);
   const [currentKeyValue, setCurrentKeyValue] = useState(1);
 
@@ -32,6 +33,7 @@ export const VirtualKeyboard = () => {
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
       } else if (currentKeyValue === 19) {
+        bananas()
         console.log(keyboardValue.join(""));
       }
     }
@@ -49,6 +51,7 @@ export const VirtualKeyboard = () => {
       setCurrentKeyValue(19); // When pressing down on 9, it will go to OK
     } else if (e.keyCode === 38 && currentKeyValue > 10) {
       // up
+    
       setCurrentKeyValue(currentKeyValue - 10);
     }
   };
@@ -62,6 +65,7 @@ export const VirtualKeyboard = () => {
         {keyNumbers.map((key, index) => {
           return (
             <div
+            key={index}
               className="key"
               value={key}
               style={{
@@ -78,6 +82,8 @@ export const VirtualKeyboard = () => {
         {keyLetters.map((key, index) => {
           return (
             <div
+            key={index}
+
               className="key"
               value={key}
               style={{

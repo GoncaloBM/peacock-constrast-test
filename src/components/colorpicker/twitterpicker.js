@@ -22,6 +22,7 @@ class Twitterpicker extends React.Component {
 
   keydown = (event) => {
     let isActive = this.props.isActive;
+    let isKeyboardActive = this.props.isKeyboardActive;
     let color = this.state.color;
     let color1 = "#000000";
     let color2 = "#888888";
@@ -33,7 +34,7 @@ class Twitterpicker extends React.Component {
     let color8 = "#FC8542";
     let color9 = "#666666";
 
-    if (isActive  && event.key === "ArrowRight") {
+    if (isActive && isKeyboardActive === false && event.key === "ArrowRight") {
       if (color === color1) {
         this.setState({
           color: color2,
@@ -71,7 +72,7 @@ class Twitterpicker extends React.Component {
           color: color1,
         });
       }
-    } else if (isActive  && event.key === "ArrowLeft") {
+    } else if (isActive  && isKeyboardActive === false && event.key === "ArrowLeft") {
       if (color === color1) {
         this.setState({
           color: color9,
