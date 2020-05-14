@@ -70,7 +70,11 @@ const Menu = (props) => {
           )}
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
-          <Alphapicker isActive={indexFocusedItem === 2 ? true : false} />
+          <Alphapicker 
+          isText={false}
+          previewColor={props.backgroundColor}
+          getColor={(color, isText) => props.getColor(color, isText)}
+          isActive={indexFocusedItem === 2 ? true : false} />
         </li>
       </ul>
       <ul>
@@ -79,6 +83,8 @@ const Menu = (props) => {
           <Twitterpicker
             previewColor={props.colorText}
             isText={true}
+            getColor={(color, isText) => props.getColor(color, isText)}
+
             isKeyboardActive={showVirtualKeyboard}
             isActive={indexFocusedItem === 4 ? true : false}
           />
@@ -93,7 +99,12 @@ const Menu = (props) => {
           )}
         </li>
         <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
-          <Alphapicker isActive={indexFocusedItem === 5 ? true : false} />
+          <Alphapicker 
+                      previewColor={props.colorText}
+                      isText={true}
+                      getColor={(color, isText) => props.getColor(color, isText)}
+
+          isActive={indexFocusedItem === 5 ? true : false} />
         </li>
       </ul>
       <ul>

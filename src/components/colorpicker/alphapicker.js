@@ -1,19 +1,15 @@
 import React from "react";
 import { AlphaPicker } from "react-color";
-import "./colorpicker.css"
+import "./colorpicker.css";
 
 class Alphapicker extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      color: {
-        r: 100,
-        g: 100,
-        b: 100,
-        a: 1,
-      },
+      color: this.props.previewColor,
     };
     this.keydown = this.keydown.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
   }
 
   componentDidMount() {
@@ -24,38 +20,50 @@ class Alphapicker extends React.Component {
     window.removeEventListener("keydown", this.keydown);
   }
 
-  //   componentDidUpdate(prevProps, prevState) {
-  //     window.addEventListener("keydown", this.keydown.bind(this));
-  //   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this.setState({ color: this.props.previewColor });
+      
+    }
+  }
 
   keydown = (event) => {
+    let isText = this.props.isText;
     let isActive = this.props.isActive;
     let color = this.state.color;
-    if (isActive && event.key === "ArrowLeft" && color.a>0) {
+    if (isActive && event.key === "ArrowLeft" && color.a > 0) {
       color.a = color.a - 0.02;
+      color.a = Number(color.a.toFixed(2));
       this.setState({
         color: color,
       });
-    } else if(isActive  && event.key === "ArrowRight"&& color.a<1) {
+      this.props.getColor(color, isText);
+    } else if (isActive && event.key === "ArrowRight" && color.a < 1) {
       color.a = color.a + 0.02;
+      color.a = Number(color.a.toFixed(2));
       this.setState({
         color: color,
       });
+      this.props.getColor(color, isText);
+    } else if (isActive && event.keyCode === 13) {
+      this.setState({ color: color });
+
+      console.log(color);
+      this.props.getColor(color, isText);
     }
   };
 
   handleColorChange = (color) => {
-    this.setState({ color: color });
+    let isText = this.props.isText;
+    this.setState({ color: color.rgb });
+    console.log(color.rgb);
+
+    this.props.getColor(color.rgb, isText);
   };
 
   render() {
-    let color = this.state.color;
     return (
-      <div className="alphapicker"
-        style={{
-          backgroundColor: color,
-        }}
-      >
+      <div className="alphapicker">
         <AlphaPicker
           onChange={this.handleColorChange}
           color={this.state.color}
