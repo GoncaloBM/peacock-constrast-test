@@ -17,6 +17,13 @@ class Twitterpicker extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("keydown", this.keydown);
   }
+  componentDidUpdate(prevProps){
+    if(prevProps !== this.props){
+      this.setState({      previewColor: this.props.previewColor
+      })
+    }
+
+  }
 
   //   componentDidUpdate(prevProps, prevState) {
   //     window.addEventListener("keydown", this.keydown.bind(this));
@@ -118,7 +125,7 @@ class Twitterpicker extends React.Component {
   handleChangeComplete = (color) => {
     this.setState({ color: color.rgb });
     console.log(color.rgb)
-    this.props.getColor(color.rgb)
+    this.props.getColor(color.rgb, this.props.isText)
   };
 
   render() {
