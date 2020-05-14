@@ -15,8 +15,13 @@ function App() {
     b: 242,
     a: 1,
   });
+  
   useEffect(() => {
-    return () => {};
+
+    return () => {
+      
+    };
+
   }, [setColorText, setBackgroundColor]);
 
   let getColor = (color, isText) => {

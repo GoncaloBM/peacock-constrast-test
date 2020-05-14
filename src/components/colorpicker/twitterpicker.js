@@ -129,7 +129,6 @@ class Twitterpicker extends React.Component {
   };
 
   render() {
-    let color = this.state.color;
     return (
       <div className="twitterpicker"
         style={{
