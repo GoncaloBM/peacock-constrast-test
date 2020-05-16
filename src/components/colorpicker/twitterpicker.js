@@ -11,7 +11,6 @@ class Twitterpicker extends React.Component {
   }
 
 
-
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({ previewColor: this.props.previewColor });
@@ -19,6 +18,8 @@ class Twitterpicker extends React.Component {
   }
 
   handleChangeComplete = (color) => {
+this.props.changeBk("");
+
     if(this.state.mouse === true){
       console.log('rabas')
       this.setState({ color: color.rgb });
