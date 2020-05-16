@@ -32,7 +32,7 @@ class Twitterpicker extends React.Component {
   keydown = (event) => {
     let isActive = this.props.isActive;
     let isKeyboardActive = this.props.isKeyboardActive;
-    let color = this.state.color;
+    let color = {...this.state.color};
     let color1 = "#000000";
     let color2 = "#888888";
     let color3 = "#E7E7E7";
