@@ -4,7 +4,7 @@ import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 const Menu = (props) => {
-  let [indexFocusedItem, setIndexFocusedItem] = useState(0);
+  let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
 
@@ -20,7 +20,7 @@ const Menu = (props) => {
       } else if (numero === 1) {
         if (currentPhotoID === props.imageDB.length) {
           setCurrentPhotoID(0);
-          alert('hey')
+          alert("hey");
         } else {
           setCurrentPhotoID(currentPhotoID++);
           props.changeBk(props.imageDB[currentPhotoID].url);
@@ -39,45 +39,58 @@ const Menu = (props) => {
           nextImg(1);
         } else if (e.keyCode === 37 && indexFocusedItem === 0) {
           nextImg(-1);
-
         }
       }
     };
 
     const keyNavigate = (e) => {
-      console.log(indexFocusedItem)
+      //console.log(indexFocusedItem);
+      let newIndex = indexFocusedItem;
       if (
-        (e.keyCode === 13 && indexFocusedItem === 1) ||
-        (e.keyCode === 13 && indexFocusedItem === 4)
+        (e.keyCode === 13 && newIndex === 1) ||
+        (e.keyCode === 13 && newIndex === 4)
       ) {
         if (showVirtualKeyboard === false) {
           setShowVirtualKeyboard(true);
         }
       }
 
-            if (showVirtualKeyboard) {} else {
-                if (e.keyCode === 38) {
-                    if (indexFocusedItem > 0) {
-                        indexFocusedItem--;
+      if (showVirtualKeyboard) {
+      } else {
+        if (e.keyCode === 38) {
+          if (newIndex > 0) {
+            newIndex--;
 
-            setIndexFocusedItem(indexFocusedItem);
+            setIndexFocusedItem(newIndex);
+          }
+          if(newIndex=== 0){
+            newIndex--;
+
+            setIndexFocusedItem(newIndex);
+            //console.log('leaving menu');
+            props.backToNavbar(true)
+            
           }
         } else if (e.keyCode === 40) {
-          if (indexFocusedItem < 8) {
-            indexFocusedItem++;
-            setIndexFocusedItem(indexFocusedItem);
+          if(newIndex === -1){
+            props.backToNavbar(false)
+            setIndexFocusedItem(0);
+          }
+          if (newIndex < 8 && newIndex >-1 ) {
+            newIndex++;
+            setIndexFocusedItem(newIndex);
           }
         }
       }
     };
     window.addEventListener("keydown", changeImageWithArrow);
     window.addEventListener("keydown", keyNavigate);
-
+    //console.log(indexFocusedItem)
     return () => {
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeImageWithArrow);
     };
-  }, [indexFocusedItem, showVirtualKeyboard]);
+  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID,props]);
 
   return (
     <div className="Menu">
@@ -96,8 +109,7 @@ const Menu = (props) => {
           />
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <VirtualKeyboard
-            previewColor={props.backgroundColor}
-
+              previewColor={props.backgroundColor}
               isText={false}
               getColor={(color, isText) => props.getColor(color, isText)}
               exitKeyboard={() => exitKeyboard()}
@@ -129,12 +141,11 @@ const Menu = (props) => {
           />
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <VirtualKeyboard
-            previewColor={props.backgroundColor}
-            changeBk={props.changeBk}
-
-            isText={true}
-            getColor={(color, isText) => props.getColor(color, isText)}
-            exitKeyboard={() => exitKeyboard()}
+              previewColor={props.backgroundColor}
+              changeBk={props.changeBk}
+              isText={true}
+              getColor={(color, isText) => props.getColor(color, isText)}
+              exitKeyboard={() => exitKeyboard()}
             />
           ) : (
             ""
