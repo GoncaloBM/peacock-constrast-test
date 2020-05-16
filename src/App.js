@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
+import HuePicker from "./components/huepicker/HuePicker"
 
 function App() {
   let [backgroundColor, setBackgroundColor] = useState({
@@ -15,6 +16,7 @@ function App() {
     b: 242,
     a: 1,
   });
+
   useEffect(() => {
     return () => {};
   }, [setColorText, setBackgroundColor]);
@@ -33,7 +35,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="header">This is header</header>
+              <HuePicker></HuePicker>
+
+      {/* <header className="header">This is header</header>
       <div className="wrapper">
         <div
           style={{
@@ -54,7 +58,7 @@ function App() {
         </div>
       </div>
 
-      <footer className="instructions"> Instructions </footer>
+      <footer className="instructions"> Instructions </footer> */}
     </div>
   );
 }

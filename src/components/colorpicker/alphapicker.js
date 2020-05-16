@@ -23,7 +23,6 @@ class Alphapicker extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps !== this.props) {
       this.setState({ color: this.props.previewColor });
-      
     }
   }
 
@@ -38,6 +37,7 @@ class Alphapicker extends React.Component {
         color: color,
       });
       this.props.getColor(color, isText);
+      this.handleColorChange(color);
     } else if (isActive && event.key === "ArrowRight" && color.a < 1) {
       color.a = color.a + 0.02;
       color.a = Number(color.a.toFixed(2));
@@ -53,12 +53,11 @@ class Alphapicker extends React.Component {
     }
   };
 
-  handleColorChange = (color) => {
+  handleColorChange=(color)=>{
     let isText = this.props.isText;
-    this.setState({ color: color.rgb });
-    console.log(color.rgb);
-
-    this.props.getColor(color.rgb, isText);
+    this.setState({ color: color });
+    console.log("teclado")
+    this.props.getColor(color, isText);
   };
 
   render() {

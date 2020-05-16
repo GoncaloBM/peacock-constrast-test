@@ -13,13 +13,16 @@ class Twitterpicker extends React.Component {
   }
   componentDidMount() {
     window.addEventListener("keydown", this.keydown);
+    this.setState({ previewColor: this.props.previewColor
+    })
+    
   }
   componentWillUnmount() {
     window.removeEventListener("keydown", this.keydown);
   }
   componentDidUpdate(prevProps){
     if(prevProps !== this.props){
-      this.setState({      previewColor: this.props.previewColor
+      this.setState({ previewColor: this.props.previewColor
       })
     }
 
