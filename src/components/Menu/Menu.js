@@ -24,7 +24,7 @@ const Menu = (props) => {
         } else {
           setCurrentPhotoID(currentPhotoID++);
           props.changeBk(props.imageDB[currentPhotoID].url);
-          console.log(currentPhotoID);
+          //console.log(currentPhotoID);
         }
       } else if (numero === -1) {
         setCurrentPhotoID(currentPhotoID--);
@@ -39,11 +39,13 @@ const Menu = (props) => {
           nextImg(1);
         } else if (e.keyCode === 37 && indexFocusedItem === 0) {
           nextImg(-1);
+
         }
       }
     };
 
     const keyNavigate = (e) => {
+      console.log(indexFocusedItem)
       if (
         (e.keyCode === 13 && indexFocusedItem === 1) ||
         (e.keyCode === 13 && indexFocusedItem === 4)
