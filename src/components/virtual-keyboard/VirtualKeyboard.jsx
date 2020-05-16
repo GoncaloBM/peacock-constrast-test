@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
@@ -15,10 +15,7 @@ export const VirtualKeyboard = (props) => {
 
 
   //after press ok on keyboard sets background with the value
-  const sendColorFromVirtualKeyboard = (color) =>{
-    console.log(isText)
-    getColor(color, isText);
-  };
+
 
 
 // convert hex from keyboard to rgb
@@ -31,8 +28,27 @@ export const VirtualKeyboard = (props) => {
     } : null;
   }
 
-
-
+  const sendColorFromVirtualKeyboard = (color) =>{
+    console.log(isText)
+    getColor(color, isText);
+  };
+  const changeKeys = (e) => {
+    if (e.keyCode === 37 && currentKeyValue > 1) {
+      setCurrentKeyValue(currentKeyValue - 1); // right
+    } else if (e.keyCode === 39 && currentKeyValue < 19) {
+      setCurrentKeyValue(currentKeyValue + 1); // left
+    } else if (e.keyCode === 40 && currentKeyValue < 10) {
+      // down
+      setCurrentKeyValue(currentKeyValue + 10);
+    } else if (e.keyCode === 40 && currentKeyValue === 10) {
+      setCurrentKeyValue(19); // When pressing down on 9, it will go to OK
+    } else if (e.keyCode === 38 && currentKeyValue > 10) {
+      // up
+    
+      setCurrentKeyValue(currentKeyValue - 10);
+    }
+  };
+  
   const insertCharacter = (e) => {
     if (e.keyCode === 13) {
       if (currentKeyValue < 11 && keyboardValue.length <= 5) {
@@ -57,33 +73,32 @@ export const VirtualKeyboard = (props) => {
       } else if (currentKeyValue === 19) {
         //button ok
        let color = hexToRgb(keyboardValue.join(""));
-       color.a = 1;
+        let previewColor = {...props.previewColor}
+        color.a = previewColor.a
         sendColorFromVirtualKeyboard(color);     
         exitKeyboard()
       }
     }
   };
 
-  
-  const changeKeys = (e) => {
-    if (e.keyCode === 37 && currentKeyValue > 1) {
-      setCurrentKeyValue(currentKeyValue - 1); // right
-    } else if (e.keyCode === 39 && currentKeyValue < 19) {
-      setCurrentKeyValue(currentKeyValue + 1); // left
-    } else if (e.keyCode === 40 && currentKeyValue < 10) {
-      // down
-      setCurrentKeyValue(currentKeyValue + 10);
-    } else if (e.keyCode === 40 && currentKeyValue === 10) {
-      setCurrentKeyValue(19); // When pressing down on 9, it will go to OK
-    } else if (e.keyCode === 38 && currentKeyValue > 10) {
-      // up
-    
-      setCurrentKeyValue(currentKeyValue - 10);
-    }
-  };
 
-  useEventListener("keydown", changeKeys);
-  useEventListener("keydown", insertCharacter);
+  
+
+  
+ 
+
+  useEffect(() => {
+
+
+    window.addEventListener("keydown", changeKeys);
+    window.addEventListener("keydown", insertCharacter);
+
+    return () => {
+      window.removeEventListener("keydown", changeKeys);
+      window.removeEventListener("keydown", insertCharacter);
+    };
+  },)
+
 
   return (
     <div className="keyboard">
