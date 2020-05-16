@@ -53,11 +53,10 @@ const Menu = (props) => {
         }
       }
 
-      if (showVirtualKeyboard) {
-      } else {
-        if (e.keyCode === 38) {
-          if (indexFocusedItem > 0) {
-            indexFocusedItem--;
+            if (showVirtualKeyboard) {} else {
+                if (e.keyCode === 38) {
+                    if (indexFocusedItem > 0) {
+                        indexFocusedItem--;
 
             setIndexFocusedItem(indexFocusedItem);
           }

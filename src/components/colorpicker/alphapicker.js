@@ -23,7 +23,6 @@ class Alphapicker extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps !== this.props) {
       this.setState({ color: this.props.previewColor });
-      
     }
   }
 
@@ -48,7 +47,7 @@ class Alphapicker extends React.Component {
     }
   };
 
-  handleColorChange = (color) => {
+  handleColorChange=(color)=>{
     let isText = this.props.isText;
     this.setState({ color: color.rgb });
     this.props.getColor(color.rgb, isText);

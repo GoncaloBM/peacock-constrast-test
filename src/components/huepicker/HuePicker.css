@@ -1,0 +1,5 @@
+.mainbutton {
+    width: 160px;
+    display: flex;
+    flex-wrap: wrap;
+}

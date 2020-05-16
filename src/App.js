@@ -27,13 +27,9 @@ function App() {
 
   let getColor = (color, isText) => {
     if (isText) {
-      console.log(color);
       setColorText(color);
-      console.log("Is text");
     } else {
-      console.log(color);
       setBackgroundColor(color);
-      console.log("Not text");
     }
   };
 
@@ -50,6 +46,7 @@ function App() {
 
   return (
     <div className="App">
+
       <header className="header">This is header</header>
       <div className="wrapper">
         <div
