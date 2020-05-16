@@ -27,9 +27,9 @@ class Alphapicker extends React.Component {
   }
 
   keydown = (event) => {
-    let isText = this.props.isText;
+    let isText = this.props.isText
     let isActive = this.props.isActive;
-    let color = this.state.color;
+    let color = {...this.state.color};
     if (isActive && event.key === "ArrowLeft" && color.a > 0) {
       color.a = color.a - 0.02;
       color.a = Number(color.a.toFixed(2));
@@ -37,7 +37,6 @@ class Alphapicker extends React.Component {
         color: color,
       });
       this.props.getColor(color, isText);
-      this.handleColorChange(color);
     } else if (isActive && event.key === "ArrowRight" && color.a < 1) {
       color.a = color.a + 0.02;
       color.a = Number(color.a.toFixed(2));
@@ -45,19 +44,15 @@ class Alphapicker extends React.Component {
         color: color,
       });
       this.props.getColor(color, isText);
-    } else if (isActive && event.keyCode === 13) {
-      this.setState({ color: color });
-
-      console.log(color);
-      this.props.getColor(color, isText);
     }
   };
 
   handleColorChange=(color)=>{
     let isText = this.props.isText;
-    this.setState({ color: color });
-    console.log("teclado")
-    this.props.getColor(color, isText);
+    this.setState({ color: color.rgb });
+    this.props.getColor(color.rgb, isText);
+
+
   };
 
   render() {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
+import axios from "axios";
 
 function App() {
   let [backgroundColor, setBackgroundColor] = useState({
@@ -16,20 +17,31 @@ function App() {
     a: 1,
   });
 
+  const [bkImage, setBkImage] = useState("");
+  const [imageDB, setImageDB] = useState("");
+
   useEffect(() => {
+    fetchImages();
     return () => {};
-  }, [setColorText, setBackgroundColor]);
+  }, [setColorText, setBackgroundColor, setBkImage]);
 
   let getColor = (color, isText) => {
     if (isText) {
-      console.log(color);
       setColorText(color);
-      console.log("Is text");
     } else {
-      console.log(color);
       setBackgroundColor(color);
-      console.log("Not text");
     }
+  };
+
+  const fetchImages = () => {
+    const dbUrl = "/images/images.json";
+    axios.get(dbUrl).then((res) => {
+      setImageDB(res.data);
+    });
+  };
+
+  const changeBk = (bkUrl) => {
+    setBkImage(bkUrl);
   };
 
   return (
@@ -41,6 +53,7 @@ function App() {
           style={{
             backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
             color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+            backgroundImage: `url(${bkImage})`,
           }}
           className="Board"
         >
@@ -52,6 +65,8 @@ function App() {
             colorText={colorText}
             backgroundColor={backgroundColor}
             getColor={(color, isText) => getColor(color, isText)}
+            changeBk={changeBk}
+            imageDB={imageDB}
           />
         </div>
       </div>
