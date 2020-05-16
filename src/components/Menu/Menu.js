@@ -95,6 +95,8 @@ const Menu = (props) => {
           />
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <VirtualKeyboard
+            previewColor={props.backgroundColor}
+
               isText={false}
               getColor={(color, isText) => props.getColor(color, isText)}
               exitKeyboard={() => exitKeyboard()}
@@ -126,10 +128,12 @@ const Menu = (props) => {
           />
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <VirtualKeyboard
-              isText={true}
-              getColor={(color, isText) => props.getColor(color, isText)}
-              exitKeyboard={() => exitKeyboard()}
-              changeBk={props.changeBk}
+            previewColor={props.backgroundColor}
+            changeBk={props.changeBk}
+
+            isText={true}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            exitKeyboard={() => exitKeyboard()}
             />
           ) : (
             ""
