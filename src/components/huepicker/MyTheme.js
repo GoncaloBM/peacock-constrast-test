@@ -1,12 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/';
 import { purple, yellow, orange, red, grey, blue, green } from '@material-ui/core/colors/';
 
-let hue = 100;
-
-
-
-export  const customMuiTheme= (x) => {
-    let bananas = {
+export const customMuiTheme = (x) => {
+    let palette = {
         palette: {
             yellow: {
                 main: '#165788',
@@ -14,7 +10,7 @@ export  const customMuiTheme= (x) => {
                 color: '#000',
             },
             purple: {
-                main: '#69BE28',
+                // main: '#69BE28',
                 backgroundColor: purple[x],
                 color: '#000',
             },
@@ -26,7 +22,7 @@ export  const customMuiTheme= (x) => {
                 backgroundColor: red[x],
                 color: '#000',
             },
-            grey: {
+            cinza: {
                 backgroundColor: grey[x],
                 color: '#000',
             },
@@ -38,12 +34,11 @@ export  const customMuiTheme= (x) => {
                 backgroundColor: green[x],
                 color: '#000',
             },
-    
-        },
-    
-    }
-    
 
-    return createMuiTheme(bananas)
+        },
+
+    }
+
+    return createMuiTheme(palette)
 
 }

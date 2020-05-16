@@ -20,7 +20,7 @@ class HuePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hue: 100,
+      hue: 500,
     };
   }
 
@@ -72,13 +72,13 @@ class HuePicker extends Component {
           >
             Red
           </Button>
-          {/* <Button
+          <Button
             variant="raised"
-            style={customMuiTheme(this.state.hue).palette.grey}
+            style={customMuiTheme(this.state.hue).palette.cinza}
             className={classes.primary}
           >
             Grey
-          </Button> */}
+          </Button>
           <Button
             variant="raised"
             style={customMuiTheme(this.state.hue).palette.blue}
