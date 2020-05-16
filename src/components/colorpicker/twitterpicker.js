@@ -1,13 +1,12 @@
 import React from "react";
 import { TwitterPicker } from "react-color";
-import "./colorpicker.css"
+import "./colorpicker.css";
 
 class Twitterpicker extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      previewColor: props.previewColor
-
+      previewColor: props.previewColor,
     };
     this.keydown = this.keydown.bind(this);
   }
@@ -17,12 +16,10 @@ class Twitterpicker extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("keydown", this.keydown);
   }
-  componentDidUpdate(prevProps){
-    if(prevProps !== this.props){
-      this.setState({      previewColor: this.props.previewColor
-      })
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({ previewColor: this.props.previewColor });
     }
-
   }
 
   //   componentDidUpdate(prevProps, prevState) {
@@ -81,7 +78,11 @@ class Twitterpicker extends React.Component {
           color: color1,
         });
       }
-    } else if (isActive  && isKeyboardActive === false && event.key === "ArrowLeft") {
+    } else if (
+      isActive &&
+      isKeyboardActive === false &&
+      event.key === "ArrowLeft"
+    ) {
       if (color === color1) {
         this.setState({
           color: color9,
@@ -123,16 +124,18 @@ class Twitterpicker extends React.Component {
   };
 
   handleChangeComplete = (color) => {
+    this.props.changeBk("");
     this.setState({ color: color.rgb });
-    console.log(color.rgb)
-    this.props.getColor(color.rgb, this.props.isText)
+    console.log(color.rgb);
+    this.props.getColor(color.rgb, this.props.isText);
   };
 
   render() {
     return (
-      <div className="twitterpicker"
+      <div
+        className="twitterpicker"
         style={{
-          backgroundColor:`rgb(${this.state.previewColor.r},${this.state.previewColor.g},${this.state.previewColor.b},${this.state.previewColor.a})`,
+          backgroundColor: `rgb(${this.state.previewColor.r},${this.state.previewColor.g},${this.state.previewColor.b},${this.state.previewColor.a})`,
         }}
       >
         <TwitterPicker

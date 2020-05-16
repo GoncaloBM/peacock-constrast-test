@@ -6,6 +6,7 @@ import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(0);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
+  let [currentPhotoID, setCurrentPhotoID] = useState(0);
 
   const exitKeyboard = () => {
     // console.log('joao')
@@ -13,6 +14,28 @@ const Menu = (props) => {
   };
 
   useEffect(() => {
+    const changeImageWithArrow = (e) => {
+      e.preventDefault();
+      if (props.imageDB) {
+        if (e.keyCode === 39 && indexFocusedItem === 0) {
+          if (currentPhotoID === props.imageDB.length-1) {
+            setCurrentPhotoID(0);
+          } else {
+            setCurrentPhotoID(currentPhotoID++);
+          }
+          props.changeBk(props.imageDB[currentPhotoID].url);
+        } else if (e.keyCode === 37 && indexFocusedItem === 0) {
+          if (currentPhotoID === 0) {
+            setCurrentPhotoID(props.imageDB.length);
+          } else {
+            setCurrentPhotoID(currentPhotoID--);
+          }
+
+          props.changeBk(props.imageDB[currentPhotoID].url);
+        }
+      }
+    };
+
     const keyNavigate = (e) => {
       if (
         (e.keyCode === 13 && indexFocusedItem === 1) ||
@@ -39,9 +62,12 @@ const Menu = (props) => {
         }
       }
     };
+    window.addEventListener("keydown", changeImageWithArrow);
     window.addEventListener("keydown", keyNavigate);
+
     return () => {
       window.removeEventListener("keydown", keyNavigate);
+      window.removeEventListener("keydown", changeImageWithArrow);
     };
   }, [indexFocusedItem, showVirtualKeyboard]);
 
@@ -58,6 +84,7 @@ const Menu = (props) => {
             getColor={(color, isText) => props.getColor(color, isText)}
             isKeyboardActive={showVirtualKeyboard}
             isActive={indexFocusedItem === 1 ? true : false}
+            changeBk={props.changeBk}
           />
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <VirtualKeyboard
@@ -70,11 +97,12 @@ const Menu = (props) => {
           )}
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
-          <Alphapicker 
-          isText={false}
-          previewColor={props.backgroundColor}
-          getColor={(color, isText) => props.getColor(color, isText)}
-          isActive={indexFocusedItem === 2 ? true : false} />
+          <Alphapicker
+            isText={false}
+            previewColor={props.backgroundColor}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isActive={indexFocusedItem === 2 ? true : false}
+          />
         </li>
       </ul>
       <ul>
@@ -84,27 +112,27 @@ const Menu = (props) => {
             previewColor={props.colorText}
             isText={true}
             getColor={(color, isText) => props.getColor(color, isText)}
-
             isKeyboardActive={showVirtualKeyboard}
             isActive={indexFocusedItem === 4 ? true : false}
+            changeBk={props.changeBk}
           />
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <VirtualKeyboard
-            isText={true}
-            getColor={(color, isText) => props.getColor(color, isText)}
-            exitKeyboard={() => exitKeyboard()}
+              isText={true}
+              getColor={(color, isText) => props.getColor(color, isText)}
+              exitKeyboard={() => exitKeyboard()}
             />
           ) : (
             ""
           )}
         </li>
         <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
-          <Alphapicker 
-                      previewColor={props.colorText}
-                      isText={true}
-                      getColor={(color, isText) => props.getColor(color, isText)}
-
-          isActive={indexFocusedItem === 5 ? true : false} />
+          <Alphapicker
+            previewColor={props.colorText}
+            isText={true}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isActive={indexFocusedItem === 5 ? true : false}
+          />
         </li>
       </ul>
       <ul>

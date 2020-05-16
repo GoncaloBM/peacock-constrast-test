@@ -1,29 +1,28 @@
-.App{
-  
+.App {
 }
-.header{
-    border: 1px black solid
-}
-
-.instructions{
-        border: 1px black solid
-
+.header {
+  border: 1px black solid;
 }
 
-.wrapper{
-    display: flex;
-    flex-direction: row;
-    height: 80vh;
-    margin: 0 90px 0 90px;
-    border: 1px solid black;
+.instructions {
+  border: 1px black solid;
 }
 
-.Board{
-
-    width: 65%;
-
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  margin: 0 90px 0 90px;
+  border: 1px solid black;
 }
 
-.menu{
-    width: 35%
+.Board {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 65%;
+}
+
+.menu {
+  width: 35%;
 }
