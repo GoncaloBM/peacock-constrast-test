@@ -67,6 +67,7 @@ function App() {
 
   const changeBk = (bkUrl) => {
     setBkImage(bkUrl);
+    console.log(bkUrl)
   };
 
   const returnToNavBar = (returningToNavBar) => {
