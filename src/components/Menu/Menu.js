@@ -58,14 +58,14 @@ const Menu = (props) => {
       if (showVirtualKeyboard) {
       } else {
         if (e.keyCode === 38) {
-          if (newIndex > 0) {
+          if (newIndex >= 0) {
             newIndex--;
-
+            console.log(newIndex)
+            console.log('a subir')
             setIndexFocusedItem(newIndex);
           }
-          if(newIndex=== 0){
-            newIndex--;
-
+          if(newIndex=== -1){
+            console.log('vai para navbar')
             setIndexFocusedItem(newIndex);
             //console.log('leaving menu');
             props.backToNavbar(true)
