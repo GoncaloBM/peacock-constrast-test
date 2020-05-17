@@ -18,7 +18,7 @@ const Menu = (props) => {
       if (nextImage < 0 || nextImage >= props.imageDB.length) {
         return;
       } else if (numero === 1) {
-        if (currentPhotoID === props.imageDB.length-1) {
+        if (currentPhotoID === props.imageDB.length) {
           setCurrentPhotoID(0);
           alert("hey");
         } else {
