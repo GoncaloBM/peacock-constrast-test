@@ -17,17 +17,8 @@ const Menu = (props) => {
       const nextImage = currentPhotoID + numero;
       if (nextImage < 0 || nextImage >= props.imageDB.length) {
         return;
-      } else if (numero === 1) {
-        if (currentPhotoID === props.imageDB.length) {
-          setCurrentPhotoID(0);
-          alert("hey");
-        } else {
-          setCurrentPhotoID(currentPhotoID++);
-          props.changeBk(props.imageDB[currentPhotoID].url);
-          //console.log(currentPhotoID);
-        }
-      } else if (numero === -1) {
-        setCurrentPhotoID(currentPhotoID--);
+      } else {
+        setCurrentPhotoID(currentPhotoID + numero);
         props.changeBk(props.imageDB[currentPhotoID].url);
       }
     };
@@ -60,23 +51,22 @@ const Menu = (props) => {
         if (e.keyCode === 38) {
           if (newIndex >= 0) {
             newIndex--;
-            console.log(newIndex)
-            console.log('a subir')
+            console.log(newIndex);
+            console.log("a subir");
             setIndexFocusedItem(newIndex);
           }
-          if(newIndex=== -1){
-            console.log('vai para navbar')
+          if (newIndex === -1) {
+            console.log("vai para navbar");
             setIndexFocusedItem(newIndex);
             //console.log('leaving menu');
-            props.backToNavbar(true)
-            
+            props.backToNavbar(true);
           }
         } else if (e.keyCode === 40) {
-          if(newIndex === -1){
-            props.backToNavbar(false)
+          if (newIndex === -1) {
+            props.backToNavbar(false);
             setIndexFocusedItem(0);
           }
-          if (newIndex < 8 && newIndex >-1 ) {
+          if (newIndex < 8 && newIndex > -1) {
             newIndex++;
             setIndexFocusedItem(newIndex);
           }
@@ -90,7 +80,7 @@ const Menu = (props) => {
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeImageWithArrow);
     };
-  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID,props]);
+  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID, props]);
 
   return (
     <div className="Menu">
