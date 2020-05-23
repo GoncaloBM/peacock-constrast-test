@@ -16,15 +16,17 @@ const Contrast = ({
   return (
     <>
       <div className="wrapper">
-        <div
-          style={{
-            backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-            color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-            backgroundImage: `url(${bkImage})`,
-          }}
-          className="Board"
-        >
-          This is board
+        <div className="wrapper-board">
+          <div
+            style={{
+              backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
+              color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+              backgroundImage: `url(${bkImage})`,
+            }}
+            className="Board"
+          >
+            <div className='board-text'>This is Board</div>
+          </div>
         </div>
 
         <div className="menu">
@@ -148,80 +150,99 @@ function App(props) {
     <Router>
       <div className="App">
         <header className="header">
-          <ul>
+          <div className="logo"></div>
+          <ul className="buttons">
             <li
               onClick={() => setLinkIndex(0)}
               className={linkIndex === 0 ? "focusedNavbar" : ""}
             >
-              <Link to="/">Home</Link>
+              <Link
+                to="/"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Home
+              </Link>
             </li>
 
             <li
               onClick={() => setLinkIndex(1)}
               className={linkIndex === 1 ? "focusedNavbar" : ""}
             >
-              <Link to="/contrast">Contrast</Link>
+              <Link
+                to="/contrast"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Contrast
+              </Link>
             </li>
             <li
               onClick={() => setLinkIndex(2)}
               className={linkIndex === 2 ? "focusedNavbar" : ""}
             >
-              <Link to="/about">About</Link>
+              <Link
+                to="/about"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                About
+              </Link>
             </li>
           </ul>
         </header>
-      </div>
-      {contrast ? (
-        <>
-          <div className="wrapper">
-            <div
-              style={{
-                backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-                color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-                backgroundImage: `url(${bkImage})`,
-              }}
-              className="Board"
-            >
-              This is board
-            </div>
 
-            <div className="menu">
-              <Menu
-                backToNavbar={(returningToNavBar) =>
-                  returnToNavBar(returningToNavBar)
-                }
-                colorText={colorText}
+        <div className="content">
+          <Switch>
+            <Route path="/about">
+              <h1>This is about us</h1>
+            </Route>
+            <Route path="/contrast">
+              <Contrast
                 backgroundColor={backgroundColor}
-                getColor={(color, isText) => getColor(color, isText)}
-                changeBk={changeBk}
+                colorText={colorText}
+                bkImage={bkImage}
+                returnToNavBar={returnToNavBar}
+                getColor={getColor}
                 imageDB={imageDB}
+                changeBk={changeBk}
               />
-            </div>
-          </div>
-          <footer className="instructions"> Instructions </footer>
-        </>
-      ) : (
-        ""
-      )}
-      <Switch>
-        <Route path="/about">
-          <h1>This is about us</h1>
-        </Route>
-        <Route path="/contrast">
-          <Contrast
-            backgroundColor={backgroundColor}
-            colorText={colorText}
-            bkImage={bkImage}
-            returnToNavBar={returnToNavBar}
-            getColor={getColor}
-            imageDB={imageDB}
-            changeBk={changeBk}
-          />
-        </Route>
-        <Route path="/">
-          <h1>This is Home</h1>
-        </Route>
-      </Switch>
+            </Route>
+            <Route path="/">
+              <h1>This is Home</h1>
+            </Route>
+          </Switch>
+          {/* {contrast ? (
+            <>
+              <div className="wrapper">
+                <div
+                  style={{
+                    backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
+                    color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+                    backgroundImage: `url(${bkImage})`,
+                  }}
+                  className="Board"
+                >
+                  This is board
+                </div>
+
+                <div className="menu">
+                  <Menu
+                    backToNavbar={(returningToNavBar) =>
+                      returnToNavBar(returningToNavBar)
+                    }
+                    colorText={colorText}
+                    backgroundColor={backgroundColor}
+                    getColor={(color, isText) => getColor(color, isText)}
+                    changeBk={changeBk}
+                    imageDB={imageDB}
+                  />
+                </div>
+              </div>
+              <footer className="instructions"> Instructions </footer>
+            </>
+          ) : (
+            ""
+          )} */}
+        </div>
+      </div>
     </Router>
   );
 }
