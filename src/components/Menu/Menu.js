@@ -15,8 +15,12 @@ const Menu = (props) => {
   useEffect(() => {
     const nextImg = (numero) => {
       const nextImage = currentPhotoID + numero;
-      if (nextImage < 0 || nextImage >= props.imageDB.length) {
-        return;
+      if (nextImage > props.imageDB.length) {
+        setCurrentPhotoID(0);
+        props.changeBk(props.imageDB[0].url);
+      } else if (nextImage < 0) {
+        setCurrentPhotoID(props.imageDB.length - 1);
+        props.changeBk(props.imageDB[props.imageDB.length - 1].url);
       } else {
         setCurrentPhotoID(currentPhotoID + numero);
         props.changeBk(props.imageDB[currentPhotoID].url);
