@@ -22,7 +22,7 @@ body {
 .logo {
   width: 10%;
   height: 90%;
-  background-image: url('./images/logo.png');
+  background-image: url("./images/logo.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -41,11 +41,10 @@ body {
   text-decoration: none;
 }
 
-
 .content {
   width: 100%;
   height: 90vh;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 .instructions {
@@ -55,20 +54,25 @@ body {
 .wrapper {
   display: flex;
   flex-direction: row;
-  height: 80vh;
+  /* height: 80vh;
   margin: 0 90px 0 90px;
-  border: 1px solid black;
+  border: 1px solid black; */
+}
+
+.wrapper-board {
+  width: 75%;
 }
 
 .Board {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 65%;
+  width: 100%;
+  padding-bottom: 56.25%;
 }
 
 .menu {
-  width: 35%;
+  width: 25%;
 }
 
 .focusedNavbar {

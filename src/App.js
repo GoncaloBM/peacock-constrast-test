@@ -16,15 +16,17 @@ const Contrast = ({
   return (
     <>
       <div className="wrapper">
-        <div
-          style={{
-            backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-            color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-            backgroundImage: `url(${bkImage})`,
-          }}
-          className="Board"
-        >
-          This is board
+        <div className="wrapper-board">
+          <div
+            style={{
+              backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
+              color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+              backgroundImage: `url(${bkImage})`,
+            }}
+            className="Board"
+          >
+            This is board
+          </div>
         </div>
 
         <div className="menu">
