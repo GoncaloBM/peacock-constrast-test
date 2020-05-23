@@ -88,11 +88,15 @@ const Menu = (props) => {
 
   return (
     <div className="Menu">
-      <ul>
-        <li className={`${indexFocusedItem === 0 ? "focused" : ""}`}>
+      <ul className="category-menu">
+        <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
           Background
         </li>
-        <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
+        <li
+          className={` color-keyboard ${
+            indexFocusedItem === 1 ? "focused" : ""
+          }`}
+        >
           <Twitterpicker
             isText={false}
             previewColor={props.backgroundColor}
@@ -102,13 +106,15 @@ const Menu = (props) => {
             changeBk={props.changeBk}
           />
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
-            <VirtualKeyboard
-              previewColor={props.backgroundColor}
-              isText={false}
-              getColor={(color, isText) => props.getColor(color, isText)}
-              exitKeyboard={() => exitKeyboard()}
-              changeBk={props.changeBk}
-            />
+            <div className="keybo">
+              <VirtualKeyboard
+                previewColor={props.backgroundColor}
+                isText={false}
+                getColor={(color, isText) => props.getColor(color, isText)}
+                exitKeyboard={() => exitKeyboard()}
+                changeBk={props.changeBk}
+              />
+            </div>
           ) : (
             ""
           )}
@@ -122,8 +128,8 @@ const Menu = (props) => {
           />
         </li>
       </ul>
-      <ul>
-        <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
+      <ul className="category-menu">
+        <li className={` title-menu ${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
         <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
           <Twitterpicker
             previewColor={props.colorText}
@@ -154,8 +160,8 @@ const Menu = (props) => {
           />
         </li>
       </ul>
-      <ul>
-        <li className={`${indexFocusedItem === 6 ? "focused" : ""}`}>Fonts</li>
+      <ul className="category-menu">
+        <li className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}>Fonts</li>
         <li className={`${indexFocusedItem === 7 ? "focused" : ""}`}>
           Font Size
         </li>

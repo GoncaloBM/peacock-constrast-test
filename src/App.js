@@ -25,7 +25,7 @@ const Contrast = ({
             }}
             className="Board"
           >
-            This is board
+            <div className='board-text'>This is Board</div>
           </div>
         </div>
 
