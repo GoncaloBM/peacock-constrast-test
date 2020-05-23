@@ -130,7 +130,7 @@ const Menu = (props) => {
       </ul>
       <ul className="category-menu">
         <li className={` title-menu ${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
-        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
+        <li className={`color-keyboard ${indexFocusedItem === 4 ? "focused" : ""}`}>
           <Twitterpicker
             previewColor={props.colorText}
             isText={true}
@@ -140,6 +140,7 @@ const Menu = (props) => {
             changeBk={props.changeBk}
           />
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
+            <div className="keybo">
             <VirtualKeyboard
               previewColor={props.backgroundColor}
               changeBk={props.changeBk}
@@ -147,6 +148,7 @@ const Menu = (props) => {
               getColor={(color, isText) => props.getColor(color, isText)}
               exitKeyboard={() => exitKeyboard()}
             />
+            </div>
           ) : (
             ""
           )}
