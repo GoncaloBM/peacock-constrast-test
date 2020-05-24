@@ -29,6 +29,8 @@ class Alphapicker extends React.Component {
   keydown = (event) => {
     let isText = this.props.isText
     let isActive = this.props.isActive;
+    console.log(isActive);
+    
     
     let color = {...this.state.color};
     if (isActive && event.key === "ArrowLeft" && color.a > 0) {

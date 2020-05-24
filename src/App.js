@@ -13,6 +13,7 @@ const Contrast = ({
   getColor,
   imageDB,
   changeBk,
+  picker,
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const Contrast = ({
             }}
             className="Board"
           >
-            <div className='board-text'>This is Board</div>
+            <div className="board-text">This is Board</div>
           </div>
         </div>
 
@@ -38,6 +39,7 @@ const Contrast = ({
             getColor={getColor}
             changeBk={changeBk}
             imageDB={imageDB}
+            picker={picker}
           />
         </div>
       </div>
@@ -67,6 +69,8 @@ function App(props) {
       return 1;
     } else if (window.location.pathname === "/about") {
       return 2;
+    } else if (window.location.pathname === "/contrast2") {
+      return 3;
     }
   };
 
@@ -98,13 +102,18 @@ function App(props) {
             window.location.pathname = "/";
           }
         }
+        if (e.keyCode === 13 && linkIndex === 3) {
+          if (window.location.pathname !== "/contrast2") {
+            window.location.pathname = "/contrast2";
+          }
+        }
 
         if (e.keyCode === 37 && linkIndex > 0) {
           newIndex--;
           setLinkIndex(newIndex);
         }
 
-        if (e.keyCode === 39 && linkIndex < 2) {
+        if (e.keyCode === 39 && linkIndex < 3) {
           newIndex++;
           setLinkIndex(newIndex);
         }
@@ -133,7 +142,7 @@ function App(props) {
 
   const changeBk = (bkUrl) => {
     setBkImage(bkUrl);
-    console.log(bkUrl);
+    // console.log(bkUrl);
   };
 
   const returnToNavBar = (returningToNavBar) => {
@@ -141,7 +150,7 @@ function App(props) {
       setLinkIndex(2);
       setNavBarNavigating(true);
     } else {
-      console.log("a descer");
+      // console.log("a descer");
       setNavBarNavigating(false);
       setLinkIndex(-1);
     }
@@ -152,7 +161,6 @@ function App(props) {
       <div className="App">
         <header className="header">
           <div className="logo"></div>
-
           <ul className="buttons">
             <li
               onClick={() => setLinkIndex(0)}
@@ -188,6 +196,17 @@ function App(props) {
                 About
               </Link>
             </li>
+            <li
+              onClick={() => setLinkIndex(3)}
+              className={linkIndex === 3 ? "focusedNavbar" : ""}
+            >
+              <Link
+                to="/contrast2"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Contrast Twitter
+              </Link>
+            </li>
           </ul>
         </header>
 
@@ -205,10 +224,24 @@ function App(props) {
                 getColor={getColor}
                 imageDB={imageDB}
                 changeBk={changeBk}
+                picker= "huepicker"
+              />
+            </Route>
+            <Route path="/contrast2">
+              <Contrast
+                backgroundColor={backgroundColor}
+                colorText={colorText}
+                bkImage={bkImage}
+                returnToNavBar={returnToNavBar}
+                getColor={getColor}
+                imageDB={imageDB}
+                changeBk={changeBk}
+                picker= "twitterpicker"
               />
             </Route>
             <Route path="/">
             <FileUpload />
+
             </Route>
           </Switch>
           
