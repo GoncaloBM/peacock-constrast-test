@@ -111,7 +111,10 @@ const Menu = (props) => {
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
             picker={props.picker}
-            showVirtualKeyboard={showVirtualKeyboard}>> </Twitterpicker> <Alphapicker></Alphapicker> </> : <HuePicker 
+            showVirtualKeyboard={showVirtualKeyboard}>> </Twitterpicker> <Alphapicker isText={false}
+            previewColor={props.backgroundColor}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isActive={indexFocusedItem === 2 ? true : false}></Alphapicker> </> : <HuePicker 
             hue={hue}
             showVirtualKeyboard={showVirtualKeyboard}
             isText={false}
@@ -164,7 +167,10 @@ const Menu = (props) => {
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
             picker={props.picker}
-            showVirtualKeyboard={showVirtualKeyboard}>> </Twitterpicker> <Alphapicker></Alphapicker> </> : <HuePicker 
+            showVirtualKeyboard={showVirtualKeyboard}>> </Twitterpicker> <Alphapicker  previewColor={props.colorText}
+            isText={true}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isActive={indexFocusedItem === 5 ? true : false}></Alphapicker> </> : <HuePicker 
             hue={hue}
             showVirtualKeyboard={showVirtualKeyboard}
             isText={true}

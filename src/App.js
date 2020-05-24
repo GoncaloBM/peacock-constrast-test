@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
+import FileUpload from "./components/fileUploader/fileUpload"
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -239,41 +240,11 @@ function App(props) {
               />
             </Route>
             <Route path="/">
-              <h1>This is Home</h1>
+            <FileUpload />
+
             </Route>
           </Switch>
-          {/* {contrast ? (
-            <>
-              <div className="wrapper">
-                <div
-                  style={{
-                    backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-                    color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-                    backgroundImage: `url(${bkImage})`,
-                  }}
-                  className="Board"
-                >
-                  This is board
-                </div>
-
-                <div className="menu">
-                  <Menu
-                    backToNavbar={(returningToNavBar) =>
-                      returnToNavBar(returningToNavBar)
-                    }
-                    colorText={colorText}
-                    backgroundColor={backgroundColor}
-                    getColor={(color, isText) => getColor(color, isText)}
-                    changeBk={changeBk}
-                    imageDB={imageDB}
-                  />
-                </div>
-              </div>
-              <footer className="instructions"> Instructions </footer>
-            </>
-          ) : (
-            ""
-          )} */}
+          
         </div>
       </div>
     </Router>

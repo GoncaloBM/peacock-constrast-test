@@ -58,7 +58,8 @@ export const VirtualKeyboard = (props) => {
       } else if (currentKeyValue === 19 && keyboardValue.length === 6) {
         //button ok
        let color = hexToRgb(keyboardValue.join(""));
-       color.a = 1;
+       let previewColor = {...props.previewColor}
+       color.a = previewColor.a;
         sendColorFromVirtualKeyboard(color);     
         exitKeyboard()
       }else if (currentKeyValue === 20) {
