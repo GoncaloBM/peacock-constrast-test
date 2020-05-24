@@ -2,13 +2,39 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    align-items: center;
+    justify-content: space-between;
 
+}
+
+.title-menu {
+    font-size: 2rem;
+}
+
+.category-menu {
+    width: 100%;
+    height: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.color-keyboard {
+    position: relative;
+}
+
+.keybo {
+    position: absolute;
+    top: 0;
+    right: 101%;
 }
 
 .Menu > ul >li{
     list-style: none;
 }
 .Menu > ul>.focused{
-    border: 1px solid black;
+    border-bottom: 3px solid black;
+    transition: 0.5s all;
 }
 

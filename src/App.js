@@ -12,19 +12,22 @@ const Contrast = ({
   getColor,
   imageDB,
   changeBk,
+  picker,
 }) => {
   return (
     <>
       <div className="wrapper">
-        <div
-          style={{
-            backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-            color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-            backgroundImage: `url(${bkImage})`,
-          }}
-          className="Board"
-        >
-          This is board
+        <div className="wrapper-board">
+          <div
+            style={{
+              backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
+              color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+              backgroundImage: `url(${bkImage})`,
+            }}
+            className="Board"
+          >
+            <div className="board-text">This is Board</div>
+          </div>
         </div>
 
         <div className="menu">
@@ -35,6 +38,7 @@ const Contrast = ({
             getColor={getColor}
             changeBk={changeBk}
             imageDB={imageDB}
+            picker={picker}
           />
         </div>
       </div>
@@ -64,6 +68,8 @@ function App(props) {
       return 1;
     } else if (window.location.pathname === "/about") {
       return 2;
+    } else if (window.location.pathname === "/contrast2") {
+      return 3;
     }
   };
 
@@ -95,13 +101,18 @@ function App(props) {
             window.location.pathname = "/";
           }
         }
+        if (e.keyCode === 13 && linkIndex === 3) {
+          if (window.location.pathname !== "/contrast2") {
+            window.location.pathname = "/contrast2";
+          }
+        }
 
         if (e.keyCode === 37 && linkIndex > 0) {
           newIndex--;
           setLinkIndex(newIndex);
         }
 
-        if (e.keyCode === 39 && linkIndex < 2) {
+        if (e.keyCode === 39 && linkIndex < 3) {
           newIndex++;
           setLinkIndex(newIndex);
         }
@@ -130,7 +141,7 @@ function App(props) {
 
   const changeBk = (bkUrl) => {
     setBkImage(bkUrl);
-    console.log(bkUrl);
+    // console.log(bkUrl);
   };
 
   const returnToNavBar = (returningToNavBar) => {
@@ -138,7 +149,7 @@ function App(props) {
       setLinkIndex(2);
       setNavBarNavigating(true);
     } else {
-      console.log("a descer");
+      // console.log("a descer");
       setNavBarNavigating(false);
       setLinkIndex(-1);
     }
@@ -148,80 +159,123 @@ function App(props) {
     <Router>
       <div className="App">
         <header className="header">
-          <ul>
+          <div className="logo"></div>
+          <ul className="buttons">
             <li
               onClick={() => setLinkIndex(0)}
               className={linkIndex === 0 ? "focusedNavbar" : ""}
             >
-              <Link to="/">Home</Link>
+              <Link
+                to="/"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Home
+              </Link>
             </li>
 
             <li
               onClick={() => setLinkIndex(1)}
               className={linkIndex === 1 ? "focusedNavbar" : ""}
             >
-              <Link to="/contrast">Contrast</Link>
+              <Link
+                to="/contrast"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Contrast
+              </Link>
             </li>
             <li
               onClick={() => setLinkIndex(2)}
               className={linkIndex === 2 ? "focusedNavbar" : ""}
             >
-              <Link to="/about">About</Link>
+              <Link
+                to="/about"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                About
+              </Link>
+            </li>
+            <li
+              onClick={() => setLinkIndex(3)}
+              className={linkIndex === 3 ? "focusedNavbar" : ""}
+            >
+              <Link
+                to="/contrast2"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Contrast Twitter
+              </Link>
             </li>
           </ul>
         </header>
-      </div>
-      {contrast ? (
-        <>
-          <div className="wrapper">
-            <div
-              style={{
-                backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-                color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
-                backgroundImage: `url(${bkImage})`,
-              }}
-              className="Board"
-            >
-              This is board
-            </div>
 
-            <div className="menu">
-              <Menu
-                backToNavbar={(returningToNavBar) =>
-                  returnToNavBar(returningToNavBar)
-                }
-                colorText={colorText}
+        <div className="content">
+          <Switch>
+            <Route path="/about">
+              <h1>This is about us</h1>
+            </Route>
+            <Route path="/contrast">
+              <Contrast
                 backgroundColor={backgroundColor}
-                getColor={(color, isText) => getColor(color, isText)}
-                changeBk={changeBk}
+                colorText={colorText}
+                bkImage={bkImage}
+                returnToNavBar={returnToNavBar}
+                getColor={getColor}
                 imageDB={imageDB}
+                changeBk={changeBk}
+                picker= "huepicker"
               />
-            </div>
-          </div>
-          <footer className="instructions"> Instructions </footer>
-        </>
-      ) : (
-        ""
-      )}
-      <Switch>
-        <Route path="/about">
-          <h1>This is about us</h1>
-        </Route>
-        <Route path="/contrast">
-          <Contrast
-            backgroundColor={backgroundColor}
-            colorText={colorText}
-            bkImage={bkImage}
-            returnToNavBar={returnToNavBar}
-            getColor={getColor}
-            imageDB={imageDB}
-            changeBk={changeBk}
-          />
-        </Route>
-        <Route path="/">
-          <h1>This is Home</h1>
-        </Route>
-      </Switch>
+            </Route>
+            <Route path="/">
+              <h1>This is Home</h1>
+            </Route>
+            <Route path="/contrast2">
+              <Contrast
+                backgroundColor={backgroundColor}
+                colorText={colorText}
+                bkImage={bkImage}
+                returnToNavBar={returnToNavBar}
+                getColor={getColor}
+                imageDB={imageDB}
+                changeBk={changeBk}
+                picker= "twitterpicker"
+              />
+            </Route>
+          </Switch>
+          {/* {contrast ? (
+            <>
+              <div className="wrapper">
+                <div
+                  style={{
+                    backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
+                    color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+                    backgroundImage: `url(${bkImage})`,
+                  }}
+                  className="Board"
+                >
+                  This is board
+                </div>
+
+                <div className="menu">
+                  <Menu
+                    backToNavbar={(returningToNavBar) =>
+                      returnToNavBar(returningToNavBar)
+                    }
+                    colorText={colorText}
+                    backgroundColor={backgroundColor}
+                    getColor={(color, isText) => getColor(color, isText)}
+                    changeBk={changeBk}
+                    imageDB={imageDB}
+                  />
+                </div>
+              </div>
+              <footer className="instructions"> Instructions </footer>
+            </>
+          ) : (
+            ""
+          )} */}
+        </div>
+      </div>
     </Router>
   );
 }

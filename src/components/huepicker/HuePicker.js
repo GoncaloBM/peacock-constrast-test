@@ -259,7 +259,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Yellow
+                
               </Button>
             </div>
             <div
@@ -280,7 +280,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Purple
+              
               </Button>
             </div>
             <div
@@ -301,7 +301,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Orange
+                
               </Button>
             </div>
             <div
@@ -319,7 +319,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Red
+                
               </Button>
             </div>
             <div
@@ -340,7 +340,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Grey
+                
               </Button>
             </div>
             <div
@@ -361,7 +361,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Blue
+                
               </Button>
             </div>
             <div
@@ -382,7 +382,7 @@ class HuePicker extends Component {
                   )
                 }
               >
-                Green
+                
               </Button>
             </div>
           </div>

@@ -7,3 +7,13 @@
 .buttonsColor>.focused {
     border: 1px solid black;
 }
+
+.MuiButton-root {
+    padding: 15px 15px !important;
+    min-width: 15px !important;
+    margin-right: 3px !important;
+}
+
+.buttonsColor {
+    display: flex;
+}
