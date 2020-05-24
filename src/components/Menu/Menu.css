@@ -1,10 +1,9 @@
-.Menu{
+.Menu {
     display: flex;
     flex-direction: column;
     height: 100%;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .title-menu {
@@ -26,15 +25,16 @@
 
 .keybo {
     position: absolute;
-    top: 0;
-    right: 101%;
+    top: 160px;
+    right: 0%;
+    z-index: 2;
 }
 
-.Menu > ul >li{
+.Menu>ul>li {
     list-style: none;
 }
-.Menu > ul>.focused{
+
+.Menu>ul>.focused {
     border-bottom: 3px solid black;
     transition: 0.5s all;
 }
-

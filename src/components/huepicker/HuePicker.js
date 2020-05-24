@@ -65,7 +65,7 @@ class HuePicker extends Component {
 
   keydown(event) {
     let colorPicked = this.state.colorPicked;
-    if (event.key === "ArrowRight" && this.props.isActive) {
+    if (event.key === "ArrowRight" && this.props.isActive&&this.props.showVirtualKeyboard===false) {
       if (colorPicked === "") {
         this.setState({
           colorPicked: "yellow",
@@ -140,7 +140,7 @@ class HuePicker extends Component {
         // );
       }
     }
-    if (event.key === "ArrowLeft" && this.props.isActive) {
+    if (event.key === "ArrowLeft" && this.props.isActive &&this.props.showVirtualKeyboard===false) {
       if (colorPicked === "") {
         this.setState({
           colorPicked: "slider",

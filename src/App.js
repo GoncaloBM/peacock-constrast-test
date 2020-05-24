@@ -226,9 +226,6 @@ function App(props) {
                 picker= "huepicker"
               />
             </Route>
-            <Route path="/">
-              <h1>This is Home</h1>
-            </Route>
             <Route path="/contrast2">
               <Contrast
                 backgroundColor={backgroundColor}
@@ -240,6 +237,9 @@ function App(props) {
                 changeBk={changeBk}
                 picker= "twitterpicker"
               />
+            </Route>
+            <Route path="/">
+              <h1>This is Home</h1>
             </Route>
           </Switch>
           {/* {contrast ? (

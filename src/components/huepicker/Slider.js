@@ -85,7 +85,8 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
     let keydown = (event) => {
       if (
         event.key === "ArrowRight" &&
-        focusItem === 2 &&
+        (focusItem === 2 || focusItem === 5) &&
+
        array < (hueValues.length - 1)
       ) {
         setArray(array + 1);
@@ -95,7 +96,8 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
       }
       if (
         event.key === "ArrowLeft" &&
-        focusItem === 2 &&
+        (focusItem === 2 || focusItem === 5) &&
+
         array >0 
       ) {
         setArray(array - 1);
