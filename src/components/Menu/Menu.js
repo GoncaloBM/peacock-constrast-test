@@ -3,14 +3,23 @@ import "./Menu.css";
 import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
+import HuePicker from "../huepicker/HuePicker";
+import ContinuousSlider from "../huepicker/Slider";
+
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
+  let [hue, setStateHue] = useState(500);
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
   };
+  const getHue = (hue) => {
+    setStateHue(hue);
+  };
+
+
 
   useEffect(() => {
     const nextImg = (numero) => {
@@ -51,12 +60,12 @@ const Menu = (props) => {
         if (e.keyCode === 38) {
           if (newIndex >= 0) {
             newIndex--;
-            console.log(newIndex);
-            console.log("a subir");
+            // console.log(newIndex);
+            // console.log("a subir");
             setIndexFocusedItem(newIndex);
           }
           if (newIndex === -1) {
-            console.log("vai para navbar");
+            // console.log("vai para navbar");
             setIndexFocusedItem(newIndex);
             //console.log('leaving menu');
             props.backToNavbar(true);
@@ -89,13 +98,15 @@ const Menu = (props) => {
           Background
         </li>
         <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
-          <Twitterpicker
+          <HuePicker
+            hue={hue}
             isText={false}
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
             isKeyboardActive={showVirtualKeyboard}
             isActive={indexFocusedItem === 1 ? true : false}
             changeBk={props.changeBk}
+            focusItem={indexFocusedItem}
           />
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <VirtualKeyboard
@@ -110,24 +121,32 @@ const Menu = (props) => {
           )}
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
-          <Alphapicker
+          <ContinuousSlider
+            getHue={() => getHue(hue)}
+            hue={hue}
+            focusItem={indexFocusedItem}
+          />
+
+          {/* <Alphapicker
             isText={false}
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
             isActive={indexFocusedItem === 2 ? true : false}
-          />
+          /> */}
         </li>
       </ul>
       <ul>
         <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
         <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
-          <Twitterpicker
+          <HuePicker
+            hue={hue}
             previewColor={props.colorText}
             isText={true}
             getColor={(color, isText) => props.getColor(color, isText)}
             isKeyboardActive={showVirtualKeyboard}
             isActive={indexFocusedItem === 4 ? true : false}
             changeBk={props.changeBk}
+            focusItem={indexFocusedItem}
           />
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <VirtualKeyboard
@@ -142,12 +161,18 @@ const Menu = (props) => {
           )}
         </li>
         <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
-          <Alphapicker
+        <ContinuousSlider
+            getHue={(hue) => getHue(hue)}
+            hue={hue}
+            focusItem={indexFocusedItem}
+          />
+          
+          {/* <Alphapicker
             previewColor={props.colorText}
             isText={true}
             getColor={(color, isText) => props.getColor(color, isText)}
             isActive={indexFocusedItem === 5 ? true : false}
-          />
+          /> */}
         </li>
       </ul>
       <ul>

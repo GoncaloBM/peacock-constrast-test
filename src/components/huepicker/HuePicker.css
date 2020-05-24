@@ -3,3 +3,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.buttonsColor>.focused {
+    border: 1px solid black;
+}
