@@ -63,6 +63,7 @@ body {
 }
 
 .wrapper-board {
+  position: relative;
   width: 75%;
 }
 
@@ -78,7 +79,8 @@ body {
 }
 
 .board-text {
-  font-size: 2rem;
+  position: absolute;
+  top: 0;
 }
 
 .menu {

@@ -22,6 +22,16 @@ const Menu = (props) => {
 
 
   useEffect(() => {
+    const changeSizeFont = (e) => {
+      if (indexFocusedItem === 7) {
+        if (e.keyCode === 39) {
+          props.changeFontSizeState(1);
+        } else if (e.keyCode === 37) {
+          props.changeFontSizeState(-1);
+        }
+      }
+    };
+
     const nextImg = (numero) => {
       const nextImage = currentPhotoID + numero;
       if (nextImage > props.imageDB.length) {
@@ -89,10 +99,12 @@ const Menu = (props) => {
     };
     window.addEventListener("keydown", changeImageWithArrow);
     window.addEventListener("keydown", keyNavigate);
+    window.addEventListener("keydown", changeSizeFont);
     //console.log(indexFocusedItem)
     return () => {
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeImageWithArrow);
+      window.removeEventListener("keydown", changeSizeFont);
     };
   }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID, props]);
 
@@ -157,8 +169,11 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
-        <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>Text</li>
-        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
+<li
+className={` title-menu ${indexFocusedItem === 3 ? "focused" : ""}`}
+>
+Text
+</li>        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
         {props.picker==="twitterpicker" ? <><Twitterpicker isText = {false}
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
@@ -195,13 +210,13 @@ const Menu = (props) => {
           /> */}
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <div className="keybo">
-            <VirtualKeyboard
-              previewColor={props.backgroundColor}
-              changeBk={props.changeBk}
-              isText={true}
-              getColor={(color, isText) => props.getColor(color, isText)}
-              exitKeyboard={() => exitKeyboard()}
-            />
+              <VirtualKeyboard
+                previewColor={props.backgroundColor}
+                changeBk={props.changeBk}
+                isText={true}
+                getColor={(color, isText) => props.getColor(color, isText)}
+                exitKeyboard={() => exitKeyboard()}
+              />
             </div>
           ) : (
             ""
@@ -223,7 +238,11 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
-        <li className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}>Fonts</li>
+        <li
+          className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}
+        >
+          Fonts
+        </li>
         <li className={`${indexFocusedItem === 7 ? "focused" : ""}`}>
           Font Size
         </li>
