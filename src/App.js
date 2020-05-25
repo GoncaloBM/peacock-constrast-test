@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
-import FileUpload from "./components/fileUploader/fileUpload"
+import './fonts/fonts.css'
+import FileUpload from "./components/fileUploader/fileUpload";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -13,6 +14,8 @@ const Contrast = ({
   getColor,
   imageDB,
   changeBk,
+  fontSize,
+  changeFontSizeState
 }) => {
   return (
     <>
@@ -26,7 +29,9 @@ const Contrast = ({
             }}
             className="Board"
           >
-            <div className='board-text'>This is Board</div>
+            <div className="board-text" style={{ fontSize: `${fontSize}px` }}>
+              This is Board
+            </div>
           </div>
         </div>
 
@@ -38,6 +43,8 @@ const Contrast = ({
             getColor={getColor}
             changeBk={changeBk}
             imageDB={imageDB}
+            fontSize={fontSize}
+            changeFontSizeState={changeFontSizeState}
           />
         </div>
       </div>
@@ -60,6 +67,8 @@ function App(props) {
     a: 1,
   });
 
+  const [fontSize, setfontSize] = useState(100);
+
   const getWindowLocation = () => {
     if (window.location.pathname === "/") {
       return 0;
@@ -79,6 +88,7 @@ function App(props) {
 
   useEffect(() => {
     fetchImages();
+
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
         let newIndex = linkIndex;
@@ -114,7 +124,14 @@ function App(props) {
     return () => {
       window.removeEventListener("keydown", navBarNavigation);
     };
-  }, [colorText, backgroundColor, bkImage, linkIndex, navBarNavigating]);
+  }, [
+    colorText,
+    backgroundColor,
+    bkImage,
+    linkIndex,
+    navBarNavigating,
+    fontSize,
+  ]);
 
   let getColor = (color, isText) => {
     if (isText) {
@@ -147,9 +164,13 @@ function App(props) {
     }
   };
 
+  const changeFontSizeState = (increaseOrDecrease) => {
+    setfontSize(fontSize + increaseOrDecrease);
+  };
+
   return (
     <Router>
-      <div className="App">
+      <div className="App" style={{fontFamily: 'peacock'}}>
         <header className="header">
           <div className="logo"></div>
 
@@ -205,13 +226,14 @@ function App(props) {
                 getColor={getColor}
                 imageDB={imageDB}
                 changeBk={changeBk}
+                fontSize={fontSize}
+                changeFontSizeState={changeFontSizeState}
               />
             </Route>
             <Route path="/">
-            <FileUpload />
+              <FileUpload />
             </Route>
           </Switch>
-          
         </div>
       </div>
     </Router>
