@@ -25,8 +25,8 @@
 
 .keybo {
     position: absolute;
-    top: 160px;
-    right: 0%;
+    top: 0;
+    right: 101%;
     z-index: 2;
 }
 

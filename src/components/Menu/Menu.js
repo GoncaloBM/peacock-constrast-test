@@ -112,7 +112,7 @@ const Menu = (props) => {
         <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
           Background
         </li>
-        <li className={`${indexFocusedItem === 1 ? "focused" : ""}`}>
+        <li className={`color-keyboard ${indexFocusedItem === 1 ? "focused" : ""}`}>
           {props.picker === "twitterpicker" ? (
             <>
               <Twitterpicker
@@ -185,7 +185,7 @@ const Menu = (props) => {
         >
           Text
         </li>{" "}
-        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
+        <li className={`color-keyboard ${indexFocusedItem === 4 ? "focused" : ""}`}>
           {props.picker === "twitterpicker" ? (
             <>
               <Twitterpicker
