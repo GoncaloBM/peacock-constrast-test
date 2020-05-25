@@ -11,7 +11,7 @@ export const VirtualKeyboard = (props) => {
 
   const keyNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const keyLetters = ["a", "b", "c", "d", "e", "f", "C", "Back", "OK"];
+  const keyLetters = ["a", "b", "c", "d", "e", "f", "C", "Back", "OK", "Exit"];
 
 
   //after press ok on keyboard sets background with the value
@@ -55,11 +55,15 @@ export const VirtualKeyboard = (props) => {
         // delete last value
         let newValue = keyboardValue.slice(0, -1);
         setKeyboardValue(newValue);
-      } else if (currentKeyValue === 19) {
+      } else if (currentKeyValue === 19 && keyboardValue.length === 6) {
         //button ok
        let color = hexToRgb(keyboardValue.join(""));
-       color.a = 1;
+       let previewColor = {...props.previewColor}
+       color.a = previewColor.a;
         sendColorFromVirtualKeyboard(color);     
+        exitKeyboard()
+      }else if (currentKeyValue === 20) {
+        //button Exit  
         exitKeyboard()
       }
     }
@@ -69,7 +73,7 @@ export const VirtualKeyboard = (props) => {
   const changeKeys = (e) => {
     if (e.keyCode === 37 && currentKeyValue > 1) {
       setCurrentKeyValue(currentKeyValue - 1); // right
-    } else if (e.keyCode === 39 && currentKeyValue < 19) {
+    } else if (e.keyCode === 39 && currentKeyValue < 20) {
       setCurrentKeyValue(currentKeyValue + 1); // left
     } else if (e.keyCode === 40 && currentKeyValue < 10) {
       // down

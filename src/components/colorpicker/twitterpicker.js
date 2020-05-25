@@ -10,25 +10,20 @@ class Twitterpicker extends React.Component {
     };
   }
 
-
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({ previewColor: this.props.previewColor });
     }
   }
 
-  
-
   handleChangeComplete = (color) => {
     this.props.changeBk("");
 
-    if(this.state.mouse === true){
+    if (this.state.mouse === true) {
       this.setState({ color: color.rgb });
       this.props.getColor(color.rgb, this.props.isText);
-      this.setState({mouse:false})
+      this.setState({ mouse: false });
     }
-      
-   
   };
 
   render() {
@@ -38,7 +33,7 @@ class Twitterpicker extends React.Component {
         style={{
           backgroundColor: `rgb(${this.state.previewColor.r},${this.state.previewColor.g},${this.state.previewColor.b},${this.state.previewColor.a})`,
         }}
-        onClick={()=>this.setState({mouse:true})}
+        onClick={() => this.setState({ mouse: true })}
       >
         <TwitterPicker
           color={this.state.color}
@@ -54,7 +49,7 @@ class Twitterpicker extends React.Component {
             "#FC8542",
             "#666666",
           ]}
-        />
+        />{" "}
       </div>
     );
   }
