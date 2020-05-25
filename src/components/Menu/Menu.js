@@ -11,6 +11,7 @@ const Menu = (props) => {
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
   let [hue, setStateHue] = useState(500);
+  let [showTextPositionTool, setShowTextPositionTool] = useState(false)
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
@@ -21,6 +22,11 @@ const Menu = (props) => {
 
   useEffect(() => {
     const changeSizeFont = (e) => {
+      if (indexFocusedItem === 6) {
+        if (e.keyCode === 13) {
+          setShowTextPositionTool(!showTextPositionTool)
+        }
+      }
       if (indexFocusedItem === 7) {
         if (e.keyCode === 39) {
           props.changeFontSizeState(1);
@@ -28,6 +34,14 @@ const Menu = (props) => {
           props.changeFontSizeState(-1);
         }
       }
+      if (indexFocusedItem === 8) {
+        if (e.keyCode === 39) {
+          props.changeFontStyleState(1);
+        } else if (e.keyCode === 37) {
+          props.changeFontStyleState(-1);
+        }
+      }
+
     };
 
     const nextImg = (numero) => {
@@ -58,6 +72,14 @@ const Menu = (props) => {
     const keyNavigate = (e) => {
       //console.log(indexFocusedItem);
       let newIndex = indexFocusedItem;
+      if(showTextPositionTool===true){
+        
+
+
+       return props.changeTextPosition(e.keyCode)
+
+        
+       }
       if (
         (e.keyCode === 13 && newIndex === 1) ||
         (e.keyCode === 13 && newIndex === 4)
@@ -104,7 +126,7 @@ const Menu = (props) => {
       window.removeEventListener("keydown", changeImageWithArrow);
       window.removeEventListener("keydown", changeSizeFont);
     };
-  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID, props]);
+  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID, props, showTextPositionTool]);
 
   return (
     <div className="Menu">
@@ -170,13 +192,6 @@ const Menu = (props) => {
             hue={hue}
             focusItem={indexFocusedItem}
           />
-
-          {/* <Alphapicker
-            isText={false}
-            previewColor={props.backgroundColor}
-            getColor={(color, isText) => props.getColor(color, isText)}
-            isActive={indexFocusedItem === 2 ? true : false}
-          /> */}
         </li>
       </ul>
       <ul className="category-menu">
@@ -222,17 +237,6 @@ const Menu = (props) => {
             />
           )}
 
-          {/* <HuePicker
-            hue={hue}
-            showVirtualKeyboard={showVirtualKeyboard}
-            previewColor={props.colorText}
-            isText={true}
-            getColor={(color, isText) => props.getColor(color, isText)}
-            isKeyboardActive={showVirtualKeyboard}
-            isActive={indexFocusedItem === 4 ? true : false}
-            changeBk={props.changeBk}
-            focusItem={indexFocusedItem}
-          /> */}
           {showVirtualKeyboard && indexFocusedItem === 4 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -254,12 +258,7 @@ const Menu = (props) => {
             focusItem={indexFocusedItem}
           />
 
-          {/* <Alphapicker
-            previewColor={props.colorText}
-            isText={true}
-            getColor={(color, isText) => props.getColor(color, isText)}
-            isActive={indexFocusedItem === 5 ? true : false}
-          /> */}
+          
         </li>
       </ul>
       <ul className="category-menu">
