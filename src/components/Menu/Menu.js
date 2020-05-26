@@ -148,14 +148,14 @@ const Menu = (props) => {
                 picker={props.picker}
                 showVirtualKeyboard={showVirtualKeyboard}
               >
-                >{" "}
-              </Twitterpicker>{" "}
+                >
+              </Twitterpicker>
               <Alphapicker
                 isText={false}
                 previewColor={props.backgroundColor}
                 getColor={(color, isText) => props.getColor(color, isText)}
                 isActive={indexFocusedItem === 2 ? true : false}
-              ></Alphapicker>{" "}
+              ></Alphapicker>
             </>
           ) : (
             <HuePicker
