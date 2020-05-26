@@ -11,14 +11,16 @@ const Menu = (props) => {
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
   let [hue, setStateHue] = useState(500);
+  let [huePicker, setStateHuePicker] = useState(500);
+
   let [showTextPositionTool, setShowTextPositionTool] = useState(false)
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
   };
   const getHue = (hue) => {
-// console.log(hue)
     setStateHue(hue);
+    setStateHuePicker(hue)
   };
 
   useEffect(() => {
@@ -160,7 +162,7 @@ const Menu = (props) => {
             </>
           ) : (
             <HuePicker
-              hue={hue}
+              hue={huePicker}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={false}
               previewColor={props.backgroundColor}
@@ -193,7 +195,6 @@ const Menu = (props) => {
             hue={hue}
             focusItem={indexFocusedItem}
             getColor={(color, isText) => props.getColor(color, isText)}
-
           />
         </li>
       </ul>
@@ -226,9 +227,9 @@ const Menu = (props) => {
                 isActive={indexFocusedItem === 5 ? true : false}
               ></Alphapicker>{" "}
             </>
-          ) : (
+          ) : ( 
             <HuePicker
-              hue={hue}
+              hue={huePicker}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={true}
               previewColor={props.backgroundColor}
