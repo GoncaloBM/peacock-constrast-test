@@ -30,7 +30,7 @@ body {
 
 .buttons {
     color: white;
-    width: 30%;
+    width: 40%;
     height: 100%;
     font-size: 2rem;
     list-style: none;
@@ -42,7 +42,7 @@ body {
 }
 
 .buttons .li {
-    margin-right: 10px;
+    margin-left: 20px;
 }
 
 .content {
