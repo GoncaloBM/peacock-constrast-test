@@ -384,7 +384,6 @@ class HuePicker extends Component {
                   )
                 }
               ></Button>
-            {this.rgbaToHex(this.state.color)}
 
             </div>
           </div>
