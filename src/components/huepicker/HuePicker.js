@@ -55,7 +55,7 @@ class HuePicker extends Component {
       let colorPicked=this.state.colorPicked
       this.handleChangeComplete(
         this.hexToRgb(
-          customMuiTheme(this.state.hue).palette.[{colorPicked}].backgroundColor
+          customMuiTheme(this.state.hue).palette.{colorPicked}.backgroundColor
         )
       )
     }
