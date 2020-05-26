@@ -23,22 +23,13 @@ class HuePicker extends Component {
       hue: props.hue,
       previewColor: props.previewColor,
       colorPicked: "",
-      color:{r: 158, g: 158, b: 158, a: 1}
+      color: { r: 158, g: 158, b: 158, a: 1 },
     };
     this.keydown = this.keydown.bind(this);
   }
 
-  // setHue = (hue) => {
-  //   this.setState({
-  //     hue: hue,
-  //   });
-  // };
-
-  // getHue = (hue) => {
-  //   this.setHue(hue);
-  // };
-
   handleChangeComplete = (color) => {
+    // console.log(color)
     if (!this.props.isText) {
       this.props.changeBk("");
     }
@@ -59,6 +50,11 @@ class HuePicker extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.hue !== this.props.hue) {
       this.setHueState();
+      // this.handleChangeComplete(
+      //   this.hexToRgb(
+      //     customMuiTheme(this.state.hue).palette[this.state.colorPicked].backgroundColor
+      //   )
+      // );
     }
   }
 
@@ -240,7 +236,6 @@ class HuePicker extends Component {
         }
       : null;
   }
-   
 
   render() {
     const { classes } = this.props;
@@ -384,7 +379,6 @@ class HuePicker extends Component {
                   )
                 }
               ></Button>
-
             </div>
           </div>
 
