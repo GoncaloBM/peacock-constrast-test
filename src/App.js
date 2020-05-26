@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
-import './fonts/fonts.css'
+import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
+import TextDisplay from "./components/TextDisplay/TextDisplay";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -15,7 +16,11 @@ const Contrast = ({
   imageDB,
   changeBk,
   fontSize,
+  fontStyle,
+  textPosition,
   changeFontSizeState,
+  changeFontStyleState,
+  changeTextPosition,
   picker,
 }) => {
   return (
@@ -30,9 +35,11 @@ const Contrast = ({
             }}
             className="Board"
           >
-            <div className="board-text" style={{ fontSize: `${fontSize}px` }}>
-              This is Board
-            </div>
+            <TextDisplay
+              fontSize={fontSize}
+              textPosition={textPosition}
+              fontStyle={fontStyle}
+            />
           </div>
         </div>
 
@@ -46,6 +53,8 @@ const Contrast = ({
             imageDB={imageDB}
             fontSize={fontSize}
             changeFontSizeState={changeFontSizeState}
+            changeFontStyleState={changeFontStyleState}
+            changeTextPosition={changeTextPosition}
             picker={picker}
           />
         </div>
@@ -56,6 +65,18 @@ const Contrast = ({
 };
 
 function App(props) {
+  let differentFontStyles = [
+    "div",
+    "p",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "i",
+    "b",
+  ];
+  let startetTextPosition = { top: 0, right: 0 };
   let [backgroundColor, setBackgroundColor] = useState({
     r: 0,
     g: 0,
@@ -70,6 +91,8 @@ function App(props) {
   });
 
   const [fontSize, setfontSize] = useState(100);
+  const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
+  const [textPosition, setTextPosition] = useState(startetTextPosition);
 
   const getWindowLocation = () => {
     if (window.location.pathname === "/") {
@@ -85,6 +108,7 @@ function App(props) {
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
+  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
   let [contrast, setContrast] = useState(false);
 
   const [bkImage, setBkImage] = useState("");
@@ -140,6 +164,7 @@ function App(props) {
     linkIndex,
     navBarNavigating,
     fontSize,
+    fontStyle,
   ]);
 
   let getColor = (color, isText) => {
@@ -177,9 +202,56 @@ function App(props) {
     setfontSize(fontSize + increaseOrDecrease);
   };
 
+  const changeFontStyleState = (increaseOrDecrease) => {
+    if (
+      differentFontStyles.indexOf(fontStyle) < differentFontStyles.length - 1 &&
+      increaseOrDecrease === 1
+    ) {
+      setFontStyle(
+        differentFontStyles[differentFontStyles.indexOf(fontStyle) + 1]
+      );
+    } else if (
+      differentFontStyles.indexOf(fontStyle) ===
+        differentFontStyles.length - 1 &&
+      increaseOrDecrease === 1
+    ) {
+      setFontStyle(differentFontStyles[0]);
+    } else if (
+      differentFontStyles.indexOf(fontStyle) > 0 &&
+      increaseOrDecrease === -1
+    ) {
+      setFontStyle(
+        differentFontStyles[differentFontStyles.indexOf(fontStyle) - 1]
+      );
+    } else {
+      setFontStyle(differentFontStyles[differentFontStyles.length - 1]);
+    }
+  };
+
+  const changeTextPosition = (keyCode) => {
+    let newTextPosition = {...textPosition}
+    if(keyCode === 38){
+      console.log('joao')
+      newTextPosition.top--
+      setTextPosition(newTextPosition)
+    }else if( keyCode === 39){
+      newTextPosition.right--
+      setTextPosition(newTextPosition)
+
+    }else if( keyCode === 40){
+      newTextPosition.top++
+      setTextPosition(newTextPosition)
+
+    }else if( keyCode === 37){
+      newTextPosition.right++
+      setTextPosition(newTextPosition)
+
+    }
+  };
+
   return (
     <Router>
-      <div className="App" style={{fontFamily: 'peacock'}}>
+      <div className="App" style={{ fontFamily: "peacock" }}>
         <header className="header">
           <div className="logo"></div>
           <ul className="buttons">
@@ -246,8 +318,12 @@ function App(props) {
                 imageDB={imageDB}
                 changeBk={changeBk}
                 fontSize={fontSize}
+                fontStyle={fontStyle}
+                textPosition={textPosition}
                 changeFontSizeState={changeFontSizeState}
-                picker= "huepicker"
+                changeFontStyleState={changeFontStyleState}
+                changeTextPosition={changeTextPosition}
+                picker="huepicker"
               />
             </Route>
             <Route path="/contrast2">
@@ -260,13 +336,16 @@ function App(props) {
                 imageDB={imageDB}
                 changeBk={changeBk}
                 fontSize={fontSize}
+                fontStyle={fontStyle}
+                textPosition={textPosition}
                 changeFontSizeState={changeFontSizeState}
-                picker= "twitterpicker"
+                changeFontStyleState={changeFontStyleState}
+                changeTextPosition={changeTextPosition}
+                picker="twitterpicker"
               />
             </Route>
             <Route path="/">
-            <FileUpload />
-
+              <FileUpload />
             </Route>
           </Switch>
         </div>
