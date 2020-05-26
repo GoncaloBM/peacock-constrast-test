@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import useEventListener from "../virtual-keyboard/use-event-listener";
 
 const FileUpload = () => {
 
     const [file, setFile] = useState('')
-    const [fileName, setFileName] = useState('Choose File')
-    const [uploadedFile, setUploadedFile] = useState( {})
+    /* const [fileName, setFileName] = useState('Choose File')
+    const [uploadedFile, setUploadedFile] = useState( {}) */
  
     const handeChange = (e) => {
         setFile(e.target.files[0])

@@ -14,9 +14,8 @@ const TextDisplay = (props) => {
         setTextPosition(props.textPosition)
 
         return () => {
-            console.log('UNmount')
         }
-    }, [fontSize, props])
+    }, [ props])
 
     return(
         <div >

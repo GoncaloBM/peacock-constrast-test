@@ -17,7 +17,7 @@ export const VirtualKeyboard = (props) => {
   //after press ok on keyboard sets background with the value
   const sendColorFromVirtualKeyboard = (color) =>{
     console.log(isText)
-    props.changeBk('')
+    if(!isText){    props.changeBk("");  }
     getColor(color, isText);
   };
 
