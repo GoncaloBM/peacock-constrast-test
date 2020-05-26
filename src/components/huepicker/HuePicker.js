@@ -5,8 +5,8 @@ import { customMuiTheme } from "./MyTheme";
 import "./HuePicker.css";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import ContinuousSlider from "./Slider";
-
+/* import ContinuousSlider from "./Slider";
+ */
 const styles = (theme) => ({
   button: {
     margin: theme.spacing.unit,

@@ -17,8 +17,8 @@ class Twitterpicker extends React.Component {
   }
 
   handleChangeComplete = (color) => {
-    this.props.changeBk("");
-
+    if(!this.props.isText){    this.props.changeBk("");  }
+    console.log(this.props.isText)
     if (this.state.mouse === true) {
       this.setState({ color: color.rgb });
       this.props.getColor(color.rgb, this.props.isText);

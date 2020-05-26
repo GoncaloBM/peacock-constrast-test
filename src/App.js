@@ -108,8 +108,8 @@ function App(props) {
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
-  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
-  let [contrast, setContrast] = useState(false);
+ /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
+  let [contrast, setContrast] = useState(false); */
 
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
@@ -165,6 +165,7 @@ function App(props) {
     navBarNavigating,
     fontSize,
     fontStyle,
+    imageDB
   ]);
 
   let getColor = (color, isText) => {

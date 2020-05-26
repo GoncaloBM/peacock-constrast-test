@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-
+/* import Slider from "@material-ui/core/Slider";
+ */
 const useStyles = makeStyles({
   root: {
     width: 1000,
   },
 });
 
-const marks = [
+/* const marks = [
   {
     value: 50,
     label: "50",
@@ -50,7 +50,7 @@ const marks = [
     value: 900,
     label: "900",
   },
-];
+]; */
 
 const hueValues = [
   50,

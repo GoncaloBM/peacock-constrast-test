@@ -204,7 +204,7 @@ const Menu = (props) => {
           {props.picker === "twitterpicker" ? (
             <>
               <Twitterpicker
-                isText={false}
+                isText={true}
                 previewColor={props.backgroundColor}
                 getColor={(color, isText) => props.getColor(color, isText)}
                 isKeyboardActive={showVirtualKeyboard}
