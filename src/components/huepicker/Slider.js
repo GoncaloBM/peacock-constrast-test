@@ -41,6 +41,9 @@ export default function ContinuousSlider({ hue, getHue, focusItem,isText }) {
   // );
 
   const handleChange=(newValue,isText)=>{
+    console.log("newValue: ", newValue);
+    console.log("isText: ", isText);
+    
     getHue(newValue, isText);
   }
 
@@ -48,8 +51,8 @@ export default function ContinuousSlider({ hue, getHue, focusItem,isText }) {
     let keydown = (event) => {
       if (
         event.key === "ArrowRight" &&
-        (focusItem === 2 || focusItem === 5) &&
-
+        (focusItem === 2 ) &&
+        !isText &&
        array < (hueValues.length - 1)
       ) {
         setArray(array + 1);
@@ -61,7 +64,31 @@ export default function ContinuousSlider({ hue, getHue, focusItem,isText }) {
       }
       if (
         event.key === "ArrowLeft" &&
-        (focusItem === 2 || focusItem === 5) &&
+        (focusItem === 2 && !isText) &&
+        array >0 
+      ) {
+        setArray(array - 1);
+        setdefaultValue(hueValues[array-1]);
+        let newArray = array-1;
+        handleChange(hueValues[newArray],isText);   
+             // this.props.getColor(color, this.props.isText);
+      }
+      if (
+        event.key === "ArrowRight" &&
+        (focusItem === 5 ) &&
+        isText &&
+       array < (hueValues.length - 1)
+      ) {
+        setArray(array + 1);
+        setdefaultValue(hueValues[array +1]);
+        let newArray = array +1;
+        handleChange(hueValues[newArray],isText);
+        // this.props.getColor(color, this.props.isText);
+
+      }
+      if (
+        event.key === "ArrowLeft" &&
+        (focusItem === 5 && isText) &&
         array >0 
       ) {
         setArray(array - 1);
