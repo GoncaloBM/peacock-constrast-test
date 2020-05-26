@@ -22,8 +22,8 @@ const FileUpload = () => {
 
         }
         delete options.headers['Content-Type'];
-
-        fetch('http://localhost:5001/upload', options).then(result =>{  
+        console.log(window.location)
+        fetch('http://'+window.location.hostname+':5001/upload', options).then(result =>{  
                  /* const {fileName, filePath} = result.data;
                  setUploadedFile({fileName, filePath}) */
                  console.log(result)
