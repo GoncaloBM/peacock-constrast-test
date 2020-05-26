@@ -23,6 +23,7 @@ class HuePicker extends Component {
       hue: props.hue,
       previewColor: props.previewColor,
       colorPicked: "",
+      color:{r: 158, g: 158, b: 158, a: 1}
     };
     this.keydown = this.keydown.bind(this);
   }
@@ -38,7 +39,11 @@ class HuePicker extends Component {
   // };
 
   handleChangeComplete = (color) => {
-    this.props.changeBk("");
+    if (!this.props.isText) {
+      this.props.changeBk("");
+    }
+
+    // this.props.changeBk("");
     color.a = 1;
     this.setState({ color: color });
     this.props.getColor(color, this.props.isText);
@@ -65,7 +70,11 @@ class HuePicker extends Component {
 
   keydown(event) {
     let colorPicked = this.state.colorPicked;
-    if (event.key === "ArrowRight" && this.props.isActive&&this.props.showVirtualKeyboard===false) {
+    if (
+      event.key === "ArrowRight" &&
+      this.props.isActive &&
+      this.props.showVirtualKeyboard === false
+    ) {
       if (colorPicked === "") {
         this.setState({
           colorPicked: "yellow",
@@ -140,7 +149,11 @@ class HuePicker extends Component {
         // );
       }
     }
-    if (event.key === "ArrowLeft" && this.props.isActive &&this.props.showVirtualKeyboard===false) {
+    if (
+      event.key === "ArrowLeft" &&
+      this.props.isActive &&
+      this.props.showVirtualKeyboard === false
+    ) {
       if (colorPicked === "") {
         this.setState({
           colorPicked: "slider",
@@ -227,6 +240,7 @@ class HuePicker extends Component {
         }
       : null;
   }
+   
 
   render() {
     const { classes } = this.props;
@@ -258,9 +272,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${
@@ -279,9 +291,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-              
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${
@@ -300,9 +310,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${this.state.colorPicked === "red" ? "focused" : ""}`}
@@ -318,9 +326,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${
@@ -339,9 +345,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${
@@ -360,9 +364,7 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
             </div>
             <div
               className={`${
@@ -381,9 +383,9 @@ class HuePicker extends Component {
                     )
                   )
                 }
-              >
-                
-              </Button>
+              ></Button>
+            {this.rgbaToHex(this.state.color)}
+
             </div>
           </div>
 
