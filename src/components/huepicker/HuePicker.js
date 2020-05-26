@@ -28,17 +28,10 @@ class HuePicker extends Component {
     this.keydown = this.keydown.bind(this);
   }
 
-  // setHue = (hue) => {
-  //   this.setState({
-  //     hue: hue,
-  //   });
-  // };
-
-  // getHue = (hue) => {
-  //   this.setHue(hue);
-  // };
+  
 
   handleChangeComplete = (color) => {
+    // console.log(color)
     if (!this.props.isText) {
       this.props.changeBk("");
     }
@@ -59,6 +52,12 @@ class HuePicker extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.hue !== this.props.hue) {
       this.setHueState();
+      let colorPicked=this.state.colorPicked
+      this.handleChangeComplete(
+        this.hexToRgb(
+          customMuiTheme(this.state.hue).palette.[{colorPicked}].backgroundColor
+        )
+      )
     }
   }
 

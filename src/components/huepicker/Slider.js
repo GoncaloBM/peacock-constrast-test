@@ -51,17 +51,19 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
         setdefaultValue(hueValues[array +1]);
         let newArray = array +1;
         handleChange(hueValues[newArray]);
+        // this.props.getColor(color, this.props.isText);
+
       }
       if (
         event.key === "ArrowLeft" &&
         (focusItem === 2 || focusItem === 5) &&
-
         array >0 
       ) {
         setArray(array - 1);
         setdefaultValue(hueValues[array-1]);
         let newArray = array-1;
         handleChange(hueValues[newArray]);
+        // this.props.getColor(color, this.props.isText);
       }
   
     };

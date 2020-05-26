@@ -17,6 +17,7 @@ const Menu = (props) => {
     setShowVirtualKeyboard(false);
   };
   const getHue = (hue) => {
+// console.log(hue)
     setStateHue(hue);
   };
 
@@ -191,6 +192,8 @@ const Menu = (props) => {
             getHue={() => getHue(hue)}
             hue={hue}
             focusItem={indexFocusedItem}
+            getColor={(color, isText) => props.getColor(color, isText)}
+
           />
         </li>
       </ul>
@@ -256,6 +259,7 @@ const Menu = (props) => {
             getHue={(hue) => getHue(hue)}
             hue={hue}
             focusItem={indexFocusedItem}
+            getColor={(color, isText) => props.getColor(color, isText)}
           />
 
           
