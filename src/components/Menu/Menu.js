@@ -10,24 +10,29 @@ const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
-  let [hue, setStateHue] = useState(500);
-  let [huePicker, setStateHuePicker] = useState(500);
+  let [hueBackground, setStateHueBackground] = useState(500);
+  let [hueText, setStateHueText] = useState(500);
 
-  let [showTextPositionTool, setShowTextPositionTool] = useState(false)
+
+  let [showTextPositionTool, setShowTextPositionTool] = useState(false);
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
   };
-  const getHue = (hue) => {
-    setStateHue(hue);
-    setStateHuePicker(hue)
-  };
+
+  const getHue = (hue, isText) => {
+    if (isText) {
+    setStateHueText(hue);
+  } else if(isText===false) {
+    setStateHueBackground(hue)
+  }
+}
 
   useEffect(() => {
     const changeSizeFont = (e) => {
       if (indexFocusedItem === 6) {
         if (e.keyCode === 13) {
-          setShowTextPositionTool(!showTextPositionTool)
+          setShowTextPositionTool(!showTextPositionTool);
         }
       }
       if (indexFocusedItem === 7) {
@@ -44,7 +49,6 @@ const Menu = (props) => {
           props.changeFontStyleState(-1);
         }
       }
-
     };
 
     const nextImg = (numero) => {
@@ -75,14 +79,9 @@ const Menu = (props) => {
     const keyNavigate = (e) => {
       //console.log(indexFocusedItem);
       let newIndex = indexFocusedItem;
-      if(showTextPositionTool===true){
-        
-
-
-       return props.changeTextPosition(e.keyCode)
-
-        
-       }
+      if (showTextPositionTool === true) {
+        return props.changeTextPosition(e.keyCode);
+      }
       if (
         (e.keyCode === 13 && newIndex === 1) ||
         (e.keyCode === 13 && newIndex === 4)
@@ -129,7 +128,13 @@ const Menu = (props) => {
       window.removeEventListener("keydown", changeImageWithArrow);
       window.removeEventListener("keydown", changeSizeFont);
     };
-  }, [indexFocusedItem, showVirtualKeyboard, currentPhotoID, props, showTextPositionTool]);
+  }, [
+    indexFocusedItem,
+    showVirtualKeyboard,
+    currentPhotoID,
+    props,
+    showTextPositionTool,
+  ]);
 
   return (
     <div className="Menu">
@@ -137,7 +142,11 @@ const Menu = (props) => {
         <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
           Background
         </li>
-        <li className={`color-keyboard ${indexFocusedItem === 1 ? "focused" : ""}`}>
+        <li
+          className={`color-keyboard ${
+            indexFocusedItem === 1 ? "focused" : ""
+          }`}
+        >
           {props.picker === "twitterpicker" ? (
             <>
               <Twitterpicker
@@ -162,7 +171,7 @@ const Menu = (props) => {
             </>
           ) : (
             <HuePicker
-              hue={huePicker}
+              hue={hueBackground}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={false}
               previewColor={props.backgroundColor}
@@ -191,8 +200,9 @@ const Menu = (props) => {
         </li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
           <ContinuousSlider
-            getHue={() => getHue(hue)}
-            hue={hue}
+            isText={false}
+            getHue={(hueBackground,isText) => getHue(hueBackground,isText)}
+            hue={hueBackground}
             focusItem={indexFocusedItem}
             getColor={(color, isText) => props.getColor(color, isText)}
           />
@@ -204,7 +214,11 @@ const Menu = (props) => {
         >
           Text
         </li>{" "}
-        <li className={`color-keyboard ${indexFocusedItem === 4 ? "focused" : ""}`}>
+        <li
+          className={`color-keyboard ${
+            indexFocusedItem === 4 ? "focused" : ""
+          }`}
+        >
           {props.picker === "twitterpicker" ? (
             <>
               <Twitterpicker
@@ -227,9 +241,9 @@ const Menu = (props) => {
                 isActive={indexFocusedItem === 5 ? true : false}
               ></Alphapicker>{" "}
             </>
-          ) : ( 
+          ) : (
             <HuePicker
-              hue={huePicker}
+              hue={hueText}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={true}
               previewColor={props.backgroundColor}
@@ -257,13 +271,12 @@ const Menu = (props) => {
         </li>
         <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
           <ContinuousSlider
-            getHue={(hue) => getHue(hue)}
-            hue={hue}
+            isText={true}
+            getHue={(hueText, isText) => getHue(hueText,isText)}
+            hue={hueText}
             focusItem={indexFocusedItem}
             getColor={(color, isText) => props.getColor(color, isText)}
           />
-
-          
         </li>
       </ul>
       <ul className="category-menu">

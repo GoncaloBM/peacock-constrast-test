@@ -27,17 +27,22 @@ const hueValues = [
   "A700",
 ];
 
-export default function ContinuousSlider({ hue, getHue, focusItem }) {
+export default function ContinuousSlider({ hue, getHue, focusItem,isText }) {
   const classes = useStyles();
   // const [value, setValue] = React.useState(hue);
   let [array, setArray] = useState(5);
   let [defaultValue, setdefaultValue] = useState(hueValues[array]);
-  const handleChange = useCallback(
-    (newValue) => {
-      getHue(newValue);
-    },
-    [getHue]
-  );
+  // const handleChange = useCallback(
+  //   (newValue) => {
+  //     console.log(isText)
+  //     getHue(newValue, isText);
+  //   },
+  //   [getHue,isText]
+  // );
+
+  const handleChange=(newValue,isText)=>{
+    getHue(newValue, isText);
+  }
 
   useEffect(() => {
     let keydown = (event) => {
@@ -50,7 +55,7 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
         setArray(array + 1);
         setdefaultValue(hueValues[array +1]);
         let newArray = array +1;
-        handleChange(hueValues[newArray]);
+        handleChange(hueValues[newArray],isText);
         // this.props.getColor(color, this.props.isText);
 
       }
@@ -62,8 +67,8 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
         setArray(array - 1);
         setdefaultValue(hueValues[array-1]);
         let newArray = array-1;
-        handleChange(hueValues[newArray]);
-        // this.props.getColor(color, this.props.isText);
+        handleChange(hueValues[newArray],isText);   
+             // this.props.getColor(color, this.props.isText);
       }
   
     };
@@ -71,7 +76,7 @@ export default function ContinuousSlider({ hue, getHue, focusItem }) {
     return () => {
       window.removeEventListener("keydown", keydown);
     };
-  }, [defaultValue, focusItem, handleChange, array]);
+  }, [defaultValue, focusItem, handleChange, array,isText]);
 
   return (
     <div className={classes.root} onChange={handleChange}>

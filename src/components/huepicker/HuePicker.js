@@ -50,15 +50,12 @@ class HuePicker extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.hue !== this.props.hue) {
       this.setHueState();
-      let colorPicked = this.state.colorPicked;
-      console.log(customMuiTheme(this.state.hue).palette[colorPicked]);
-        // this.handleChangeComplete(
-        //   this.hexToRgb(
-        //     customMuiTheme(this.state.hue).palette[colorPicked].backgroundColor
-        //   )
-        // )
-      }
-
+      // this.handleChangeComplete(
+      //   this.hexToRgb(
+      //     customMuiTheme(this.state.hue).palette[this.state.colorPicked].backgroundColor
+      //   )
+      // );
+    }
   }
 
   setHueState() {
