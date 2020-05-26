@@ -165,7 +165,6 @@ function App(props) {
     navBarNavigating,
     fontSize,
     fontStyle,
-    imageDB
   ]);
 
   let getColor = (color, isText) => {
