@@ -29,8 +29,8 @@ const Contrast = ({
         <div className="wrapper-board">
           <div
             style={{
-              backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-              color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+              backgroundColor: `${backgroundColor}`,
+              color: `${colorText}`,
               backgroundImage: `url(${bkImage})`,
             }}
             className="Board"
@@ -77,18 +77,8 @@ function App(props) {
     "b",
   ];
   let startetTextPosition = { top: 0, right: 0 };
-  let [backgroundColor, setBackgroundColor] = useState({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 1,
-  });
-  let [colorText, setColorText] = useState({
-    r: 242,
-    g: 242,
-    b: 242,
-    a: 1,
-  });
+  let [backgroundColor, setBackgroundColor] = useState("#000000");
+  let [colorText, setColorText] = useState("#F2F2F2");
 
   const [fontSize, setfontSize] = useState(100);
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
@@ -108,7 +98,7 @@ function App(props) {
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
- /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
+  /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
   let [contrast, setContrast] = useState(false); */
 
   const [bkImage, setBkImage] = useState("");
@@ -229,23 +219,20 @@ function App(props) {
   };
 
   const changeTextPosition = (keyCode) => {
-    let newTextPosition = {...textPosition}
-    if(keyCode === 38){
-      console.log('joao')
-      newTextPosition.top--
-      setTextPosition(newTextPosition)
-    }else if( keyCode === 39){
-      newTextPosition.right--
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 40){
-      newTextPosition.top++
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 37){
-      newTextPosition.right++
-      setTextPosition(newTextPosition)
-
+    let newTextPosition = { ...textPosition };
+    if (keyCode === 38) {
+      console.log("joao");
+      newTextPosition.top--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 39) {
+      newTextPosition.right--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 40) {
+      newTextPosition.top++;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 37) {
+      newTextPosition.right++;
+      setTextPosition(newTextPosition);
     }
   };
 
