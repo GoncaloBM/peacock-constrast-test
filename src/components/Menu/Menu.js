@@ -4,14 +4,12 @@ import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
-import ContinuousSlider from "../huepicker/Slider";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
-  let [hueBackground, setStateHueBackground] = useState(500);
-  let [hueText, setStateHueText] = useState(500);
+  
 
 
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
@@ -20,13 +18,7 @@ const Menu = (props) => {
     setShowVirtualKeyboard(false);
   };
 
-  const getHue = (hue, isText) => {
-    if (isText) {
-    setStateHueText(hue);
-  } else if(isText===false) {
-    setStateHueBackground(hue)
-  }
-}
+  
 
   useEffect(() => {
     const changeSizeFont = (e) => {
@@ -171,7 +163,6 @@ const Menu = (props) => {
             </>
           ) : (
             <HuePicker
-              hue={hueBackground}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={false}
               previewColor={props.backgroundColor}
@@ -197,15 +188,6 @@ const Menu = (props) => {
           ) : (
             ""
           )}
-        </li>
-        <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
-          <ContinuousSlider
-            isText={false}
-            getHue={(hueBackground,isText) => getHue(hueBackground,isText)}
-            hue={hueBackground}
-            focusItem={indexFocusedItem}
-            getColor={(color, isText) => props.getColor(color, isText)}
-          />
         </li>
       </ul>
       <ul className="category-menu">
@@ -243,7 +225,6 @@ const Menu = (props) => {
             </>
           ) : (
             <HuePicker
-              hue={hueText}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={true}
               previewColor={props.backgroundColor}
@@ -268,15 +249,6 @@ const Menu = (props) => {
           ) : (
             ""
           )}
-        </li>
-        <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
-          <ContinuousSlider
-            isText={true}
-            getHue={(hueText, isText) => getHue(hueText,isText)}
-            hue={hueText}
-            focusItem={indexFocusedItem}
-            getColor={(color, isText) => props.getColor(color, isText)}
-          />
         </li>
       </ul>
       <ul className="category-menu">
