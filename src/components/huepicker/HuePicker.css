@@ -1,19 +1,19 @@
-.mainbutton {
-    width: 160px;
+.huePicker {
     display: flex;
     flex-wrap: wrap;
+    padding-right: 70px;
+    margin-bottom: 10px;
 }
 
-.buttonsColor>.focused {
-    border: 1px solid black;
+.huePicker>li button {
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.MuiButton-root {
-    padding: 15px 15px !important;
-    min-width: 15px !important;
-    margin-right: 3px !important;
-}
-
-.buttonsColor {
-    display: flex;
+.focused {
+    border-bottom: solid 2px black;
+    transition: 0.5s all;
 }
