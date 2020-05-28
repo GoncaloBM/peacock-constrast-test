@@ -6,6 +6,7 @@ import FileUpload from "./components/fileUploader/fileUpload";
 import TextDisplay from "./components/TextDisplay/TextDisplay";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { SafeMargin } from "./components/SafeMargin/SafeMargin";
 
 const Contrast = ({
   backgroundColor,
@@ -22,6 +23,7 @@ const Contrast = ({
   changeFontStyleState,
   changeTextPosition,
   picker,
+  safeMargin,
 }) => {
   return (
     <>
@@ -40,6 +42,7 @@ const Contrast = ({
               textPosition={textPosition}
               fontStyle={fontStyle}
             />
+            {safeMargin && <SafeMargin />}
           </div>
         </div>
 
@@ -76,7 +79,7 @@ function App(props) {
     "i",
     "b",
   ];
-  let startetTextPosition = { top: 0, right: 0 };
+  let startetTextPosition = { top: 80, right: 0 };
   let [backgroundColor, setBackgroundColor] = useState({
     r: 0,
     g: 0,
@@ -108,7 +111,8 @@ function App(props) {
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
- /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
+  const [safeMargin, setSafeMargin] = useState(false);
+  /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
   let [contrast, setContrast] = useState(false); */
 
   const [bkImage, setBkImage] = useState("");
@@ -116,6 +120,12 @@ function App(props) {
 
   useEffect(() => {
     fetchImages();
+
+    const showSafeMargin = (e) => {
+      if (e.keyCode === 32) {
+        setSafeMargin(!safeMargin);
+      }
+    };
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
@@ -154,8 +164,10 @@ function App(props) {
       }
     };
     window.addEventListener("keydown", navBarNavigation);
+    window.addEventListener("keydown", showSafeMargin);
     return () => {
       window.removeEventListener("keydown", navBarNavigation);
+      window.removeEventListener("keydown", showSafeMargin);
     };
   }, [
     colorText,
@@ -165,6 +177,7 @@ function App(props) {
     navBarNavigating,
     fontSize,
     fontStyle,
+    safeMargin,
   ]);
 
   let getColor = (color, isText) => {
@@ -229,23 +242,20 @@ function App(props) {
   };
 
   const changeTextPosition = (keyCode) => {
-    let newTextPosition = {...textPosition}
-    if(keyCode === 38){
-      console.log('joao')
-      newTextPosition.top--
-      setTextPosition(newTextPosition)
-    }else if( keyCode === 39){
-      newTextPosition.right--
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 40){
-      newTextPosition.top++
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 37){
-      newTextPosition.right++
-      setTextPosition(newTextPosition)
-
+    let newTextPosition = { ...textPosition };
+    if (keyCode === 38) {
+      console.log("joao");
+      newTextPosition.top--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 39) {
+      newTextPosition.right--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 40) {
+      newTextPosition.top++;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 37) {
+      newTextPosition.right++;
+      setTextPosition(newTextPosition);
     }
   };
 
@@ -324,6 +334,7 @@ function App(props) {
                 changeFontStyleState={changeFontStyleState}
                 changeTextPosition={changeTextPosition}
                 picker="huepicker"
+                safeMargin={safeMargin}
               />
             </Route>
             <Route path="/contrast2">
@@ -342,6 +353,7 @@ function App(props) {
                 changeFontStyleState={changeFontStyleState}
                 changeTextPosition={changeTextPosition}
                 picker="twitterpicker"
+                safeMargin={safeMargin}
               />
             </Route>
             <Route path="/">
