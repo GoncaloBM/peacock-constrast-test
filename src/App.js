@@ -91,8 +91,6 @@ function App(props) {
       return 1;
     } else if (window.location.pathname === "/about") {
       return 2;
-    } else if (window.location.pathname === "/contrast2") {
-      return 3;
     }
   };
 
@@ -124,11 +122,6 @@ function App(props) {
         if (e.keyCode === 13 && linkIndex === 0) {
           if (window.location.pathname !== "/") {
             window.location.pathname = "/";
-          }
-        }
-        if (e.keyCode === 13 && linkIndex === 3) {
-          if (window.location.pathname !== "/contrast2") {
-            window.location.pathname = "/contrast2";
           }
         }
 
@@ -276,17 +269,6 @@ function App(props) {
                 About
               </Link>
             </li>
-            <li
-              onClick={() => setLinkIndex(3)}
-              className={linkIndex === 3 ? "focusedNavbar" : ""}
-            >
-              <Link
-                to="/contrast2"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                Contrast Twitter
-              </Link>
-            </li>
           </ul>
         </header>
 
@@ -311,24 +293,6 @@ function App(props) {
                 changeFontStyleState={changeFontStyleState}
                 changeTextPosition={changeTextPosition}
                 picker="huepicker"
-              />
-            </Route>
-            <Route path="/contrast2">
-              <Contrast
-                backgroundColor={backgroundColor}
-                colorText={colorText}
-                bkImage={bkImage}
-                returnToNavBar={returnToNavBar}
-                getColor={getColor}
-                imageDB={imageDB}
-                changeBk={changeBk}
-                fontSize={fontSize}
-                fontStyle={fontStyle}
-                textPosition={textPosition}
-                changeFontSizeState={changeFontSizeState}
-                changeFontStyleState={changeFontStyleState}
-                changeTextPosition={changeTextPosition}
-                picker="twitterpicker"
               />
             </Route>
             <Route path="/">

@@ -55,7 +55,8 @@ class HuePicker extends Component {
     if (
       event.key === "ArrowRight" &&
       focusItem === 1 &&
-      positionOfArray < colors.length
+      positionOfArray < colors.length &&
+      !this.props.isText
     ) {
       let currentPosition = positionOfArray + 1;
       this.setState({
@@ -64,7 +65,12 @@ class HuePicker extends Component {
       this.handleChangeComplete(colors[currentPosition - 1]);
     }
 
-    if (event.key === "ArrowLeft" && focusItem === 1 && positionOfArray > 0) {
+    if (
+      event.key === "ArrowLeft" &&
+      focusItem === 1 &&
+      positionOfArray > 0 &&
+      !this.props.isText
+    ) {
       let currentPosition = positionOfArray - 1;
       this.setState({
         positionOfArray: currentPosition,
@@ -109,23 +115,19 @@ class HuePicker extends Component {
     // this.setState({mouse:false})
   };
 
-  // hexToRgb(hex) {
-  //   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  //   return result
-  //     ? {
-  //         r: parseInt(result[1], 16),
-  //         g: parseInt(result[2], 16),
-  //         b: parseInt(result[3], 16),
-  //       }
-  //     : null;
-  // }
-
+  
   render() {
     return (
       <div className="huePicker">
         {this.colors.map((item, i) => (
           <li key={i}>
+            <div
+              className={`${
+                this.state.color === item ? "focused" : ""
+              }`}
+            >
             <Button style={{ backgroundColor: `${item}` }} />
+            </div>
           </li>
         ))}
       </div>
