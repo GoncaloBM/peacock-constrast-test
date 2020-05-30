@@ -42,7 +42,7 @@ const Contrast = ({
             {safeMargin && <SafeMargin />}
           </div>
         </div>
-        <ImageGalery />
+        <ImageGalery imageDB={imageDB} />
         <div className="menu">
           <Menu
             backToNavbar={returnToNavBar}
