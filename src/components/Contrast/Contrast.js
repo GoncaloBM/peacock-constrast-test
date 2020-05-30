@@ -60,7 +60,7 @@ const Contrast = ({
               {safeMargin && <SafeMargin />}
             </div>
           </div>
-          <ImageGalery imageDB={imageDB} />
+          <ImageGalery imageDB={imageDB} changeBk={changeBk}/>
           <div onClick={handleClick}>SHOW MENU</div>
   
           <div  className={lateralBar ? 'showLateralBar menu' : 'hideLateralBar '}>
