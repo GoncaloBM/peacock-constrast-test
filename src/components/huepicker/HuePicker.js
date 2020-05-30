@@ -56,7 +56,8 @@ class HuePicker extends Component {
       event.key === "ArrowRight" &&
       focusItem === 1 &&
       positionOfArray < colors.length &&
-      !this.props.isText
+      !this.props.isText &&
+      !this.props.isKeyboardActive
     ) {
       let currentPosition = positionOfArray + 1;
       this.setState({
@@ -69,7 +70,8 @@ class HuePicker extends Component {
       event.key === "ArrowLeft" &&
       focusItem === 1 &&
       positionOfArray > 0 &&
-      !this.props.isText
+      !this.props.isText &&
+      !this.props.isKeyboardActive
     ) {
       let currentPosition = positionOfArray - 1;
       this.setState({
@@ -81,7 +83,8 @@ class HuePicker extends Component {
       event.key === "ArrowRight" &&
       focusItem === 3 &&
       positionOfArray < colors.length &&
-      this.props.isText
+      this.props.isText &&
+      !this.props.isKeyboardActive
     ) {
       let currentPosition = positionOfArray + 1;
       this.setState({
@@ -94,7 +97,8 @@ class HuePicker extends Component {
       event.key === "ArrowLeft" &&
       focusItem === 3 &&
       positionOfArray > 0 &&
-      this.props.isText
+      this.props.isText &&
+      !this.props.isKeyboardActive
     ) {
       let currentPosition = positionOfArray - 1;
       this.setState({
