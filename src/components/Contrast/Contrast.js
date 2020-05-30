@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import TextDisplay from "../TextDisplay/TextDisplay";
 import Menu from "../Menu/Menu";
 import { SafeMargin } from "../SafeMargin/SafeMargin";
 import "../../App.css";
-
+import "./Contrast.css"
 
 
 const Contrast = ({
@@ -23,6 +23,22 @@ const Contrast = ({
     picker,
     safeMargin,
   }) => {
+
+    const [lateralBar, setlateralBar] = useState(false)
+    
+    useEffect(() => {
+      console.log('mount')
+      return () => {
+        console.log('unmount')
+      }
+    }, [lateralBar])
+
+    const handleClick = () => {
+      returnToNavBar(lateralBar)
+      setlateralBar(!lateralBar)
+    }
+
+
     return (
       <>
         <div className="wrapper">
@@ -43,9 +59,10 @@ const Contrast = ({
               {safeMargin && <SafeMargin />}
             </div>
           </div>
+          <div onClick={handleClick}>SHOW MENU</div>
   
-          <div className="menu">
-            <Menu
+          <div  className={lateralBar ? 'showLateralBar menu' : 'hideLateralBar '}>
+            {lateralBar ?  <Menu
               backToNavbar={returnToNavBar}
               colorText={colorText}
               backgroundColor={backgroundColor}
@@ -57,7 +74,8 @@ const Contrast = ({
               changeFontStyleState={changeFontStyleState}
               changeTextPosition={changeTextPosition}
               picker={picker}
-            />
+            /> : ''}
+           
           </div>
         </div>
         <footer className="instructions"> Instructions </footer>
