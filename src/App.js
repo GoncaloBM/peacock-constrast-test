@@ -1,71 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Menu from "./components/Menu/Menu";
 import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
-import TextDisplay from "./components/TextDisplay/TextDisplay";
+
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { SafeMargin } from "./components/SafeMargin/SafeMargin";
+import Contrast from "./components/Contrast/Contrast"
 
-const Contrast = ({
-  backgroundColor,
-  colorText,
-  bkImage,
-  returnToNavBar,
-  getColor,
-  imageDB,
-  changeBk,
-  fontSize,
-  fontStyle,
-  textPosition,
-  changeFontSizeState,
-  changeFontStyleState,
-  changeTextPosition,
-  picker,
-  safeMargin,
-}) => {
-  return (
-    <>
-      <div className="wrapper">
-        <div className="wrapper-board">
-          <div
-            style={{
-              backgroundColor: `${backgroundColor}`,
-              color: `${colorText}`,
-              backgroundImage: `url(${bkImage})`,
-            }}
-            className="Board"
-          >
-            <TextDisplay
-              fontSize={fontSize}
-              textPosition={textPosition}
-              fontStyle={fontStyle}
-            />
-            {safeMargin && <SafeMargin />}
-          </div>
-        </div>
 
-        <div className="menu">
-          <Menu
-            backToNavbar={returnToNavBar}
-            colorText={colorText}
-            backgroundColor={backgroundColor}
-            getColor={getColor}
-            changeBk={changeBk}
-            imageDB={imageDB}
-            fontSize={fontSize}
-            changeFontSizeState={changeFontSizeState}
-            changeFontStyleState={changeFontStyleState}
-            changeTextPosition={changeTextPosition}
-            picker={picker}
-          />
-        </div>
-      </div>
-      <footer className="instructions"> Instructions </footer>
-    </>
-  );
-};
 
 function App(props) {
   let differentFontStyles = [
@@ -164,6 +106,7 @@ function App(props) {
   ]);
 
   let getColor = (color, isText) => {
+    console.log('JOAO')
     if (isText) {
       setColorText(color);
     } else {

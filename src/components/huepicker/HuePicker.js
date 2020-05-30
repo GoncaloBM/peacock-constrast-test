@@ -113,7 +113,7 @@ class HuePicker extends Component {
     if (!this.props.isText) {
       this.props.changeBk("");
     }
-    // this.props.changeBk("");
+    console.log('peantus')
     this.setState({ color: color });
     this.props.getColor(color, this.props.isText);
     // this.setState({mouse:false})
