@@ -7,6 +7,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   const [searchMenuIndex, setSearchMenuIndex] = useState(0);
   const [indexToSearch, setIndexToSearch] = useState("");
   const [indexToSearchInt, setIndexToSearchInt] = useState("");
+  const [scrollList, setScrollList] = useState(0);
   const [imagesToShow, setImagesToShow] = useState("");
   const [componentMount, setComponentMount] = useState(false);
 
@@ -16,12 +17,18 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         if (imageIndexFocus === imageDB.length) {
           return;
         } else {
+          if (imageIndexFocus > 6) {
+            setScrollList(scrollList - 10.5);
+          }
           setImageIndexFocus(imageIndexFocus + 1);
         }
       } else if (e.keyCode === 38) {
         if (imageIndexFocus === 0) {
           return;
         } else {
+          if (imageIndexFocus > 7) {
+            setScrollList(scrollList + 10.5);
+          }
           setImageIndexFocus(imageIndexFocus - 1);
         }
       }
@@ -135,24 +142,29 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         </div>
       </div>
       <div className="galery-title">Galery</div>
-      <div className="galery-images">
-        {imagesToShow &&
-          imagesToShow.map((image, index) => {
-            return (
-              <div
-                className="galery-image"
-                style={{
-                  backgroundColor: index === imageIndexFocus - 1 && "red",
-                }}
-              >
-                <div className="image-text">{image.id}</div>
+      <div className="galery-images-wrapper">
+        <div
+          className="galery-images-scroll"
+          style={{ top: `${scrollList}vh` }}
+        >
+          {imagesToShow &&
+            imagesToShow.map((image, index) => {
+              return (
                 <div
-                  className="image"
-                  style={{ backgroundImage: `url(${image.url})` }}
-                ></div>
-              </div>
-            );
-          })}
+                  className="galery-image"
+                  style={{
+                    backgroundColor: index === imageIndexFocus - 1 && "red",
+                  }}
+                >
+                  <div className="image-text">{image.id}</div>
+                  <div
+                    className="image"
+                    style={{ backgroundImage: `url(${image.url})` }}
+                  ></div>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
