@@ -4,15 +4,11 @@ import Alphapicker from "../colorpicker/alphapicker";
 import Twitterpicker from "../colorpicker/twitterpicker";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
-import ContinuousSlider from "../huepicker/Slider";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
-  let [hueBackground, setStateHueBackground] = useState(500);
-  let [hueText, setStateHueText] = useState(500);
-
 
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
 
@@ -20,29 +16,21 @@ const Menu = (props) => {
     setShowVirtualKeyboard(false);
   };
 
-  const getHue = (hue, isText) => {
-    if (isText) {
-    setStateHueText(hue);
-  } else if(isText===false) {
-    setStateHueBackground(hue)
-  }
-}
-
   useEffect(() => {
     const changeSizeFont = (e) => {
-      if (indexFocusedItem === 6) {
+      if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
           setShowTextPositionTool(!showTextPositionTool);
         }
       }
-      if (indexFocusedItem === 7) {
+      if (indexFocusedItem === 5) {
         if (e.keyCode === 39) {
           props.changeFontSizeState(1);
         } else if (e.keyCode === 37) {
           props.changeFontSizeState(-1);
         }
       }
-      if (indexFocusedItem === 8) {
+      if (indexFocusedItem === 6) {
         if (e.keyCode === 39) {
           props.changeFontStyleState(1);
         } else if (e.keyCode === 37) {
@@ -84,7 +72,7 @@ const Menu = (props) => {
       }
       if (
         (e.keyCode === 13 && newIndex === 1) ||
-        (e.keyCode === 13 && newIndex === 4)
+        (e.keyCode === 13 && newIndex === 3)
       ) {
         if (showVirtualKeyboard === false) {
           console.log("enter");
@@ -112,7 +100,7 @@ const Menu = (props) => {
             props.backToNavbar(false);
             setIndexFocusedItem(0);
           }
-          if (newIndex < 8 && newIndex > -1) {
+          if (newIndex < 6 && newIndex > -1) {
             newIndex++;
             setIndexFocusedItem(newIndex);
           }
@@ -147,43 +135,18 @@ const Menu = (props) => {
             indexFocusedItem === 1 ? "focused" : ""
           }`}
         >
-          {props.picker === "twitterpicker" ? (
-            <>
-              <Twitterpicker
-                isText={false}
-                previewColor={props.backgroundColor}
-                getColor={(color, isText) => props.getColor(color, isText)}
-                isKeyboardActive={showVirtualKeyboard}
-                isActive={indexFocusedItem === 1 ? true : false}
-                changeBk={props.changeBk}
-                focusItem={indexFocusedItem}
-                picker={props.picker}
-                showVirtualKeyboard={showVirtualKeyboard}
-              >
-                >
-              </Twitterpicker>
-              <Alphapicker
-                isText={false}
-                previewColor={props.backgroundColor}
-                getColor={(color, isText) => props.getColor(color, isText)}
-                isActive={indexFocusedItem === 2 ? true : false}
-              ></Alphapicker>
-            </>
-          ) : (
-            <HuePicker
-              hue={hueBackground}
-              showVirtualKeyboard={showVirtualKeyboard}
-              isText={false}
-              previewColor={props.backgroundColor}
-              getColor={(color, isText) => props.getColor(color, isText)}
-              isKeyboardActive={showVirtualKeyboard}
-              isActive={indexFocusedItem === 1 ? true : false}
-              changeBk={props.changeBk}
-              focusItem={indexFocusedItem}
-              picker={props.picker}
-            />
-          )}
-
+          <HuePicker
+            showVirtualKeyboard={showVirtualKeyboard}
+            isText={false}
+            previewColor={props.backgroundColor}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isKeyboardActive={showVirtualKeyboard}
+            isActive={indexFocusedItem === 1 ? true : false}
+            changeBk={props.changeBk}
+            focusItem={indexFocusedItem}
+            picker={props.picker}
+          />
+          
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -198,64 +161,29 @@ const Menu = (props) => {
             ""
           )}
         </li>
-        <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
-          <ContinuousSlider
-            isText={false}
-            getHue={(hueBackground,isText) => getHue(hueBackground,isText)}
-            hue={hueBackground}
-            focusItem={indexFocusedItem}
-            getColor={(color, isText) => props.getColor(color, isText)}
-          />
-        </li>
       </ul>
       <ul className="category-menu">
         <li
-          className={` title-menu ${indexFocusedItem === 3 ? "focused" : ""}`}
+          className={` title-menu ${indexFocusedItem === 2 ? "focused" : ""}`}
         >
           Text
         </li>{" "}
         <li
           className={`color-keyboard ${
-            indexFocusedItem === 4 ? "focused" : ""
+            indexFocusedItem === 3 ? "focused" : ""
           }`}
         >
-          {props.picker === "twitterpicker" ? (
-            <>
-              <Twitterpicker
-                isText={true}
-                previewColor={props.backgroundColor}
-                getColor={(color, isText) => props.getColor(color, isText)}
-                isKeyboardActive={showVirtualKeyboard}
-                isActive={indexFocusedItem === 1 ? true : false}
-                changeBk={props.changeBk}
-                focusItem={indexFocusedItem}
-                picker={props.picker}
-                showVirtualKeyboard={showVirtualKeyboard}
-              >
-                >{" "}
-              </Twitterpicker>{" "}
-              <Alphapicker
-                previewColor={props.colorText}
-                isText={true}
-                getColor={(color, isText) => props.getColor(color, isText)}
-                isActive={indexFocusedItem === 5 ? true : false}
-              ></Alphapicker>{" "}
-            </>
-          ) : (
             <HuePicker
-              hue={hueText}
               showVirtualKeyboard={showVirtualKeyboard}
               isText={true}
               previewColor={props.backgroundColor}
               getColor={(color, isText) => props.getColor(color, isText)}
               isKeyboardActive={showVirtualKeyboard}
-              isActive={indexFocusedItem === 4 ? true : false}
+              isActive={indexFocusedItem === 3 ? true : false}
               changeBk={props.changeBk}
               focusItem={indexFocusedItem}
             />
-          )}
-
-          {showVirtualKeyboard && indexFocusedItem === 4 ? (
+          {showVirtualKeyboard && indexFocusedItem === 3 ? (
             <div className="keybo">
               <VirtualKeyboard
                 previewColor={props.backgroundColor}
@@ -269,26 +197,17 @@ const Menu = (props) => {
             ""
           )}
         </li>
-        <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
-          <ContinuousSlider
-            isText={true}
-            getHue={(hueText, isText) => getHue(hueText,isText)}
-            hue={hueText}
-            focusItem={indexFocusedItem}
-            getColor={(color, isText) => props.getColor(color, isText)}
-          />
-        </li>
       </ul>
       <ul className="category-menu">
         <li
-          className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}
+          className={` title-menu ${indexFocusedItem === 4 ? "focused" : ""}`}
         >
           Fonts
         </li>
-        <li className={`${indexFocusedItem === 7 ? "focused" : ""}`}>
+        <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
           Font Size
         </li>
-        <li className={`${indexFocusedItem === 8 ? "focused" : ""}`}>
+        <li className={`${indexFocusedItem === 6 ? "focused" : ""}`}>
           Font Style
         </li>
       </ul>

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+
+
 const FileUpload = () => {
 
     const [file, setFile] = useState('')
@@ -46,4 +48,4 @@ const FileUpload = () => {
     )
 }
 
-export default FileUpload
+export default FileUpload;

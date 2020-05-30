@@ -6,6 +6,7 @@ import FileUpload from "./components/fileUploader/fileUpload";
 import TextDisplay from "./components/TextDisplay/TextDisplay";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { SafeMargin } from "./components/SafeMargin/SafeMargin";
 
 const Contrast = ({
   backgroundColor,
@@ -22,6 +23,7 @@ const Contrast = ({
   changeFontStyleState,
   changeTextPosition,
   picker,
+  safeMargin,
 }) => {
   return (
     <>
@@ -29,8 +31,8 @@ const Contrast = ({
         <div className="wrapper-board">
           <div
             style={{
-              backgroundColor: `rgb(${backgroundColor.r},${backgroundColor.g},${backgroundColor.b},${backgroundColor.a})`,
-              color: `rgb(${colorText.r},${colorText.g},${colorText.b},${colorText.a})`,
+              backgroundColor: `${backgroundColor}`,
+              color: `${colorText}`,
               backgroundImage: `url(${bkImage})`,
             }}
             className="Board"
@@ -40,6 +42,7 @@ const Contrast = ({
               textPosition={textPosition}
               fontStyle={fontStyle}
             />
+            {safeMargin && <SafeMargin />}
           </div>
         </div>
 
@@ -77,18 +80,8 @@ function App(props) {
     "b",
   ];
   let startetTextPosition = { top: 0, right: 0 };
-  let [backgroundColor, setBackgroundColor] = useState({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 1,
-  });
-  let [colorText, setColorText] = useState({
-    r: 242,
-    g: 242,
-    b: 242,
-    a: 1,
-  });
+  let [backgroundColor, setBackgroundColor] = useState("#000000");
+  let [colorText, setColorText] = useState("#F2F2F2");
 
   const [fontSize, setfontSize] = useState(100);
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
@@ -101,14 +94,13 @@ function App(props) {
       return 1;
     } else if (window.location.pathname === "/about") {
       return 2;
-    } else if (window.location.pathname === "/contrast2") {
-      return 3;
     }
   };
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
- /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
+  const [safeMargin, setSafeMargin] = useState(false);
+  /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
   let [contrast, setContrast] = useState(false); */
 
   const [bkImage, setBkImage] = useState("");
@@ -116,6 +108,12 @@ function App(props) {
 
   useEffect(() => {
     fetchImages();
+
+    const showSafeMargin = (e) => {
+      if (e.keyCode === 32) {
+        setSafeMargin(!safeMargin);
+      }
+    };
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
@@ -136,11 +134,6 @@ function App(props) {
             window.location.pathname = "/";
           }
         }
-        if (e.keyCode === 13 && linkIndex === 3) {
-          if (window.location.pathname !== "/contrast2") {
-            window.location.pathname = "/contrast2";
-          }
-        }
 
         if (e.keyCode === 37 && linkIndex > 0) {
           newIndex--;
@@ -154,8 +147,10 @@ function App(props) {
       }
     };
     window.addEventListener("keydown", navBarNavigation);
+    window.addEventListener("keydown", showSafeMargin);
     return () => {
       window.removeEventListener("keydown", navBarNavigation);
+      window.removeEventListener("keydown", showSafeMargin);
     };
   }, [
     colorText,
@@ -165,6 +160,7 @@ function App(props) {
     navBarNavigating,
     fontSize,
     fontStyle,
+    safeMargin,
   ]);
 
   let getColor = (color, isText) => {
@@ -229,23 +225,20 @@ function App(props) {
   };
 
   const changeTextPosition = (keyCode) => {
-    let newTextPosition = {...textPosition}
-    if(keyCode === 38){
-      console.log('joao')
-      newTextPosition.top--
-      setTextPosition(newTextPosition)
-    }else if( keyCode === 39){
-      newTextPosition.right--
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 40){
-      newTextPosition.top++
-      setTextPosition(newTextPosition)
-
-    }else if( keyCode === 37){
-      newTextPosition.right++
-      setTextPosition(newTextPosition)
-
+    let newTextPosition = { ...textPosition };
+    if (keyCode === 38) {
+      console.log("joao");
+      newTextPosition.top--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 39) {
+      newTextPosition.right--;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 40) {
+      newTextPosition.top++;
+      setTextPosition(newTextPosition);
+    } else if (keyCode === 37) {
+      newTextPosition.right++;
+      setTextPosition(newTextPosition);
     }
   };
 
@@ -289,17 +282,6 @@ function App(props) {
                 About
               </Link>
             </li>
-            <li
-              onClick={() => setLinkIndex(3)}
-              className={linkIndex === 3 ? "focusedNavbar" : ""}
-            >
-              <Link
-                to="/contrast2"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                Contrast Twitter
-              </Link>
-            </li>
           </ul>
         </header>
 
@@ -324,24 +306,7 @@ function App(props) {
                 changeFontStyleState={changeFontStyleState}
                 changeTextPosition={changeTextPosition}
                 picker="huepicker"
-              />
-            </Route>
-            <Route path="/contrast2">
-              <Contrast
-                backgroundColor={backgroundColor}
-                colorText={colorText}
-                bkImage={bkImage}
-                returnToNavBar={returnToNavBar}
-                getColor={getColor}
-                imageDB={imageDB}
-                changeBk={changeBk}
-                fontSize={fontSize}
-                fontStyle={fontStyle}
-                textPosition={textPosition}
-                changeFontSizeState={changeFontSizeState}
-                changeFontStyleState={changeFontStyleState}
-                changeTextPosition={changeTextPosition}
-                picker="twitterpicker"
+                safeMargin={safeMargin}
               />
             </Route>
             <Route path="/">
