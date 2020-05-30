@@ -23,9 +23,9 @@ const Menu = (props) => {
       }
       if (indexFocusedItem === 5) {
         if (e.keyCode === 39) {
-          props.changeFontSizeState(1);
+          props.changeFontSizeState(0.1);
         } else if (e.keyCode === 37) {
-          props.changeFontSizeState(-1);
+          props.changeFontSizeState(-0.1);
         }
       }
       if (indexFocusedItem === 6) {

@@ -1,8 +1,9 @@
 .board-text {
     position: absolute;
     top: 0;
-  }
+}
 
- .textLines {
-   position: relative;
- } 
+.textLines {
+    align-items: center;
+    position: relative;
+}
