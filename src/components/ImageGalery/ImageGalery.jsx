@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import useEventListener from "../virtual-keyboard/use-event-listener";
 import "./ImageGalery.css";
 
-export const ImageGalery = ({ imageDB, changeBk, onGalery }) => {
+export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   const [imageIndexFocus, setImageIndexFocus] = useState(0);
+  const [searchMenuIndex, setSearchMenuIndex] = useState(0);
   const [indexToSearch, setIndexToSearch] = useState("");
   const [indexToSearchInt, setIndexToSearchInt] = useState("");
   const [imagesToShow, setImagesToShow] = useState("");
@@ -35,9 +36,27 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery }) => {
     }
   };
 
+  const backToMenu = (e) => {
+    if (onGalery) {
+      if (imageIndexFocus === 0 && searchMenuIndex === 1 && e.keyCode === 13) {
+        goToGalery();
+      }
+    }
+  };
+
+  const searchOrBack = (e) => {
+    if (onGalery) {
+      if (imageIndexFocus === 0 && e.keyCode === 37) {
+        setSearchMenuIndex(0);
+      } else if (imageIndexFocus === 0 && e.keyCode === 39) {
+        setSearchMenuIndex(1);
+      }
+    }
+  };
+
   const searchForIndex = (e) => {
     if (onGalery) {
-      if (imageIndexFocus === 0) {
+      if (imageIndexFocus === 0 && searchMenuIndex === 0) {
         if (
           e.keyCode === 48 ||
           e.keyCode === 49 ||
@@ -63,9 +82,11 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery }) => {
     }
   };
 
+  useEventListener("keydown", backToMenu);
   useEventListener("keydown", changeIndex);
   useEventListener("keydown", changeImageOnBoard);
   useEventListener("keydown", searchForIndex);
+  useEventListener("keydown", searchOrBack);
 
   useEffect(() => {
     if (imageDB && !componentMount) {
@@ -78,8 +99,8 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery }) => {
       if (imageDB[indexToSearchInt - 1]) {
         setImagesToShow([imageDB[indexToSearchInt - 1]]);
       } else {
-          alert('Image ID Incorrect')
-          setIndexToSearch("");
+        alert("Image ID Incorrect");
+        setIndexToSearch("");
       }
     } else {
       setImagesToShow(imageDB);
@@ -96,10 +117,20 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery }) => {
           <div
             className="search-keyboard"
             style={{
-              backgroundColor: imageIndexFocus === 0 && "red",
+              backgroundColor:
+                imageIndexFocus === 0 && searchMenuIndex === 0 && "red",
             }}
           >
             {indexToSearch ? indexToSearch : `Which Image you want to show?`}
+          </div>
+          <div
+            className="galery-back"
+            style={{
+              backgroundColor:
+                imageIndexFocus === 0 && searchMenuIndex === 1 && "red",
+            }}
+          >
+            Back
           </div>
         </div>
       </div>

@@ -23,11 +23,15 @@
 }
 
 .search-keyboard {
-  width: 100%;
+  width: 80%;
   border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.galery-back {
+  width: 19%;
 }
 
 .galery-title {

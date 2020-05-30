@@ -14,6 +14,11 @@ const Menu = (props) => {
   };
 
   useEffect(() => {
+    const goGal = (e) => {
+      if (indexFocusedItem === 7 && e.keyCode === 13) {
+        props.goToGalery();
+      }
+    };
     const changeSizeFont = (e) => {
       if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
@@ -97,18 +102,20 @@ const Menu = (props) => {
             props.backToNavbar(false);
             setIndexFocusedItem(0);
           }
-          if (newIndex < 6 && newIndex > -1) {
+          if (newIndex < 7 && newIndex > -1) {
             newIndex++;
             setIndexFocusedItem(newIndex);
           }
         }
       }
     };
+    window.addEventListener("keydown", goGal);
     window.addEventListener("keydown", changeImageWithArrow);
     window.addEventListener("keydown", keyNavigate);
     window.addEventListener("keydown", changeSizeFont);
     //console.log(indexFocusedItem)
     return () => {
+      window.removeEventListener("keydown", goGal);
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeImageWithArrow);
       window.removeEventListener("keydown", changeSizeFont);
@@ -143,7 +150,7 @@ const Menu = (props) => {
             focusItem={indexFocusedItem}
             picker={props.picker}
           />
-          
+
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -170,16 +177,16 @@ const Menu = (props) => {
             indexFocusedItem === 3 ? "focused" : ""
           }`}
         >
-            <HuePicker
-              showVirtualKeyboard={showVirtualKeyboard}
-              isText={true}
-              previewColor={props.backgroundColor}
-              getColor={(color, isText) => props.getColor(color, isText)}
-              isKeyboardActive={showVirtualKeyboard}
-              isActive={indexFocusedItem === 3 ? true : false}
-              changeBk={props.changeBk}
-              focusItem={indexFocusedItem}
-            />
+          <HuePicker
+            showVirtualKeyboard={showVirtualKeyboard}
+            isText={true}
+            previewColor={props.backgroundColor}
+            getColor={(color, isText) => props.getColor(color, isText)}
+            isKeyboardActive={showVirtualKeyboard}
+            isActive={indexFocusedItem === 3 ? true : false}
+            changeBk={props.changeBk}
+            focusItem={indexFocusedItem}
+          />
           {showVirtualKeyboard && indexFocusedItem === 3 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -206,6 +213,13 @@ const Menu = (props) => {
         </li>
         <li className={`${indexFocusedItem === 6 ? "focused" : ""}`}>
           Font Style
+        </li>
+      </ul>
+      <ul>
+        <li
+          className={` title-menu ${indexFocusedItem === 7 ? "focused" : ""}`}
+        >
+          Gallery
         </li>
       </ul>
     </div>
