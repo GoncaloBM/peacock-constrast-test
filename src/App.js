@@ -6,6 +6,7 @@ import FileUpload from "./components/fileUploader/fileUpload";
 import TextDisplay from "./components/TextDisplay/TextDisplay";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { SafeMargin } from "./components/SafeMargin/SafeMargin";
 
 const Contrast = ({
   backgroundColor,
@@ -22,6 +23,7 @@ const Contrast = ({
   changeFontStyleState,
   changeTextPosition,
   picker,
+  safeMargin,
 }) => {
   return (
     <>
@@ -40,6 +42,7 @@ const Contrast = ({
               textPosition={textPosition}
               fontStyle={fontStyle}
             />
+            {safeMargin && <SafeMargin />}
           </div>
         </div>
 
@@ -96,6 +99,7 @@ function App(props) {
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
   let [navBarNavigating, setNavBarNavigating] = useState(true);
+  const [safeMargin, setSafeMargin] = useState(false);
   /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
   let [contrast, setContrast] = useState(false); */
 
@@ -104,6 +108,12 @@ function App(props) {
 
   useEffect(() => {
     fetchImages();
+
+    const showSafeMargin = (e) => {
+      if (e.keyCode === 32) {
+        setSafeMargin(!safeMargin);
+      }
+    };
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
@@ -137,8 +147,10 @@ function App(props) {
       }
     };
     window.addEventListener("keydown", navBarNavigation);
+    window.addEventListener("keydown", showSafeMargin);
     return () => {
       window.removeEventListener("keydown", navBarNavigation);
+      window.removeEventListener("keydown", showSafeMargin);
     };
   }, [
     colorText,
@@ -148,6 +160,7 @@ function App(props) {
     navBarNavigating,
     fontSize,
     fontStyle,
+    safeMargin,
   ]);
 
   let getColor = (color, isText) => {
@@ -293,6 +306,7 @@ function App(props) {
                 changeFontStyleState={changeFontStyleState}
                 changeTextPosition={changeTextPosition}
                 picker="huepicker"
+                safeMargin={safeMargin}
               />
             </Route>
             <Route path="/">
