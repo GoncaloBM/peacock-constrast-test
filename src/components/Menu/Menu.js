@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Menu.css";
-import Alphapicker from "../colorpicker/alphapicker";
-import Twitterpicker from "../colorpicker/twitterpicker";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
 
