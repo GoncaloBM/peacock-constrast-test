@@ -4,9 +4,7 @@ import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Contrast from "./components/Contrast/Contrast"
-
-
+import Contrast from "./components/Contrast/Contrast";
 
 function App(props) {
   let differentFontStyles = [
@@ -24,9 +22,11 @@ function App(props) {
   let [backgroundColor, setBackgroundColor] = useState("#000000");
   let [colorText, setColorText] = useState("#F2F2F2");
 
-  const [fontSize, setfontSize] = useState(100);
+  const [fontSize, setfontSize] = useState(4);
+  const [fontSizeforText, setFontSizeforText] = useState(fontSize + "rem");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
   const [textPosition, setTextPosition] = useState(startetTextPosition);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const getWindowLocation = () => {
     if (window.location.pathname === "/") {
@@ -53,6 +53,7 @@ function App(props) {
     const showSafeMargin = (e) => {
       if (e.keyCode === 32) {
         setSafeMargin(!safeMargin);
+        setFullscreen(!fullscreen);
       }
     };
 
@@ -102,10 +103,11 @@ function App(props) {
     fontSize,
     fontStyle,
     safeMargin,
+    fullscreen
   ]);
 
   let getColor = (color, isText) => {
-    console.log('JOAO')
+    console.log("JOAO");
     if (isText) {
       setColorText(color);
     } else {
@@ -138,6 +140,9 @@ function App(props) {
 
   const changeFontSizeState = (increaseOrDecrease) => {
     setfontSize(fontSize + increaseOrDecrease);
+
+    console.log(fontSizeforText);
+    console.log(fontSize);
   };
 
   const changeFontStyleState = (increaseOrDecrease) => {
@@ -249,6 +254,7 @@ function App(props) {
                 changeTextPosition={changeTextPosition}
                 picker="huepicker"
                 safeMargin={safeMargin}
+                fullscreen={fullscreen}
               />
             </Route>
             <Route path="/">

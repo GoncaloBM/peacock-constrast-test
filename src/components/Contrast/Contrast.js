@@ -5,6 +5,7 @@ import { SafeMargin } from "../SafeMargin/SafeMargin";
 import "../../App.css";
 import "./Contrast.css";
 import { ImageGalery } from "../ImageGalery/ImageGalery";
+import { width } from "@material-ui/system";
 
 const Contrast = ({
   backgroundColor,
@@ -22,9 +23,11 @@ const Contrast = ({
   changeTextPosition,
   picker,
   safeMargin,
+  fullscreen,
 }) => {
   const [lateralBar, setlateralBar] = useState(false);
   const [onGalery, setOnGalery] = useState(true);
+
 
   useEffect(() => {
     console.log("mount");
@@ -41,7 +44,9 @@ const Contrast = ({
   return (
     <>
       <div className="wrapper">
-        <div className="wrapper-board">
+        <div
+          className={!fullscreen ? "wrapper-board" : "wrapper-board-fullscreen"}
+        >
           <div
             style={{
               backgroundColor: `${backgroundColor}`,
@@ -50,11 +55,16 @@ const Contrast = ({
             }}
             className="Board"
           >
-            <TextDisplay
-              fontSize={fontSize}
-              textPosition={textPosition}
-              fontStyle={fontStyle}
-            />
+            <div
+              className={!fullscreen ? "text" : "text-fullscreen"}
+              style={{ color: `${colorText}` }}
+            >
+              <TextDisplay
+                fontSize={fontSize}
+                textPosition={textPosition}
+                fontStyle={fontStyle}
+              />
+            </div>
             {safeMargin && <SafeMargin />}
           </div>
         </div>
