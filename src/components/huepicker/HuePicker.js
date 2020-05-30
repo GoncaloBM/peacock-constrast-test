@@ -79,7 +79,7 @@ class HuePicker extends Component {
     }
     if (
       event.key === "ArrowRight" &&
-      focusItem === 4 &&
+      focusItem === 3 &&
       positionOfArray < colors.length &&
       this.props.isText
     ) {
@@ -92,7 +92,7 @@ class HuePicker extends Component {
 
     if (
       event.key === "ArrowLeft" &&
-      focusItem === 4 &&
+      focusItem === 3 &&
       positionOfArray > 0 &&
       this.props.isText
     ) {
@@ -115,18 +115,13 @@ class HuePicker extends Component {
     // this.setState({mouse:false})
   };
 
-  
   render() {
     return (
       <div className="huePicker">
         {this.colors.map((item, i) => (
           <li key={i}>
-            <div
-              className={`${
-                this.state.color === item ? "focused" : ""
-              }`}
-            >
-            <Button style={{ backgroundColor: `${item}` }} />
+            <div className={`${this.state.color === item ? "focused" : ""}`}>
+              <Button style={{ backgroundColor: `${item}` }} />
             </div>
           </li>
         ))}
