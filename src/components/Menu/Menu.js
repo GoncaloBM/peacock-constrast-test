@@ -7,7 +7,6 @@ const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [currentPhotoID, setCurrentPhotoID] = useState(0);
-
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
 
   const exitKeyboard = () => {
