@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
-
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Contrast from "./components/Contrast/Contrast";

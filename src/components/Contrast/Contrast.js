@@ -4,6 +4,7 @@ import Menu from "../Menu/Menu";
 import { SafeMargin } from "../SafeMargin/SafeMargin";
 import "../../App.css";
 import "./Contrast.css";
+import { ImageGalery } from "../ImageGalery/ImageGalery";
 import { width } from "@material-ui/system";
 
 const Contrast = ({
@@ -25,6 +26,8 @@ const Contrast = ({
   fullscreen,
 }) => {
   const [lateralBar, setlateralBar] = useState(false);
+  const [onGalery, setOnGalery] = useState(true);
+
 
   useEffect(() => {
     console.log("mount");
@@ -65,6 +68,13 @@ const Contrast = ({
             {safeMargin && <SafeMargin />}
           </div>
         </div>
+        {onGalery && (
+          <ImageGalery
+            imageDB={imageDB}
+            changeBk={changeBk}
+            onGalery={onGalery}
+          />
+        )}
         <div onClick={handleClick}>SHOW MENU</div>
 
         <div className={lateralBar ? "showLateralBar menu" : "hideLateralBar "}>
