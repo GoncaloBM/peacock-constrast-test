@@ -11,9 +11,15 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   const [imagesToShow, setImagesToShow] = useState("");
   const [componentMount, setComponentMount] = useState(false);
 
+  const upArrow = 38;
+  const downArrow = 40;
+  const enter = 13;
+  const leftArrow = 37;
+  const rightArrow = 39;
+
   const changeIndex = (e) => {
     if (onGalery) {
-      if (e.keyCode === 40) {
+      if (e.keyCode === downArrow) {
         if (imageIndexFocus === imageDB.length) {
           return;
         } else {
@@ -22,7 +28,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
           }
           setImageIndexFocus(imageIndexFocus + 1);
         }
-      } else if (e.keyCode === 38) {
+      } else if (e.keyCode === upArrow) {
         if (imageIndexFocus === 0) {
           return;
         } else {
@@ -37,7 +43,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
 
   const changeImageOnBoard = (e) => {
     if (onGalery) {
-      if (imageIndexFocus > 0 && e.keyCode === 13) {
+      if (imageIndexFocus > 0 && e.keyCode === enter) {
         changeBk(imagesToShow[imageIndexFocus - 1].url);
       }
     }
@@ -45,7 +51,11 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
 
   const backToMenu = (e) => {
     if (onGalery) {
-      if (imageIndexFocus === 0 && searchMenuIndex === 1 && e.keyCode === 13) {
+      if (
+        imageIndexFocus === 0 &&
+        searchMenuIndex === 1 &&
+        e.keyCode === enter
+      ) {
         goToGalery();
       }
     }
@@ -53,9 +63,9 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
 
   const searchOrBack = (e) => {
     if (onGalery) {
-      if (imageIndexFocus === 0 && e.keyCode === 37) {
+      if (imageIndexFocus === 0 && e.keyCode === leftArrow) {
         setSearchMenuIndex(0);
-      } else if (imageIndexFocus === 0 && e.keyCode === 39) {
+      } else if (imageIndexFocus === 0 && e.keyCode === rightArrow) {
         setSearchMenuIndex(1);
       }
     }
@@ -77,7 +87,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
           e.keyCode === 57
         ) {
           setIndexToSearch(indexToSearch + e.key);
-        } else if (e.keyCode === 37) {
+        } else if (e.keyCode === leftArrow) {
           if (indexToSearch.length === 1) {
             setIndexToSearch("");
             setImagesToShow(imageDB);
@@ -117,32 +127,45 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   return (
     <div className="galery-menu">
       <div className="galery-top-line">
-        <div
-          className="galery-search"
-          style={{ border: imageIndexFocus === 0 && "1px solid black" }}
-        >
+        <div className="galery-search">
           <div
             className="search-keyboard"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 0 && "red",
+                imageIndexFocus === 0 && searchMenuIndex === 0 && "#ef1541",
             }}
           >
-            {indexToSearch ? indexToSearch : `Which Image you want to show?`}
+            <div
+              className="glass-icon"
+              //   style={{ width: `${imageIndexFocus === 0 ? 80 : ""}%` }}
+            ></div>
+            {indexToSearch
+              ? indexToSearch
+              : imageIndexFocus === 0 && searchMenuIndex === 0
+              ? `Which Image you want to show?`
+              : ""}
           </div>
           <div
             className="galery-back"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 1 && "red",
+                imageIndexFocus === 0 && searchMenuIndex === 1 && "#ef1541",
             }}
           >
             Back
           </div>
         </div>
       </div>
-      <div className="galery-title">Galery</div>
+      <div className="galery-title">Image Gallery</div>
       <div className="galery-images-wrapper">
+        <div
+          className="image-selector"
+          style={{
+            top: `${
+              imageIndexFocus < 8 ? 10.5 * imageIndexFocus - 10.5 : ""
+            }vh`,
+          }}
+        ></div>
         <div
           className="galery-images-scroll"
           style={{ top: `${scrollList}vh` }}
@@ -152,13 +175,13 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
               return (
                 <div
                   className="galery-image"
-                  style={{
-                    backgroundColor: index === imageIndexFocus - 1 && "red",
-                  }}
+                  //   style={{
+                  //     backgroundColor: index === imageIndexFocus - 1 && "red",
+                  //   }}
                 >
                   <div className="image-text">{image.id}</div>
                   <div
-                    className="image"
+                    className="image shadow"
                     style={{ backgroundImage: `url(${image.url})` }}
                   ></div>
                 </div>

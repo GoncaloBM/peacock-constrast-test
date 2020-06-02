@@ -6,7 +6,6 @@ import HuePicker from "../huepicker/HuePicker";
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
-  let [currentPhotoID, setCurrentPhotoID] = useState(0);
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
 
   const exitKeyboard = () => {
@@ -37,31 +36,6 @@ const Menu = (props) => {
           props.changeFontStyleState(1);
         } else if (e.keyCode === 37) {
           props.changeFontStyleState(-1);
-        }
-      }
-    };
-
-    const nextImg = (numero) => {
-      const nextImage = currentPhotoID + numero;
-      if (nextImage > props.imageDB.length) {
-        setCurrentPhotoID(0);
-        props.changeBk(props.imageDB[0].url);
-      } else if (nextImage < 0) {
-        setCurrentPhotoID(props.imageDB.length - 1);
-        props.changeBk(props.imageDB[props.imageDB.length - 1].url);
-      } else {
-        setCurrentPhotoID(currentPhotoID + numero);
-        props.changeBk(props.imageDB[currentPhotoID].url);
-      }
-    };
-
-    const changeImageWithArrow = (e) => {
-      e.preventDefault();
-      if (props.imageDB) {
-        if (e.keyCode === 39 && indexFocusedItem === 0) {
-          nextImg(1);
-        } else if (e.keyCode === 37 && indexFocusedItem === 0) {
-          nextImg(-1);
         }
       }
     };
@@ -110,23 +84,15 @@ const Menu = (props) => {
       }
     };
     window.addEventListener("keydown", goGal);
-    window.addEventListener("keydown", changeImageWithArrow);
     window.addEventListener("keydown", keyNavigate);
     window.addEventListener("keydown", changeSizeFont);
     //console.log(indexFocusedItem)
     return () => {
       window.removeEventListener("keydown", goGal);
       window.removeEventListener("keydown", keyNavigate);
-      window.removeEventListener("keydown", changeImageWithArrow);
       window.removeEventListener("keydown", changeSizeFont);
     };
-  }, [
-    indexFocusedItem,
-    showVirtualKeyboard,
-    currentPhotoID,
-    props,
-    showTextPositionTool,
-  ]);
+  }, [indexFocusedItem, showVirtualKeyboard, props, showTextPositionTool]);
 
   return (
     <div className="Menu">

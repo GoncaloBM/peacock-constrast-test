@@ -10,7 +10,6 @@
 }
 
 .galery-top-line {
-  /* position: absolute; */
   top: 0;
   width: 100%;
   height: 5%;
@@ -19,7 +18,6 @@
 }
 
 .galery-search {
-  /* position: absolute; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -29,24 +27,32 @@
 
 .search-keyboard {
   width: 80%;
-  border: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
+  transition: 0.5s all;
+}
+
+.glass-icon {
+  height: 95%;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 40px;
 }
 
 .galery-back {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 19%;
+  width: 20%;
   height: 100%;
+  transition: 0.5s;
 }
 
 .galery-title {
-  /* position: absolute;
-  top: 6%; */
   width: 100%;
   height: 5%;
 
@@ -54,16 +60,13 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .galery-images-wrapper {
-  /* position: absolute; */
-  /* top: 15%; */
   position: relative;
   width: 100%;
   height: 90%;
-  border-top: 1px solid black;
   overflow: hidden;
 }
 
@@ -71,6 +74,17 @@
   position: absolute;
   top: 0;
   width: 100%;
+  transition: 0.5s all;
+}
+
+.image-selector {
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 10.5vh;
+  transition: 0.5s all;
+  background-color: #ef1541;
 }
 
 .galery-image {
@@ -82,9 +96,49 @@
 }
 
 .image {
-  height: 90%;
+  height: 80%;
   width: 40%;
+  margin-right: 2.5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 12px;
+}
+
+.image-text {
+  font-size: 1.5rem;
+  margin-left: 5rem;
+}
+
+.shadow {
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.shadow:before,
+.shadow:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  -moz-border-radius: 100px / 10px;
+  border-radius: 100px / 10px;
+}
+.shadow:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
 }
