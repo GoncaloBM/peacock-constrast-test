@@ -26,8 +26,7 @@ const Contrast = ({
   fullscreen,
 }) => {
   const [lateralBar, setlateralBar] = useState(false);
-  const [onGalery, setOnGalery] = useState(true);
-
+  const [onGalery, setOnGalery] = useState(false);
 
   useEffect(() => {
     console.log("mount");
@@ -38,6 +37,11 @@ const Contrast = ({
 
   const handleClick = () => {
     returnToNavBar(lateralBar);
+    setlateralBar(!lateralBar);
+  };
+
+  const goToGalery = () => {
+    setOnGalery(!onGalery);
     setlateralBar(!lateralBar);
   };
 
@@ -73,6 +77,7 @@ const Contrast = ({
             imageDB={imageDB}
             changeBk={changeBk}
             onGalery={onGalery}
+            goToGalery={goToGalery}
           />
         )}
         <div onClick={handleClick}>SHOW MENU</div>
@@ -91,6 +96,7 @@ const Contrast = ({
               changeFontStyleState={changeFontStyleState}
               changeTextPosition={changeTextPosition}
               picker={picker}
+              goToGalery={goToGalery}
             />
           ) : (
             ""
