@@ -127,35 +127,44 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   return (
     <div className="galery-menu">
       <div className="galery-top-line">
-        <div
-          className="galery-search"
-          style={{ border: imageIndexFocus === 0 && "1px solid black" }}
-        >
+        <div className="galery-search">
           <div
             className="search-keyboard"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 0 && "red",
+                imageIndexFocus === 0 && searchMenuIndex === 0 && "#ef1541",
             }}
           >
-            {indexToSearch ? indexToSearch : `Which Image you want to show?`}
+            <div
+              className="glass-icon"
+              //   style={{ width: `${imageIndexFocus === 0 ? 80 : ""}%` }}
+            ></div>
+            {indexToSearch
+              ? indexToSearch
+              : imageIndexFocus === 0 && searchMenuIndex === 0
+              ? `Which Image you want to show?`
+              : ""}
           </div>
           <div
             className="galery-back"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 1 && "red",
+                imageIndexFocus === 0 && searchMenuIndex === 1 && "#ef1541",
             }}
           >
             Back
           </div>
         </div>
       </div>
-      <div className="galery-title">Galery</div>
+      <div className="galery-title">Image Gallery</div>
       <div className="galery-images-wrapper">
         <div
           className="image-selector"
-          style={{ top: `${imageIndexFocus< 8 ? 10.5 * imageIndexFocus - 10.5:''}vh` }}
+          style={{
+            top: `${
+              imageIndexFocus < 8 ? 10.5 * imageIndexFocus - 10.5 : ""
+            }vh`,
+          }}
         ></div>
         <div
           className="galery-images-scroll"
