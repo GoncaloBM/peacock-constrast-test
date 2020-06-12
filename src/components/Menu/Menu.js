@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Menu.css";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
 
 const Menu = (props) => {
-  let [indexFocusedItem, setIndexFocusedItem] = useState(-1);
+  let [indexFocusedItem, setIndexFocusedItem] = useState(props.fromGalery === true ? 7 : -1);
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
+
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
@@ -88,11 +89,12 @@ const Menu = (props) => {
     window.addEventListener("keydown", changeSizeFont);
     //console.log(indexFocusedItem)
     return () => {
+
       window.removeEventListener("keydown", goGal);
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeSizeFont);
     };
-  }, [indexFocusedItem, showVirtualKeyboard, props, showTextPositionTool]);
+  }, [indexFocusedItem, showVirtualKeyboard, props, showTextPositionTool, props.fromGalery]);
 
   return (
     <div className="Menu">

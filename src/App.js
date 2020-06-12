@@ -27,6 +27,9 @@ function App(props) {
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
   const [textPosition, setTextPosition] = useState(startetTextPosition);
   const [fullscreen, setFullscreen] = useState(false);
+  let [showLateralBar, setShowLateralBar] = useState(false);
+  let [fromGalery, setFromGalery] = useState(false)
+
 
   const getWindowLocation = () => {
     if (window.location.pathname === "/") {
@@ -76,13 +79,22 @@ function App(props) {
             window.location.pathname = "/";
           }
         }
+        if (e.keyCode === 13 && linkIndex === 3) {
+          setShowLateralBar(!showLateralBar)
+          setFromGalery(false)
+
+        }
 
         if (e.keyCode === 37 && linkIndex > 0) {
           newIndex--;
           setLinkIndex(newIndex);
         }
 
-        if (e.keyCode === 39 && linkIndex < 3) {
+        if (e.keyCode === 39 && linkIndex < 3 && window.location.pathname === '/contrast') {
+          newIndex++;
+          setLinkIndex(newIndex);
+        }
+        if (e.keyCode === 39 && linkIndex < 2 && window.location.pathname !== '/contrast') {
           newIndex++;
           setLinkIndex(newIndex);
         }
@@ -103,7 +115,8 @@ function App(props) {
     fontSize,
     fontStyle,
     safeMargin,
-    fullscreen
+    fullscreen,
+    showLateralBar
   ]);
 
   let getColor = (color, isText) => {
@@ -129,7 +142,7 @@ function App(props) {
 
   const returnToNavBar = (returningToNavBar) => {
     if (returningToNavBar) {
-      setLinkIndex(2);
+      setLinkIndex(3);
       setNavBarNavigating(true);
     } else {
       // console.log("a descer");
@@ -174,7 +187,6 @@ function App(props) {
   const changeTextPosition = (keyCode) => {
     let newTextPosition = { ...textPosition };
     if (keyCode === 38) {
-      console.log("joao");
       newTextPosition.top--;
       setTextPosition(newTextPosition);
     } else if (keyCode === 39) {
@@ -188,6 +200,19 @@ function App(props) {
       setTextPosition(newTextPosition);
     }
   };
+
+  const displayLateralBar = (e, fromGalery) => {
+    console.log('from Galery: ', fromGalery)
+    if(fromGalery){
+      setFromGalery(true)
+    }else {
+      setFromGalery(false)
+    }
+    setShowLateralBar(!showLateralBar)
+    setLinkIndex(3)
+    console.log('joao')
+
+  }
 
   return (
     <Router>
@@ -229,6 +254,17 @@ function App(props) {
                 About
               </Link>
             </li>
+            {window.location.pathname === "/contrast" ? (
+              <li className={linkIndex === 3 ? "focusedNavbar" : ""}>
+                <Link className="hamburger" onClick={displayLateralBar}>
+                  <div className="patty"></div>
+                  <div className="patty"></div>
+                  <div className="patty"></div>
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </header>
 
@@ -255,6 +291,10 @@ function App(props) {
                 picker="huepicker"
                 safeMargin={safeMargin}
                 fullscreen={fullscreen}
+                showLateralBar = {showLateralBar}
+                displayLateralBar ={displayLateralBar}
+                fromGalery={fromGalery}
+
               />
             </Route>
             <Route path="/">

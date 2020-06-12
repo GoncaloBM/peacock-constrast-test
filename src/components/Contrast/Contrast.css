@@ -1,81 +1,84 @@
-    .hideLateralBar {
-        display: none;
-    }
-    
-    .showLateralBar {}
-    
-    .wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        height: 80vh;
-        /* height: 80vh;
+.hideLateralBar {
+  display: none;
+}
+
+.showLateralBar {
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 80vh;
+  /* height: 80vh;
   margin: 0 90px 0 90px;
   border: 1px solid black; */
-    }
-    
-    .wrapper-board {
-        position: relative;
-        /* width: 1920px;
+}
+
+.wrapper-board {
+  position: relative;
+  /* width: 1920px;
         height: 1080px; */
-        width: 75%;
-    }
-    
-    .wrapper-board-fullscreen {
-        position: relative;
-        width: 1920;
-        height: 1080;
-        top: 0.8%;
-        left: 11.8%;
-        transform: scale(1.4, 1.35);
-        width: 75%;
-        z-index: 1;
-    }
-    
-    .textLines {
-        font-size: 4rem;
-    }
-    
-    .text {
-        font-size: 4rem;
-        position: absolute;
-        align-items: center;
-        bottom: 8%;
-        /* position: absolute;
+  width: 75%;
+}
+
+.wrapper-board-fullscreen {
+  position: relative;
+  width: 1920;
+  height: 1080;
+  top: 0.8%;
+  left: 11.8%;
+  transform: scale(1.4, 1.35);
+  width: 75%;
+  z-index: 1;
+}
+
+.textLines {
+  font-size: 4rem;
+}
+
+.text {
+  font-size: 4rem;
+  position: absolute;
+  align-items: center;
+  bottom: 8%;
+  /* position: absolute;
     z-index: 1;
     bottom: 23%;
     left: 14%; */
-    }
-    
-    .text-fullscreen {
-        font-size: 4rem;
-        position: absolute;
-        align-items: center;
-        bottom: 8%;
-        /* position: absolute;
+}
+
+.text-fullscreen {
+  font-size: 4rem;
+  position: absolute;
+  align-items: center;
+  bottom: 8%;
+  /* position: absolute;
         z-index: 1;
         bottom: 23%;
         left: 26%;
         z-index: 2; */
-    }
-    
-    .Board {
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 100%;
-        padding-bottom: 56.25%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .instructions {
-        border: 1px black solid;
-    }
-    
-    .menu {
-        width: 20%;
-        height: 70vh;
-    }
+}
+
+.Board {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-bottom: 56.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructions {
+  border: 1px black solid;
+}
+
+.menu {
+  width: 20%;
+  height: 70vh;
+}
+
+
