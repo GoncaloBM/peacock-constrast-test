@@ -24,26 +24,31 @@ const Contrast = ({
   picker,
   safeMargin,
   fullscreen,
+  showLateralBar,
+  displayLateralBar,
+  fromGalery
 }) => {
-  const [lateralBar, setlateralBar] = useState(false);
+  let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
 
   useEffect(() => {
-    console.log("mount");
-    return () => {
-      console.log("unmount");
-    };
-  }, [lateralBar]);
+    setlateralBar(showLateralBar)
 
-  const handleClick = () => {
+    return () => {
+    };
+  }, [showLateralBar]);
+
+ /*  const handleClick = () => {
     returnToNavBar(lateralBar);
-    setlateralBar(!lateralBar);
-  };
+    displayLateralBar();
+  }; */
 
   const goToGalery = () => {
     setOnGalery(!onGalery);
-    setlateralBar(!lateralBar);
+    displayLateralBar(false, true);
   };
+
+
 
   return (
     <>
@@ -80,7 +85,7 @@ const Contrast = ({
             goToGalery={goToGalery}
           />
         )}
-        <div onClick={handleClick}>SHOW MENU</div>
+        
 
         <div className={lateralBar ? "showLateralBar menu" : "hideLateralBar "}>
           {lateralBar ? (
@@ -97,6 +102,7 @@ const Contrast = ({
               changeTextPosition={changeTextPosition}
               picker={picker}
               goToGalery={goToGalery}
+              fromGalery={fromGalery}
             />
           ) : (
             ""

@@ -62,3 +62,14 @@ body {
     border-bottom: solid 2px white;
     transition: 0.5s all;
 }
+
+.hamburger{
+
+}
+
+.patty{
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+}
