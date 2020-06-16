@@ -1,9 +1,11 @@
 .Menu {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 70%;
     align-items: center;
     justify-content: space-between;
+   position: absolute;
+   right: 300px;
 }
 
 .title-menu {

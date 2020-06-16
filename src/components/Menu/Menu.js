@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+  import React, { useState, useEffect, useRef } from "react";
 import "./Menu.css";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
@@ -183,7 +183,7 @@ const Menu = (props) => {
           Font Style
         </li>
       </ul>
-      <ul>
+      <ul className="category-menu">
         <li
           className={` title-menu ${indexFocusedItem === 7 ? "focused" : ""}`}
         >
