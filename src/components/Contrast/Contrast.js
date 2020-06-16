@@ -54,7 +54,7 @@ const Contrast = ({
     <>
       <div className="wrapper">
         <div
-          className={!fullscreen ? "wrapper-board" : "wrapper-board-fullscreen"}
+          className={!fullscreen ? "wrapper-board" : "wrapper-board-fullscreen "}
         >
           <div
             style={{
@@ -109,8 +109,8 @@ const Contrast = ({
           )}
         </div>
       </div>
-      <footer className="instructions"> Instructions </footer>
-    </>
+{/*       <footer className="instructions"> Instructions </footer>
+ */}    </>
   );
 };
 
