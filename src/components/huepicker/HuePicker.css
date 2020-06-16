@@ -14,6 +14,6 @@
 }
 
 .focused {
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px red;
     transition: 0.5s all;
 }

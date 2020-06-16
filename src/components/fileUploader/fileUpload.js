@@ -20,11 +20,11 @@ const FileUpload = () => {
         let options = {
             method: "POST",
             body: formData,
-            headers:{'Content-Type': 'Banana'}
+            headers:{}
 
         }
-        delete options.headers['Content-Type'];
-        console.log(window.location)
+/*         delete options.headers['Content-Type'];
+ */        console.log(window.location)
         fetch('http://joaoreberti.tech:5001/upload', options).then(result =>{  
                  /* const {fileName, filePath} = result.data;
                  setUploadedFile({fileName, filePath}) */
