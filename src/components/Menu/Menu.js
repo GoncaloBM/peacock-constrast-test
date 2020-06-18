@@ -1,13 +1,14 @@
-  import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Menu.css";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
 
 const Menu = (props) => {
-  let [indexFocusedItem, setIndexFocusedItem] = useState(props.fromGalery === true ? 7 : -1);
+  let [indexFocusedItem, setIndexFocusedItem] = useState(
+    props.fromGalery === true ? 7 : -1
+  );
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
   let [showTextPositionTool, setShowTextPositionTool] = useState(false);
-
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
@@ -89,22 +90,56 @@ const Menu = (props) => {
     window.addEventListener("keydown", changeSizeFont);
     //console.log(indexFocusedItem)
     return () => {
-
       window.removeEventListener("keydown", goGal);
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeSizeFont);
     };
-  }, [indexFocusedItem, showVirtualKeyboard, props, showTextPositionTool, props.fromGalery]);
+  }, [
+    indexFocusedItem,
+    showVirtualKeyboard,
+    props,
+    showTextPositionTool,
+    props.fromGalery,
+  ]);
+
+  const menuSelector = (index) => {
+    if (index === 0) {
+      return 0;
+    } else if (index === 1) {
+      return 25;
+    } else if (index === 2 || index === 3 || index === 4) {
+      return 50;
+    } else if (index === 5) {
+      return 75;
+    } else {
+      return;
+    }
+  };
+
+  const fontSelector = (index) => {
+    if (index === 2) {
+      return 45;
+    } else if (index === 3) {
+      return 60;
+    } else if (index === 4) {
+      return 75;
+    }
+  };
 
   return (
     <div className="Menu">
+      {indexFocusedItem > -1 && (
+        <ul
+          className="menu-selector"
+          style={{ top: `${menuSelector(indexFocusedItem)}%` }}
+        ></ul>
+      )}
+
       <ul className="category-menu">
         {/* <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
           Background
         </li> */}
-        <li className="title-menu">
-          Background
-        </li>
+        <li className="title-menu">Background</li>
         <li
           className={`color-keyboard ${
             indexFocusedItem === 0 ? "focused" : ""
@@ -120,7 +155,7 @@ const Menu = (props) => {
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
             picker={props.picker}
-          />    
+          />
 
           {showVirtualKeyboard && indexFocusedItem === 0 ? (
             <div className="keybo">
@@ -143,11 +178,7 @@ const Menu = (props) => {
         >
           Text
         </li>{" "} */}
-        <li
-          className="title-menu"
-        >
-          Text
-        </li>{" "}
+        <li className="title-menu">Text</li>{" "}
         <li
           className={`color-keyboard ${
             indexFocusedItem === 1 ? "focused" : ""
@@ -179,21 +210,28 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
+        {(indexFocusedItem === 2 ||
+          indexFocusedItem === 3 ||
+          indexFocusedItem === 4) && (
+          <li
+            className="font-selector"
+            style={{ top: `${fontSelector(indexFocusedItem)}%` }}
+          ></li>
+        )}
+
         {/* <li
           className={` title-menu ${indexFocusedItem === 4 ? "focused" : ""}`}
         >
           Fonts
         </li> */}
-        <li className="title-menu">
-          Fonts
-          </li>
-        <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
+        <li className="title-menu">Fonts</li>
+        <li className={`${indexFocusedItem === 2 ? "focused" : ""} font-sub`}>
           Font Size
         </li>
-        <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>
+        <li className={`${indexFocusedItem === 3 ? "focused" : ""} font-sub`}>
           Font Style
         </li>
-        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
+        <li className={`${indexFocusedItem === 4 ? "focused" : ""} font-sub`}>
           Font Move
         </li>
       </ul>

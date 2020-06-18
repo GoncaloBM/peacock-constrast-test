@@ -13,7 +13,8 @@
     margin-top: 10px;
 }
 
-.focused {
-    border-bottom: solid 2px red;
+.focused-hue {
+    /* border-bottom: solid 2px red; */
     transition: 0.5s all;
+    transform: scale(1.5);
 }
