@@ -71,7 +71,7 @@ class HuePicker extends Component {
     if (
       event.keyCode === 37 &&
       focusItem === 0 &&
-      positionOfArray > 0 &&
+      positionOfArray > 1 &&
       !this.props.isText &&
       !this.props.isKeyboardActive
     ) {
@@ -98,7 +98,7 @@ class HuePicker extends Component {
     if (
       event.keyCode === 37 &&
       focusItem === 1 &&
-      positionOfArray > 0 &&
+      positionOfArray > 1 &&
       this.props.isText &&
       !this.props.isKeyboardActive
     ) {
