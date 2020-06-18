@@ -15,7 +15,7 @@ const Menu = (props) => {
 
   useEffect(() => {
     const goGal = (e) => {
-      if (indexFocusedItem === 7 && e.keyCode === 13) {
+      if (indexFocusedItem === 5 && e.keyCode === 13) {
         props.goToGalery();
       }
     };
@@ -25,14 +25,14 @@ const Menu = (props) => {
           setShowTextPositionTool(!showTextPositionTool);
         }
       }
-      if (indexFocusedItem === 5) {
+      if (indexFocusedItem === 2) {
         if (e.keyCode === 39) {
           props.changeFontSizeState(0.1);
         } else if (e.keyCode === 37) {
           props.changeFontSizeState(-0.1);
         }
       }
-      if (indexFocusedItem === 6) {
+      if (indexFocusedItem === 3) {
         if (e.keyCode === 39) {
           props.changeFontStyleState(1);
         } else if (e.keyCode === 37) {
@@ -48,8 +48,8 @@ const Menu = (props) => {
         return props.changeTextPosition(e.keyCode);
       }
       if (
-        (e.keyCode === 13 && newIndex === 1) ||
-        (e.keyCode === 13 && newIndex === 3)
+        (e.keyCode === 13 && newIndex === 0) ||
+        (e.keyCode === 13 && newIndex === 1)
       ) {
         if (showVirtualKeyboard === false) {
           console.log("enter");
@@ -77,7 +77,7 @@ const Menu = (props) => {
             props.backToNavbar(false);
             setIndexFocusedItem(0);
           }
-          if (newIndex < 7 && newIndex > -1) {
+          if (newIndex < 5 && newIndex > -1) {
             newIndex++;
             setIndexFocusedItem(newIndex);
           }
@@ -99,12 +99,15 @@ const Menu = (props) => {
   return (
     <div className="Menu">
       <ul className="category-menu">
-        <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
+        {/* <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
+          Background
+        </li> */}
+        <li className="title-menu">
           Background
         </li>
         <li
           className={`color-keyboard ${
-            indexFocusedItem === 1 ? "focused" : ""
+            indexFocusedItem === 0 ? "focused" : ""
           }`}
         >
           <HuePicker
@@ -113,13 +116,13 @@ const Menu = (props) => {
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
             isKeyboardActive={showVirtualKeyboard}
-            isActive={indexFocusedItem === 1 ? true : false}
+            isActive={indexFocusedItem === 0 ? true : false}
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
             picker={props.picker}
-          />
+          />    
 
-          {showVirtualKeyboard && indexFocusedItem === 1 ? (
+          {showVirtualKeyboard && indexFocusedItem === 0 ? (
             <div className="keybo">
               <VirtualKeyboard
                 previewColor={props.backgroundColor}
@@ -135,14 +138,19 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
+        {/* <li
+          className={` title-menu ${indexFocusedItem === 1 ? "focused" : ""}`}
+        >
+          Text
+        </li>{" "} */}
         <li
-          className={` title-menu ${indexFocusedItem === 2 ? "focused" : ""}`}
+          className="title-menu"
         >
           Text
         </li>{" "}
         <li
           className={`color-keyboard ${
-            indexFocusedItem === 3 ? "focused" : ""
+            indexFocusedItem === 1 ? "focused" : ""
           }`}
         >
           <HuePicker
@@ -151,11 +159,11 @@ const Menu = (props) => {
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
             isKeyboardActive={showVirtualKeyboard}
-            isActive={indexFocusedItem === 3 ? true : false}
+            isActive={indexFocusedItem === 1 ? true : false}
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
           />
-          {showVirtualKeyboard && indexFocusedItem === 3 ? (
+          {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
                 previewColor={props.backgroundColor}
@@ -171,21 +179,28 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
-        <li
+        {/* <li
           className={` title-menu ${indexFocusedItem === 4 ? "focused" : ""}`}
         >
           Fonts
-        </li>
-        <li className={`${indexFocusedItem === 5 ? "focused" : ""}`}>
+        </li> */}
+        <li className="title-menu">
+          Fonts
+          </li>
+        <li className={`${indexFocusedItem === 2 ? "focused" : ""}`}>
           Font Size
         </li>
-        <li className={`${indexFocusedItem === 6 ? "focused" : ""}`}>
+        <li className={`${indexFocusedItem === 3 ? "focused" : ""}`}>
           Font Style
         </li>
+        <li className={`${indexFocusedItem === 4 ? "focused" : ""}`}>
+          Font Move
+        </li>
       </ul>
+
       <ul className="category-menu">
         <li
-          className={` title-menu ${indexFocusedItem === 7 ? "focused" : ""}`}
+          className={` title-menu ${indexFocusedItem === 5 ? "focused" : ""}`}
         >
           Gallery
         </li>

@@ -3,36 +3,34 @@ import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
 
 export const VirtualKeyboard = (props) => {
-  const isText = props.isText
-  const getColor = props.getColor
-  const exitKeyboard = props.exitKeyboard
+  const isText = props.isText;
+  const getColor = props.getColor;
+  const exitKeyboard = props.exitKeyboard;
   const [keyboardValue, setKeyboardValue] = useState([]);
   const [currentKeyValue, setCurrentKeyValue] = useState(1);
 
   const keyNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const keyLetters = ["a", "b", "c", "d", "e", "f", "C", "Back", "OK", "Exit"];
-
+  const keyLetters = ["A", "B", "C", "D", "E", "F", "C", "Back", "OK", "Exit"];
 
   //after press ok on keyboard sets background with the value
-  const sendColorFromVirtualKeyboard = (color) =>{
-    console.log(isText)
-    if(!isText){    props.changeBk("");  }
-    getColor(color, isText);
+  const sendColorFromVirtualKeyboard = (color) => {
+    console.log(isText);
+    if (!isText) {
+      props.changeBk("");
+    }
+    getColor(color, isText);  
   };
 
-
-// convert hex from keyboard to rgb
-  function hexToRgb(hex) {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
-
+  // convert hex from keyboard to rgb
+  // function hexToRgb(hex) {
+  //   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  //   return result ? {
+  //     r: parseInt(result[1], 16),
+  //     g: parseInt(result[2], 16),
+  //     b: parseInt(result[3], 16)
+  //   } : null;
+  // }
 
   const insertCharacter = (e) => {
     if (e.keyCode === 13) {
@@ -57,19 +55,19 @@ export const VirtualKeyboard = (props) => {
         setKeyboardValue(newValue);
       } else if (currentKeyValue === 19 && keyboardValue.length === 6) {
         //button ok
-       let color = hexToRgb(keyboardValue.join(""));
-       let previewColor = {...props.previewColor}
-       color.a = previewColor.a;
-        sendColorFromVirtualKeyboard(color);     
-        exitKeyboard()
-      }else if (currentKeyValue === 20) {
-        //button Exit  
-        exitKeyboard()
+        //  let color = hexToRgb(keyboardValue.join(""));
+        let color = `#${keyboardValue.join("")}`;
+        //  let previewColor = {...props.previewColor}
+        //  color.a = previewColor.a;
+        sendColorFromVirtualKeyboard(color);
+        exitKeyboard();
+      } else if (currentKeyValue === 20) {
+        //button Exit
+        exitKeyboard();
       }
     }
   };
 
-  
   const changeKeys = (e) => {
     if (e.keyCode === 37 && currentKeyValue > 1) {
       setCurrentKeyValue(currentKeyValue - 1); // right
@@ -82,7 +80,7 @@ export const VirtualKeyboard = (props) => {
       setCurrentKeyValue(19); // When pressing down on 9, it will go to OK
     } else if (e.keyCode === 38 && currentKeyValue > 10) {
       // up
-    
+
       setCurrentKeyValue(currentKeyValue - 10);
     }
   };
@@ -96,7 +94,7 @@ export const VirtualKeyboard = (props) => {
         {keyNumbers.map((key, index) => {
           return (
             <div
-            key={index}
+              key={index}
               className="key"
               value={key}
               style={{
@@ -113,8 +111,7 @@ export const VirtualKeyboard = (props) => {
         {keyLetters.map((key, index) => {
           return (
             <div
-            key={index}
-
+              key={index}
               className="key"
               value={key}
               style={{
