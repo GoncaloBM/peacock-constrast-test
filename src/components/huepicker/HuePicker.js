@@ -52,9 +52,10 @@ class HuePicker extends Component {
     let focusItem = this.props.focusItem;
     let colors = this.colors;
     let positionOfArray = this.state.positionOfArray;
+
     if (
-      event.key === "ArrowRight" &&
-      focusItem === 1 &&
+      event.keyCode === 39 &&
+      focusItem === 0 &&
       positionOfArray < colors.length &&
       !this.props.isText &&
       !this.props.isKeyboardActive
@@ -67,8 +68,8 @@ class HuePicker extends Component {
     }
 
     if (
-      event.key === "ArrowLeft" &&
-      focusItem === 1 &&
+      event.keyCode === 37 &&
+      focusItem === 0 &&
       positionOfArray > 0 &&
       !this.props.isText &&
       !this.props.isKeyboardActive
@@ -80,8 +81,8 @@ class HuePicker extends Component {
       this.handleChangeComplete(colors[currentPosition - 1]);
     }
     if (
-      event.key === "ArrowRight" &&
-      focusItem === 3 &&
+      event.keyCode === 39 &&
+      focusItem === 1 &&
       positionOfArray < colors.length &&
       this.props.isText &&
       !this.props.isKeyboardActive
@@ -94,8 +95,8 @@ class HuePicker extends Component {
     }
 
     if (
-      event.key === "ArrowLeft" &&
-      focusItem === 3 &&
+      event.keyCode === 37 &&
+      focusItem === 1 &&
       positionOfArray > 0 &&
       this.props.isText &&
       !this.props.isKeyboardActive
@@ -109,11 +110,9 @@ class HuePicker extends Component {
   }
 
   handleChangeComplete = (color) => {
-    console.log(this.props.isText);
     if (!this.props.isText) {
       this.props.changeBk("");
     }
-    console.log('peantus')
     this.setState({ color: color });
     this.props.getColor(color, this.props.isText);
     // this.setState({mouse:false})
