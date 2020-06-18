@@ -48,6 +48,7 @@ class HuePicker extends Component {
   ];
 
   keydown(event) {
+    event.preventDefault();
     // let colorPicked = this.state.colorPicked;
     let focusItem = this.props.focusItem;
     let colors = this.colors;
@@ -123,7 +124,7 @@ class HuePicker extends Component {
       <div className="huePicker">
         {this.colors.map((item, i) => (
           <li key={i}>
-            <div className={`${this.state.color === item ? "focused" : ""}`}>
+            <div className={`${this.state.color === item ? "focused-hue" : ""}`}>
               <Button style={{ backgroundColor: `${item}` }} />
             </div>
           </li>
