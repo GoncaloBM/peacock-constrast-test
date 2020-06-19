@@ -111,26 +111,32 @@ class HuePicker extends Component {
   }
 
   handleChangeComplete = (color) => {
-    
-    
     if (!this.props.isText) {
       this.props.changeBk("");
     }
     this.setState({ color: color });
     this.props.getColor(color, this.props.isText);
-    this.setState({mouse:false})
+    this.setState({ mouse: false });
   };
 
   render() {
     return (
       <div className="huePicker">
+               <i className="arrowLeft"></i>
+
         {this.colors.map((item, i) => (
           <li key={i}>
-            <div className={`${this.state.color === item ? "focused-hue" : ""}`}>
-              <Button onClick={()=>this.handleChangeComplete(item)} style={{ backgroundColor: `${item}` }} />
+            <div
+              className={`${this.state.color === item ? "focused-hue" : ""}`}
+            >
+              <Button
+                onClick={() => this.handleChangeComplete(item)}
+                style={{ backgroundColor: `${item}` }}
+              />
             </div>
           </li>
         ))}
+        <i className="arrowRight"></i>
       </div>
     );
   }

@@ -178,13 +178,13 @@ function App(props) {
       newTextPosition.top--;
       setTextPosition(newTextPosition);
     } else if (keyCode === 39) {
-      newTextPosition.right--;
+      newTextPosition.right++;
       setTextPosition(newTextPosition);
     } else if (keyCode === 40) {
       newTextPosition.top++;
       setTextPosition(newTextPosition);
     } else if (keyCode === 37) {
-      newTextPosition.right++;
+      newTextPosition.right--;
       setTextPosition(newTextPosition);
     }
   };

@@ -30,13 +30,14 @@ const Contrast = ({
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
+  const [showTextPositionTool, setShowTextPositionTool] = useState(false)
 
   useEffect(() => {
     setlateralBar(showLateralBar)
 
     return () => {
     };
-  }, [showLateralBar]);
+  }, [showLateralBar,showTextPositionTool]);
 
  /*  const handleClick = () => {
     returnToNavBar(lateralBar);
@@ -48,6 +49,9 @@ const Contrast = ({
     displayLateralBar(false, true);
   };
 
+  const getTextPositionTool = () => {
+    setShowTextPositionTool(!showTextPositionTool)
+  }
 
 
   return (
@@ -65,10 +69,11 @@ const Contrast = ({
             className="Board"
           >
             <div
-              className={!fullscreen ? "text" : "text-fullscreen"}
+              className={`    ${!fullscreen ? "text" : "text-fullscreen"}`}
               style={{ color: `${colorText}` }}
             >
               <TextDisplay
+                showPositionTool = {showTextPositionTool}
                 fontSize={fontSize}
                 textPosition={textPosition}
                 fontStyle={fontStyle}
@@ -103,6 +108,8 @@ const Contrast = ({
               picker={picker}
               goToGalery={goToGalery}
               fromGalery={fromGalery}
+              getTextPositionTool = {getTextPositionTool}
+              showTextPositionTool = {showTextPositionTool}
             />
           ) : (
             ""
