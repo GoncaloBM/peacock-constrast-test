@@ -34,6 +34,8 @@
     align-self: center;
     margin-right: 5px;
     transform: rotate(-45deg);
+    transition: 0.5s all;
+
   }
 
 
@@ -45,6 +47,8 @@
     align-self: center;
     margin-left: 5px;
     transform: rotate(135deg);
+    transition: 0.5s all;
+
   }
   
  /*  
@@ -79,3 +83,8 @@
      80% { opacity:1; transform: translateX(-9vw); }	
     100% { opacity:0; transform: translateX(-15vw); }	
   } */
+
+
+  .displayNone{
+    opacity: 0;
+  }
