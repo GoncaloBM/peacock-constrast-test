@@ -5,11 +5,15 @@
   align-items: center;
   justify-content: center;
   width: 30%;
-  height: 92vh;
+  height: 70vh;
   border: 1px solid black;
   right: 0;
-  top: 8vh;
-background-color: rgba(255,255,255,0.5);
+  top: 10vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px 0 0 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px #777;
+  overflow: hidden;
 }
 
 .galery-top-line {
@@ -39,11 +43,16 @@ background-color: rgba(255,255,255,0.5);
 
 .glass-icon {
   height: 95%;
-  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png');
+  background-image: url("https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   width: 40px;
+  margin-left: 2rem;
+}
+
+.search-text {
+  margin-right: 2rem;
 }
 
 .galery-back {
@@ -83,11 +92,10 @@ background-color: rgba(255,255,255,0.5);
 .image-selector {
   position: absolute;
   width: 100%;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   height: 10.5vh;
   transition: 0.5s all;
-  background-color: #ef1541;
+  background-color: #fccc12;
+  z-index: -1;
 }
 
 .galery-image {

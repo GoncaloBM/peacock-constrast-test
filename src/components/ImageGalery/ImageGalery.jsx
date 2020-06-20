@@ -23,7 +23,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         if (imageIndexFocus === imageDB.length) {
           return;
         } else {
-          if (imageIndexFocus > 6) {
+          if (imageIndexFocus > 5) {
             setScrollList(scrollList - 10.5);
           }
           setImageIndexFocus(imageIndexFocus + 1);
@@ -32,7 +32,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         if (imageIndexFocus === 0) {
           return;
         } else {
-          if (imageIndexFocus > 7) {
+          if (imageIndexFocus > 6) {
             setScrollList(scrollList + 10.5);
           }
           setImageIndexFocus(imageIndexFocus - 1);
@@ -132,24 +132,26 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
             className="search-keyboard"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 0 && "#ef1541",
+                imageIndexFocus === 0 && searchMenuIndex === 0 && "#fccc12",
             }}
           >
             <div
               className="glass-icon"
               //   style={{ width: `${imageIndexFocus === 0 ? 80 : ""}%` }}
             ></div>
-            {indexToSearch
-              ? indexToSearch
-              : imageIndexFocus === 0 && searchMenuIndex === 0
-              ? `Which Image you want to show?`
-              : ""}
+            <div className="search-text">
+              {indexToSearch
+                ? indexToSearch
+                : imageIndexFocus === 0 && searchMenuIndex === 0
+                ? `Which Image you want to show?`
+                : ""}
+            </div>
           </div>
           <div
             className="galery-back"
             style={{
               backgroundColor:
-                imageIndexFocus === 0 && searchMenuIndex === 1 && "#ef1541",
+                imageIndexFocus === 0 && searchMenuIndex === 1 && "#fccc12",
             }}
           >
             Back
@@ -162,7 +164,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
           className="image-selector"
           style={{
             top: `${
-              imageIndexFocus < 8 ? 10.5 * imageIndexFocus - 10.5 : ""
+              imageIndexFocus < 7 ? 10.5 * imageIndexFocus - 10.5 : ""
             }vh`,
           }}
         ></div>
