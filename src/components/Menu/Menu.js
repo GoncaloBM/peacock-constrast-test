@@ -155,6 +155,8 @@ const Menu = (props) => {
             focusItem={indexFocusedItem}
             picker={props.picker}
           />
+          {indexFocusedItem === 0 ? <i >ok for keyboard</i> :''}
+          
 
           {showVirtualKeyboard && indexFocusedItem === 0 ? (
             <div className="keybo">
@@ -193,6 +195,7 @@ const Menu = (props) => {
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
           />
+          {indexFocusedItem === 1 ? <i >ok for keyboard</i> :''}
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -225,21 +228,55 @@ const Menu = (props) => {
         </li> */}
         <li className="title-menu">Fonts</li>
         <li className={`${indexFocusedItem === 2 ? "focused" : ""} font-sub`}>
-          <i className={`${indexFocusedItem === 2 ? "arrowLeftFonts" : "  arrowLeftFonts displayNone"}`}></i>
+          <i
+            className={`${
+              indexFocusedItem === 2
+                ? "arrowLeftFonts"
+                : "  arrowLeftFonts displayNone"
+            }`}
+          ></i>
           Font Size
-          <i className={`${indexFocusedItem === 2 ? "arrowRightFonts" : "arrowRightFonts displayNone"}`}></i>
+          <i
+            className={`${
+              indexFocusedItem === 2
+                ? "arrowRightFonts"
+                : "arrowRightFonts displayNone"
+            }`}
+          ></i>
         </li>
         <li className={`${indexFocusedItem === 3 ? "focused" : ""} font-sub`}>
-        <i className={`${indexFocusedItem === 3 ? "arrowLeftFonts" : " arrowLeftFonts displayNone"}`}></i>
+          <i
+            className={`${
+              indexFocusedItem === 3
+                ? "arrowLeftFonts"
+                : " arrowLeftFonts displayNone"
+            }`}
+          ></i>
           Font Style
-          <i className={`${indexFocusedItem === 3 ? "arrowRightFonts" : "arrowRightFonts displayNone"}`}></i>
-
+          <i
+            className={`${
+              indexFocusedItem === 3
+                ? "arrowRightFonts"
+                : "arrowRightFonts displayNone"
+            }`}
+          ></i>
         </li>
         <li className={`${indexFocusedItem === 4 ? "focused" : ""} font-sub`}>
-        <i className={`${indexFocusedItem === 4 ? "arrowLeftFonts" : " arrowLeftFonts displayNone"}`}></i>
+          <i
+            className={`${
+              indexFocusedItem === 4
+                ? "arrowLeftFonts"
+                : " arrowLeftFonts displayNone"
+            }`}
+          ></i>
           Font Move
-          <i className={`${indexFocusedItem === 4 ? "arrowRightFonts" : "arrowRightFonts displayNone"}`}></i>
-
+          <i
+            className={`${
+              indexFocusedItem === 4
+                ? "arrowRightFonts"
+                : "arrowRightFonts displayNone"
+            }`}
+          ></i>
         </li>
       </ul>
 
@@ -248,7 +285,10 @@ const Menu = (props) => {
           className={` title-menu ${indexFocusedItem === 5 ? "focused" : ""}`}
         >
           Gallery
+          
         </li>
+        {indexFocusedItem === 5 ? <i >ok for keyboard</i> :''}
+
       </ul>
     </div>
   );
