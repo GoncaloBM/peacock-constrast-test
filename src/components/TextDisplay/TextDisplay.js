@@ -16,7 +16,7 @@ const TextDisplay = (props) => {
     setTextPosition(props.textPosition);
     setShowPositionTool(props.showPositionTool);
     return () => {};
-  }, [props]);
+  },[props,showPositionTool]);
 
   return (
     <div>
