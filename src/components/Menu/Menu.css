@@ -1,4 +1,4 @@
-@media screen and (max-width: 1081px) {
+@media screen and (max-width: 1280px) {
     .font-selector {
         top: 50%;
         position: absolute;
@@ -14,8 +14,8 @@
         font-size: 13px;
     }
     .Menu {
-        height: 70vh;
-        width: 60vh;
+        height: 80vh;
+        width: 73vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -46,7 +46,7 @@
     }
 }
 
-@media screen and (min-width: 1082px) {
+@media screen and (min-width: 1281px) {
     .font-selector {
         position: absolute;
         width: 30%;
@@ -104,6 +104,7 @@
 
 .color-keyboard {
     position: relative;
+    text-align: center;
 }
 
 .keybo {
