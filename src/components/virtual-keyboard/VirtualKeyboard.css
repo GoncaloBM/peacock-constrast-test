@@ -1,4 +1,4 @@
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1280px) {
     .keyboard {
         bottom: 0;
         height: 20vh;
@@ -8,7 +8,7 @@
     }
 }
 
-@media screen and (min-width: 1081px) {
+@media screen and (min-width: 1281px) {
     .keyboard {
         bottom: 2vh;
         height: 15vh;
