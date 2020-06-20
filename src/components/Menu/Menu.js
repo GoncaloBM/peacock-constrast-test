@@ -115,13 +115,15 @@ const Menu = (props) => {
     if (index === 0) {
       return { top: "0%", opacity: "1" };
     } else if (index === 1) {
-      return { top: "25%", opacity: "1" };
+      return { top: "20%", opacity: "1" };
     } else if (index === 2 || index === 3 || index === 4) {
-      return { top: "50%", opacity: "1" };
+      return { top: "40%", opacity: "1" };
     } else if (index === 5) {
-      return { top: "75%", opacity: "1" };
-    } else if (index === -1) {
-      return { top: "-25%", opacity: "0" };
+      return { top: "60%", opacity: "1" };
+    }else if (index === 6) {
+      return { top: "80%", opacity: "1" };
+    }  else if (index === -1) {
+      return { top: "-20%", opacity: "0" };
     }
   };
 
@@ -132,7 +134,7 @@ const Menu = (props) => {
       return { top: "60%", opacity: "1" };
     } else if (index === 4) {
       return { top: "75%", opacity: "1" };
-    } else if (index === 0 || index === 1 || index === -1) {
+    } else if (index === 0 || index === 1 || index === 6 || index === -1) {
       return { top: "-15%", opacity: "0" };
     } else if (index === 5) {
       return { top: "115%", opacity: "0" };
