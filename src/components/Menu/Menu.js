@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./Menu.css";
-import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
+// import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(
     props.fromGalery === true ? 5 : -1
   );
-  let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
-
-  const exitKeyboard = () => {
-    setShowVirtualKeyboard(false);
-  };
 
   useEffect(() => {
     const goGal = (e) => {
@@ -22,6 +17,7 @@ const Menu = (props) => {
 
     const goInformation = (e) => {
       if (indexFocusedItem === 6 && e.keyCode === 13) {
+        props.setShowVirtualKeyboard(false);
         props.goToInformation();
       }
     };
@@ -30,6 +26,7 @@ const Menu = (props) => {
       if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
           props.getTextPositionTool();
+          props.setShowVirtualKeyboard(false);
         }
       }
       if (indexFocusedItem === 2) {
@@ -54,17 +51,19 @@ const Menu = (props) => {
       if (props.showTextPositionTool === true) {
         return props.changeTextPosition(e.keyCode);
       }
-      if (
-        (e.keyCode === 13 && newIndex === 0) ||
-        (e.keyCode === 13 && newIndex === 1)
-      ) {
-        if (showVirtualKeyboard === false) {
+      if (e.keyCode === 13) {
+        if (newIndex === 0) {
+          props.setkeyboardText(false);
+        } else if (newIndex === 1) {
+          props.setkeyboardText(true);
+        }
+        if (props.showVirtualKeyboard === false) {
           console.log("enter");
-          setShowVirtualKeyboard(true);
+          props.setShowVirtualKeyboard(true);
         }
       }
 
-      if (showVirtualKeyboard) {
+      if (props.showVirtualKeyboard) {
       } else {
         if (e.keyCode === 38) {
           if (newIndex >= 0) {
@@ -105,7 +104,7 @@ const Menu = (props) => {
     };
   }, [
     indexFocusedItem,
-    showVirtualKeyboard,
+    props.showVirtualKeyboard,
     props,
     props.showTextPositionTool,
     props.fromGalery,
@@ -156,11 +155,11 @@ const Menu = (props) => {
           }`}
         >
           <HuePicker
-            showVirtualKeyboard={showVirtualKeyboard}
+            showVirtualKeyboard={props.showVirtualKeyboard}
             isText={false}
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
-            isKeyboardActive={showVirtualKeyboard}
+            isKeyboardActive={props.showVirtualKeyboard}
             isActive={indexFocusedItem === 0 ? true : false}
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
@@ -168,7 +167,7 @@ const Menu = (props) => {
           />
           {indexFocusedItem === 0 ? <i>ok for keyboard</i> : ""}
 
-          {showVirtualKeyboard && indexFocusedItem === 0 ? (
+          {/* {showVirtualKeyboard && indexFocusedItem === 0 ? (
             <div className="keybo">
               <VirtualKeyboard
                 previewColor={props.backgroundColor}
@@ -180,7 +179,7 @@ const Menu = (props) => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </li>
       </ul>
       <ul className="category-menu">
@@ -196,17 +195,17 @@ const Menu = (props) => {
           }`}
         >
           <HuePicker
-            showVirtualKeyboard={showVirtualKeyboard}
+            showVirtualKeyboard={props.showVirtualKeyboard}
             isText={true}
             previewColor={props.backgroundColor}
             getColor={(color, isText) => props.getColor(color, isText)}
-            isKeyboardActive={showVirtualKeyboard}
+            isKeyboardActive={props.showVirtualKeyboard}
             isActive={indexFocusedItem === 1 ? true : false}
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
           />
           {indexFocusedItem === 1 ? <i>ok for keyboard</i> : ""}
-          {showVirtualKeyboard && indexFocusedItem === 1 ? (
+          {/* {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
                 previewColor={props.backgroundColor}
@@ -218,7 +217,7 @@ const Menu = (props) => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </li>
       </ul>
       <ul className="category-menu">
