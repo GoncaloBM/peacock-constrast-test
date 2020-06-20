@@ -15,7 +15,7 @@
     margin-left: 20px;
 }
 
-@media screen and (min-width: 1081px) {
+@media screen and (min-width: 1281px) {
     .focus {
         background-color: #fccc12;
         position: fixed;
@@ -23,13 +23,13 @@
     }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1280px) {
     .information h1 {
         font-size: 1.5rem;
     }
     .focus {
         background-color: #fccc12;
         position: fixed;
-        bottom: 250px;
+        bottom: 300px;
     }
 }
