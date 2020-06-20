@@ -1,9 +1,38 @@
 .board-text {
-    position: absolute;
-    top: 0;
+  position: absolute;
+  top: 0;
 }
 
 .textLines {
-    align-items: center;
-    position: relative;
+  align-items: center;
+  position: relative;
+}
+
+.text-position-tool {
+  border: 1px dashed white;
+  z-index: 9000;
+}
+
+.positioning-box{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.arrowLeftText {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid;
+  border-color: white transparent transparent white;
+  align-self: center;
+  margin-right: 5px;
+}
+
+.arrowRightText {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid;
+  border-color: white transparent transparent white;
+  align-self: center;
+  margin-left: 5px;
 }

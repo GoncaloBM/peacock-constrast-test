@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Menu.css";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
+import { flexbox } from "@material-ui/system";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(
     props.fromGalery === true ? 7 : -1
   );
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
-  let [showTextPositionTool, setShowTextPositionTool] = useState(false);
 
   const exitKeyboard = () => {
     setShowVirtualKeyboard(false);
@@ -23,7 +23,7 @@ const Menu = (props) => {
     const changeSizeFont = (e) => {
       if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
-          setShowTextPositionTool(!showTextPositionTool);
+          props.getTextPositionTool();
         }
       }
       if (indexFocusedItem === 2) {
@@ -45,7 +45,7 @@ const Menu = (props) => {
     const keyNavigate = (e) => {
       //console.log(indexFocusedItem);
       let newIndex = indexFocusedItem;
-      if (showTextPositionTool === true) {
+      if (props.showTextPositionTool === true) {
         return props.changeTextPosition(e.keyCode);
       }
       if (
@@ -98,7 +98,7 @@ const Menu = (props) => {
     indexFocusedItem,
     showVirtualKeyboard,
     props,
-    showTextPositionTool,
+    props.showTextPositionTool,
     props.fromGalery,
   ]);
 
