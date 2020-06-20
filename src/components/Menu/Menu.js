@@ -8,8 +8,6 @@ const Menu = (props) => {
     props.fromGalery === true ? 5 : -1
   );
 
-
-
   useEffect(() => {
     const goGal = (e) => {
       if (indexFocusedItem === 5 && e.keyCode === 13) {
@@ -19,6 +17,7 @@ const Menu = (props) => {
 
     const goInformation = (e) => {
       if (indexFocusedItem === 6 && e.keyCode === 13) {
+        props.setShowVirtualKeyboard(false);
         props.goToInformation();
       }
     };
@@ -27,6 +26,7 @@ const Menu = (props) => {
       if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
           props.getTextPositionTool();
+          props.setShowVirtualKeyboard(false);
         }
       }
       if (indexFocusedItem === 2) {
