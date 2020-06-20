@@ -120,9 +120,9 @@ const Menu = (props) => {
       return { top: "40%", opacity: "1" };
     } else if (index === 5) {
       return { top: "60%", opacity: "1" };
-    }else if (index === 6) {
+    } else if (index === 6) {
       return { top: "80%", opacity: "1" };
-    }  else if (index === -1) {
+    } else if (index === -1) {
       return { top: "-20%", opacity: "0" };
     }
   };
@@ -166,8 +166,7 @@ const Menu = (props) => {
             focusItem={indexFocusedItem}
             picker={props.picker}
           />
-          {indexFocusedItem === 0 ? <i >ok for keyboard</i> :''}
-          
+          {indexFocusedItem === 0 ? <i>ok for keyboard</i> : ""}
 
           {showVirtualKeyboard && indexFocusedItem === 0 ? (
             <div className="keybo">
@@ -206,7 +205,7 @@ const Menu = (props) => {
             changeBk={props.changeBk}
             focusItem={indexFocusedItem}
           />
-          {indexFocusedItem === 1 ? <i >ok for keyboard</i> :''}
+          {indexFocusedItem === 1 ? <i>ok for keyboard</i> : ""}
           {showVirtualKeyboard && indexFocusedItem === 1 ? (
             <div className="keybo">
               <VirtualKeyboard
@@ -296,10 +295,8 @@ const Menu = (props) => {
           className={` title-menu ${indexFocusedItem === 5 ? "focused" : ""}`}
         >
           Gallery
-          
         </li>
-        {indexFocusedItem === 5 ? <i >ok for keyboard</i> :''}
-
+        {indexFocusedItem === 5 ? <i>ok for gallery</i> : ""}
       </ul>
       <ul className="category-menu">
         <li
@@ -307,6 +304,7 @@ const Menu = (props) => {
         >
           Information
         </li>
+        {indexFocusedItem === 6 ? <i>ok for information</i> : ""}
       </ul>
     </div>
   );
