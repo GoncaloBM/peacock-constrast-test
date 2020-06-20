@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Menu.css";
 import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard.jsx";
 import HuePicker from "../huepicker/HuePicker";
-import { flexbox } from "@material-ui/system";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(
@@ -20,6 +19,13 @@ const Menu = (props) => {
         props.goToGalery();
       }
     };
+
+    const goInformation = (e) => {
+      if (indexFocusedItem === 6 && e.keyCode === 13) {
+        props.goToInformation();
+      }
+    };
+
     const changeSizeFont = (e) => {
       if (indexFocusedItem === 4) {
         if (e.keyCode === 13) {
@@ -78,7 +84,7 @@ const Menu = (props) => {
             props.backToNavbar(false);
             setIndexFocusedItem(0);
           }
-          if (newIndex < 5 && newIndex > -1) {
+          if (newIndex < 6 && newIndex > -1) {
             newIndex++;
             setIndexFocusedItem(newIndex);
           }
@@ -88,11 +94,14 @@ const Menu = (props) => {
     window.addEventListener("keydown", goGal);
     window.addEventListener("keydown", keyNavigate);
     window.addEventListener("keydown", changeSizeFont);
+    window.addEventListener("keydown", goInformation);
+
     //console.log(indexFocusedItem)
     return () => {
       window.removeEventListener("keydown", goGal);
       window.removeEventListener("keydown", keyNavigate);
       window.removeEventListener("keydown", changeSizeFont);
+      window.removeEventListener("keydown", goInformation);
     };
   }, [
     indexFocusedItem,
@@ -289,6 +298,13 @@ const Menu = (props) => {
         </li>
         {indexFocusedItem === 5 ? <i >ok for keyboard</i> :''}
 
+      </ul>
+      <ul className="category-menu">
+        <li
+          className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}
+        >
+          Information
+        </li>
       </ul>
     </div>
   );
