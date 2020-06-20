@@ -122,7 +122,15 @@ class HuePicker extends Component {
   render() {
     return (
       <div className="huePicker">
-               <i className={this.props.focusItem === 0 && this.props.isText ===false ? 'arrowLeft' : this.props.focusItem === 1 && this.props.isText ? 'arrowLeft' : 'arrowLeft displayNone'}></i>
+        <i
+          className={
+            this.props.focusItem === 0 && this.props.isText === false
+              ? "arrowLeft"
+              : this.props.focusItem === 1 && this.props.isText
+              ? "arrowLeft"
+              : "arrowLeft displayNone"
+          }
+        ></i>
 
         {this.colors.map((item, i) => (
           <li key={i}>
@@ -136,9 +144,16 @@ class HuePicker extends Component {
             </div>
           </li>
         ))}
-        <i className={this.props.focusItem === 0 && this.props.isText ===false ? 'arrowRight' : this.props.focusItem === 1 && this.props.isText ? 'arrowRight' : 'arrowRight displayNone'}></i>
+        <i
+          className={
+            this.props.focusItem === 0 && this.props.isText === false
+              ? "arrowRight"
+              : this.props.focusItem === 1 && this.props.isText
+              ? "arrowRight"
+              : "arrowRight displayNone"
+          }
+        ></i>
       </div>
-    
     );
   }
 }
