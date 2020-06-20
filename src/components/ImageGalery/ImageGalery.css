@@ -1,4 +1,4 @@
-@media screen and (max-width:1080px) {
+@media screen and (max-width: 1080px) {
     .galery-menu {
         position: fixed;
         display: flex;
@@ -24,7 +24,7 @@
     }
 }
 
-@media screen and (min-width:1081px) {
+@media screen and (min-width: 1081px) {
     .galery-top-line {
         height: 5%;
     }
