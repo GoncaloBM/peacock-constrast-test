@@ -98,8 +98,8 @@ export const VirtualKeyboard = (props) => {
               className="key"
               value={key}
               style={{
-                backgroundColor: index + 1 === currentKeyValue && "red",
-                color: index + 1 === currentKeyValue && "white",
+                backgroundColor: index + 1 === currentKeyValue && "#FCCC12",
+                color: index + 1 === currentKeyValue && "black",
               }}
             >
               {key}
@@ -115,8 +115,8 @@ export const VirtualKeyboard = (props) => {
               className="key"
               value={key}
               style={{
-                backgroundColor: index + 11 === currentKeyValue && "red",
-                color: index + 11 === currentKeyValue && "white",
+                backgroundColor: index + 11 === currentKeyValue && "#FCCC12",
+                color: index + 11 === currentKeyValue && "black",
               }}
             >
               {key}

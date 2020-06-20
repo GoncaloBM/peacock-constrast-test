@@ -6,6 +6,7 @@ import "../../App.css";
 import "./Contrast.css";
 import { ImageGalery } from "../ImageGalery/ImageGalery";
 import Information from "../information/information";
+import { VirtualKeyboard } from "../virtual-keyboard/VirtualKeyboard";
 const Contrast = ({
   backgroundColor,
   colorText,
@@ -31,6 +32,12 @@ const Contrast = ({
   const [onGalery, setOnGalery] = useState(false);
   const [showTextPositionTool, setShowTextPositionTool] = useState(false);
   const [onInformation, setOnInformation] = useState(false);
+  let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
+  const [keyboardText, setkeyboardText] = useState(false);
+
+  const exitKeyboard = () => {
+    setShowVirtualKeyboard(false);
+  };
 
   useEffect(() => {
     setlateralBar(showLateralBar);
@@ -59,6 +66,16 @@ const Contrast = ({
   return (
     <>
       <div className="wrapper">
+        {showVirtualKeyboard && (
+          <VirtualKeyboard
+            previewColor={backgroundColor}
+            isText={keyboardText}
+            getColor={(color, isText) => getColor(color, isText)}
+            exitKeyboard={exitKeyboard}
+            changeBk={changeBk}
+          />
+        )}
+
         <div
           className={
             !fullscreen ? "wrapper-board" : "wrapper-board-fullscreen "
@@ -125,6 +142,9 @@ const Contrast = ({
               showTextPositionTool={showTextPositionTool}
               goToInformation={goToInformation}
               onInformation={onInformation}
+              setShowVirtualKeyboard={setShowVirtualKeyboard}
+              showVirtualKeyboard={showVirtualKeyboard}
+              setkeyboardText={setkeyboardText}
             />
           ) : (
             ""
