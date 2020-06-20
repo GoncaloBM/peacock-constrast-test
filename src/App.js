@@ -3,7 +3,7 @@ import "./App.css";
 import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contrast from "./components/Contrast/Contrast";
 
 function App(props) {
@@ -23,7 +23,7 @@ function App(props) {
   let [colorText, setColorText] = useState("#F2F2F2");
 
   const [fontSize, setfontSize] = useState(4);
-  const [fontSizeforText, setFontSizeforText] = useState(fontSize + "rem");
+  const [fontSizeforText] = useState(fontSize + "rem");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
   const [textPosition, setTextPosition] = useState(startetTextPosition);
   const [fullscreen, setFullscreen] = useState(false);
@@ -61,7 +61,6 @@ function App(props) {
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
-        let newIndex = linkIndex;
 
         if (e.keyCode === 13 && linkIndex === 1) {
           if (window.location.pathname !== "/contrast") {

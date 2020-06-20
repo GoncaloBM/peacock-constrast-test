@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import { customMuiTheme } from "./MyTheme";
+// import { customMuiTheme } from "./MyTheme";
 import "./HuePicker.css";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
