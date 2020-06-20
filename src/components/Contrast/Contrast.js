@@ -5,8 +5,7 @@ import { SafeMargin } from "../SafeMargin/SafeMargin";
 import "../../App.css";
 import "./Contrast.css";
 import { ImageGalery } from "../ImageGalery/ImageGalery";
-import { width } from "@material-ui/system";
-
+import Information from "../information/information";
 const Contrast = ({
   backgroundColor,
   colorText,
@@ -26,20 +25,20 @@ const Contrast = ({
   fullscreen,
   showLateralBar,
   displayLateralBar,
-  fromGalery
+  fromGalery,
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
-  const [showTextPositionTool, setShowTextPositionTool] = useState(false)
+  const [showTextPositionTool, setShowTextPositionTool] = useState(false);
+  const [onInformation, setOnInformation] = useState(false);
 
   useEffect(() => {
-    setlateralBar(showLateralBar)
+    setlateralBar(showLateralBar);
 
-    return () => {
-    };
-  }, [showLateralBar,showTextPositionTool]);
+    return () => {};
+  }, [showLateralBar, showTextPositionTool]);
 
- /*  const handleClick = () => {
+  /*  const handleClick = () => {
     returnToNavBar(lateralBar);
     displayLateralBar();
   }; */
@@ -49,16 +48,21 @@ const Contrast = ({
     displayLateralBar(false, true);
   };
 
+  const goToInformation = () => {
+    setOnInformation(!onInformation);
+    displayLateralBar(false, true);
+  };
   const getTextPositionTool = () => {
-    setShowTextPositionTool(!showTextPositionTool)
-  }
-
+    setShowTextPositionTool(!showTextPositionTool);
+  };
 
   return (
     <>
       <div className="wrapper">
         <div
-          className={!fullscreen ? "wrapper-board" : "wrapper-board-fullscreen "}
+          className={
+            !fullscreen ? "wrapper-board" : "wrapper-board-fullscreen "
+          }
         >
           <div
             style={{
@@ -73,7 +77,7 @@ const Contrast = ({
               style={{ color: `${colorText}` }}
             >
               <TextDisplay
-                showPositionTool = {showTextPositionTool}
+                showPositionTool={showTextPositionTool}
                 fontSize={fontSize}
                 textPosition={textPosition}
                 fontStyle={fontStyle}
@@ -90,7 +94,16 @@ const Contrast = ({
             goToGalery={goToGalery}
           />
         )}
-        
+        {onInformation && (
+          <Information
+            backgroundColor={backgroundColor}
+            colorText={colorText}
+            fontSize={fontSize}
+            fontStyle={fontStyle}
+            onInformation={onInformation}
+            goToInformation={goToInformation}
+          />
+        )}
 
         <div className={lateralBar ? "showLateralBar menu" : "hideLateralBar "}>
           {lateralBar ? (
@@ -108,16 +121,19 @@ const Contrast = ({
               picker={picker}
               goToGalery={goToGalery}
               fromGalery={fromGalery}
-              getTextPositionTool = {getTextPositionTool}
-              showTextPositionTool = {showTextPositionTool}
+              getTextPositionTool={getTextPositionTool}
+              showTextPositionTool={showTextPositionTool}
+              goToInformation={goToInformation}
+              onInformation={onInformation}
             />
           ) : (
             ""
           )}
         </div>
       </div>
-{/*       <footer className="instructions"> Instructions </footer>
- */}    </>
+      {/*       <footer className="instructions"> Instructions </footer>
+       */}{" "}
+    </>
   );
 };
 
