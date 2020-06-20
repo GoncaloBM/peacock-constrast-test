@@ -6,7 +6,7 @@ import { flexbox } from "@material-ui/system";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(
-    props.fromGalery === true ? 7 : -1
+    props.fromGalery === true ? 5 : -1
   );
   let [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false);
 
@@ -104,36 +104,35 @@ const Menu = (props) => {
 
   const menuSelector = (index) => {
     if (index === 0) {
-      return 0;
+      return { top: "0%", opacity: "1" };
     } else if (index === 1) {
-      return 25;
+      return { top: "25%", opacity: "1" };
     } else if (index === 2 || index === 3 || index === 4) {
-      return 50;
+      return { top: "50%", opacity: "1" };
     } else if (index === 5) {
-      return 75;
-    } else {
-      return;
+      return { top: "75%", opacity: "1" };
+    } else if (index === -1) {
+      return { top: "-25%", opacity: "0" };
     }
   };
 
   const fontSelector = (index) => {
     if (index === 2) {
-      return 45;
+      return { top: "45%", opacity: "1" };
     } else if (index === 3) {
-      return 60;
+      return { top: "60%", opacity: "1" };
     } else if (index === 4) {
-      return 75;
+      return { top: "75%", opacity: "1" };
+    } else if (index === 0 || index === 1 || index === -1) {
+      return { top: "-15%", opacity: "0" };
+    } else if (index === 5) {
+      return { top: "115%", opacity: "0" };
     }
   };
 
   return (
     <div className="Menu">
-      {indexFocusedItem > -1 && (
-        <ul
-          className="menu-selector"
-          style={{ top: `${menuSelector(indexFocusedItem)}%` }}
-        ></ul>
-      )}
+      <ul className="menu-selector" style={menuSelector(indexFocusedItem)}></ul>
 
       <ul className="category-menu">
         {/* <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
@@ -210,14 +209,14 @@ const Menu = (props) => {
         </li>
       </ul>
       <ul className="category-menu">
-        {(indexFocusedItem === 2 ||
+        {/* {(indexFocusedItem === 2 ||
           indexFocusedItem === 3 ||
-          indexFocusedItem === 4) && (
-          <li
-            className="font-selector"
-            style={{ top: `${fontSelector(indexFocusedItem)}%` }}
-          ></li>
-        )}
+          indexFocusedItem === 4) && ( */}
+        <li
+          className="font-selector"
+          style={fontSelector(indexFocusedItem)}
+        ></li>
+        {/* )} */}
 
         {/* <li
           className={` title-menu ${indexFocusedItem === 4 ? "focused" : ""}`}

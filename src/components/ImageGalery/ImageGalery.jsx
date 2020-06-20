@@ -23,7 +23,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         if (imageIndexFocus === imageDB.length) {
           return;
         } else {
-          if (imageIndexFocus > 6) {
+          if (imageIndexFocus > 5) {
             setScrollList(scrollList - 10.5);
           }
           setImageIndexFocus(imageIndexFocus + 1);
@@ -32,7 +32,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
         if (imageIndexFocus === 0) {
           return;
         } else {
-          if (imageIndexFocus > 7) {
+          if (imageIndexFocus > 6) {
             setScrollList(scrollList + 10.5);
           }
           setImageIndexFocus(imageIndexFocus - 1);
@@ -162,7 +162,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
           className="image-selector"
           style={{
             top: `${
-              imageIndexFocus < 8 ? 10.5 * imageIndexFocus - 10.5 : ""
+              imageIndexFocus < 7 ? 10.5 * imageIndexFocus - 10.5 : ""
             }vh`,
           }}
         ></div>
