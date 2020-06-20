@@ -70,7 +70,7 @@
 }
 .font-selector {
   position: absolute;
-  width: 60%;
+  width: 30%;
   height: 15%;
   background: rgb(255, 119, 1);
   background: linear-gradient(
@@ -80,6 +80,7 @@
   );
   z-index: 0;
   transition: 0.5s all;
+  border-radius: 12px;
 }
 
 .arrowLeftFonts {
