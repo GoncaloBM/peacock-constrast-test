@@ -61,7 +61,6 @@ function App(props) {
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
-
         if (e.keyCode === 13 && linkIndex === 1) {
           if (window.location.pathname !== "/contrast") {
             window.location.pathname = "/contrast";
@@ -114,7 +113,7 @@ function App(props) {
   const fetchImages = () => {
     const dbUrl = `http://joaoreberti.tech:5001/getpictures`;
     axios.get(dbUrl).then((res) => {
-      setImageDB(res.data);
+      setImageDB(res.data.reverse());
     });
   };
 
