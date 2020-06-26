@@ -17,51 +17,13 @@ const Controller = () => {
   }
 
   const goToUpload = (e) => {
-    if (
-      JSON.stringify(secretKey.current) ===
-      JSON.stringify([37, 38, 39, 40, 37, 38, 39, 40])
-    ) {
-      secretKey.current.push(e.keyCode);
-    }
 
-    if (
-      JSON.stringify(secretKey.current) ===
-      JSON.stringify([37, 38, 39, 40, 37, 38, 39])
-    ) {
-      secretKey.current.push(e.keyCode);
-    }
-
-    if (
-      JSON.stringify(secretKey.current) ===
-      JSON.stringify([37, 38, 39, 40, 37, 38])
-    ) {
-      secretKey.current.push(e.keyCode);
-    }
-
-    if (
-      JSON.stringify(secretKey.current) === JSON.stringify([37, 38, 39, 40, 37])
-    ) {
-      secretKey.current.push(e.keyCode);
-    }
-
-    if (
-      JSON.stringify(secretKey.current) === JSON.stringify([37, 38, 39, 40])
-    ) {
-      secretKey.current.push(e.keyCode);
-    }
-
-    if (JSON.stringify(secretKey.current) === JSON.stringify([37, 38, 39])) {
-      secretKey.current.push(e.keyCode);
-    }
-    if (JSON.stringify(secretKey.current) === JSON.stringify([37, 38])) {
-      secretKey.current.push(e.keyCode);
-    }
-    if (JSON.stringify(secretKey.current) === JSON.stringify([37])) {
-      secretKey.current.push(e.keyCode);
-    }
-    if (e.keyCode === 37 && secretKey.current[0] === undefined) {
-      secretKey.current.push(e.keyCode);
-    }
+  if (secretKey.current.length > 7){
+    secretKey.current.shift()
+    secretKey.current.push(e.keyCode)
+  }else{
+    secretKey.current.push(e.keyCode)
+  }
 
     console.log(e.keyCode);
     console.log("Secret Key+ ", secretKey.current);
