@@ -4,9 +4,13 @@ import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Controller from "./components/Controller"
+
 import Contrast from "./components/Contrast/Contrast";
 
 function App(props) {
+  
   let differentFontStyles = [
     "div",
     "p",
@@ -35,9 +39,7 @@ function App(props) {
       return 0;
     } else if (window.location.pathname === "/contrast") {
       return 1;
-    } else if (window.location.pathname === "/about") {
-      return 2;
-    }
+    } 
   };
 
   let [linkIndex, setLinkIndex] = useState(getWindowLocation());
@@ -195,6 +197,11 @@ function App(props) {
     console.log("joao");
   };
 
+ 
+   
+
+
+
   return (
     <Router>
       <div className="App" style={{ fontFamily: "peacock" }}>
@@ -243,13 +250,18 @@ function App(props) {
         </header> */}
 
         <div className="content">
+          
           <Switch>
-            <Route path="/about">
-              <h1>This is about us</h1>
+          <Route path="/upload">
+          <Controller></Controller>
+
+              <FileUpload />
             </Route>
-            <Route path="/contrast">
+            <Route path="/">
+              <Controller></Controller>
               <div className="headerino">
                 <div className="logospace">
+
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="sk-logo"
@@ -321,9 +333,7 @@ function App(props) {
                 fromGalery={fromGalery}
               />
             </Route>
-            <Route path="/">
-              <FileUpload />
-            </Route>
+           
           </Switch>
         </div>
       </div>
