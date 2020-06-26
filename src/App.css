@@ -3,6 +3,11 @@ body {
     width: 100%;
 }
 
+.logospace {
+    padding-top: 65px;
+    padding-left: 95px;
+}
+
 .App {
     width: 100%;
     height: 100vh;
@@ -27,6 +32,7 @@ body {
     background-position: center;
     background-size: contain;
 }
+
 
 /* .buttons {
     color: white;
@@ -55,14 +61,12 @@ body {
     top: 0;
 }
 
-
-
 .focusedNavbar {
     border-bottom: solid 2px white;
     transition: 0.5s all;
 }
 
-.headerino{
+.headerino {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -72,24 +76,23 @@ body {
     height: 100px;
 }
 
-.hamburger{
-z-index: 1000;
+.hamburger {
+    padding-right: 95px;
+    padding-top: 65px;
+    z-index: 1000;
 }
 
-.patty{
+.patty {
     width: 35px;
     height: 5px;
     background-color: white;
     color: red;
     margin: 5px;
     z-index: 90000;
-
-    
 }
 
-.sk-logo{
+.sk-logo {
     width: 100px;
     z-index: 1000;
     fill: white;
-
 }

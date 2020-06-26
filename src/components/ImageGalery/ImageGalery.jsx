@@ -158,7 +158,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
           </div>
         </div>
       </div>
-      <div className="galery-title">Image Gallery</div>
+      {/* <div className="galery-title">Image Gallery</div> */}
       <div className="galery-images-wrapper">
         <div
           className="image-selector"

@@ -112,17 +112,17 @@ const Menu = (props) => {
 
   const menuSelector = (index) => {
     if (index === 0) {
-      return { top: "0%", opacity: "1" };
+      return { top: "0%", opacity: "1", color: "black" };
     } else if (index === 1) {
-      return { top: "20%", opacity: "1" };
+      return { top: "20%", opacity: "1" , color: "black" };
     } else if (index === 2 || index === 3 || index === 4) {
-      return { top: "40%", opacity: "1" };
+      return { top: "40%", opacity: "1", color: "black"  };
     } else if (index === 5) {
-      return { top: "60%", opacity: "1" };
+      return { top: "60%", opacity: "1", color: "black"  };
     } else if (index === 6) {
-      return { top: "80%", opacity: "1" };
+      return { top: "80%", opacity: "1", color: "black"  };
     } else if (index === -1) {
-      return { top: "-20%", opacity: "0" };
+      return { top: "-20%", opacity: "0" , color: "black" };
     }
   };
 
@@ -144,7 +144,7 @@ const Menu = (props) => {
     <div className="Menu">
       <ul className="menu-selector" style={menuSelector(indexFocusedItem)}></ul>
 
-      <ul className="category-menu">
+      <ul className="category-menu" style={{color:`${indexFocusedItem=== 0 ? "black" : "white"}`} } >
         {/* <li className={`title-menu ${indexFocusedItem === 0 ? "focused" : ""}`}>
           Background
         </li> */}
@@ -182,7 +182,7 @@ const Menu = (props) => {
           )} */}
         </li>
       </ul>
-      <ul className="category-menu">
+      <ul className="category-menu" style={{color:`${indexFocusedItem=== 1 ? "black" : "white"}`}}>
         {/* <li
           className={` title-menu ${indexFocusedItem === 1 ? "focused" : ""}`}
         >
@@ -220,7 +220,9 @@ const Menu = (props) => {
           )} */}
         </li>
       </ul>
-      <ul className="category-menu">
+      <ul className="category-menu" style={{color:`${(indexFocusedItem === 2 ||
+          indexFocusedItem === 3 ||
+          indexFocusedItem === 4) ? "black" : "white"}`}}>
         {/* {(indexFocusedItem === 2 ||
           indexFocusedItem === 3 ||
           indexFocusedItem === 4) && ( */}
@@ -236,7 +238,7 @@ const Menu = (props) => {
           Fonts
         </li> */}
         <li className="title-menu">Fonts</li>
-        <li className={`${indexFocusedItem === 2 ? "focused" : ""} font-sub`}>
+        <li className={`${indexFocusedItem === 2  ? "focused" : ""} font-sub`}>
           <i
             className={`${
               indexFocusedItem === 2
@@ -270,7 +272,7 @@ const Menu = (props) => {
             }`}
           ></i>
         </li>
-        <li className={`${indexFocusedItem === 4 ? "focused" : ""} font-sub`}>
+        <li className={`${indexFocusedItem === 3 ? "focused" : ""} font-sub`}>
           <i
             className={`${
               indexFocusedItem === 4
@@ -289,7 +291,7 @@ const Menu = (props) => {
         </li>
       </ul>
 
-      <ul className="category-menu">
+      <ul className="category-menu" style={{color:`${indexFocusedItem=== 5 ? "black" : "white"}`}}>
         <li
           className={` title-menu ${indexFocusedItem === 5 ? "focused" : ""}`}
         >
@@ -297,7 +299,7 @@ const Menu = (props) => {
         </li>
         {indexFocusedItem === 5 ? <i>ok for gallery</i> : ""}
       </ul>
-      <ul className="category-menu">
+      <ul className="category-menu" style={{color:`${indexFocusedItem=== 6 ? "black" : "white"}`}}>
         <li
           className={` title-menu ${indexFocusedItem === 6 ? "focused" : ""}`}
         >
