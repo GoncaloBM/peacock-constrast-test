@@ -113,7 +113,7 @@ function App(props) {
   const fetchImages = () => {
     const dbUrl = `http://joaoreberti.tech:5001/getpictures`;
     axios.get(dbUrl).then((res) => {
-      setImageDB(res.data);
+      setImageDB(res.data.reverse());
     });
   };
 
@@ -293,6 +293,10 @@ function App(props) {
                   <div className="patty"></div>
                   <div className="patty"></div>
                   <div className="patty"></div>
+                  <div
+                    className="focus-hamburger"
+                    style={{ opacity: linkIndex === 1 ? "1" : "0" }}
+                  ></div>
                 </div>
               </div>
               <Contrast
