@@ -14,26 +14,29 @@
         font-size: 13px;
     }
     .Menu {
-        height: 80vh;
-        width: 73vh;
+        color: white;
+        margin-right: 95px;
+        height: 70vh;
+        width: 60vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
         position: absolute;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.5);
-        top: 10vh;
+        background-color: black;
+        top: 14vh;
         overflow: hidden;
-        border-radius: 12px 0 0 12px;
+        border-radius: 12px 12px 12px 12px;
         border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 5px 10px #777;
+        box-shadow: 1px 1px 1px 3px #FBCD0F;
     }
     .title-menu {
         font-size: 1.5rem;
         height: 35%;
     }
     .category-menu {
+        margin-top: 6px;
         width: 120%;
         height: 25vh;
         display: flex;
@@ -69,6 +72,9 @@
         overflow: hidden;
     }
     .Menu {
+        color: white;
+        margin-right: 95px;
+        width: 568px;
         display: flex;
         flex-direction: column;
         height: 70vh;
@@ -76,12 +82,12 @@
         justify-content: space-between;
         position: absolute;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: black;
         top: 10vh;
         overflow: hidden;
-        border-radius: 12px 0 0 12px;
+        border-radius: 12px 12px 12px 12px;
         border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 5px 10px #777;
+        box-shadow: 1px 1px 1px 3px #FBCD0F;
     }
     .title-menu {
         font-size: 2rem;
@@ -99,7 +105,7 @@
     height: 20%;
     background-color: #fccc12;
     z-index: 0;
-    transition: 0.5s all;
+    /* transition: 0.5s all; */
 }
 
 .color-keyboard {

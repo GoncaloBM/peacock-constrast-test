@@ -1,21 +1,30 @@
 .information {
-    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    margin-right: 95px;
+    margin-top: 65px;
+    background-color: black;
     position: fixed;
-    top: 10vh;
-    right: 0px;
-    width: 30%;
-    height: 50%;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px #777;
-    border-radius: 12px 0 0 12px;
+    box-shadow: 1px 1px 1px 3px #FBCD0F;
+    border-radius: 12px 12px 12px 12px;
+    display: flex;
+    flex-direction: column;
 }
 
 .information h1 {
+    width: 429px;
+    height: 45px;
+    color: black;
     margin-top: 20px;
-    margin-left: 20px;
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (min-width: 1281px) {
+    .information {
+        width: 568px;
+        height: 70vh;
+    }
     .focus {
         background-color: #fccc12;
         position: fixed;
@@ -24,6 +33,12 @@
 }
 
 @media screen and (max-width: 1280px) {
+    .information {
+        top: 5vh;
+        right: 0;
+        height: 70vh;
+        width: 60vh;
+    }
     .information h1 {
         font-size: 1.5rem;
     }

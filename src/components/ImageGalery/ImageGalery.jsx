@@ -133,10 +133,11 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
             style={{
               backgroundColor:
                 imageIndexFocus === 0 && searchMenuIndex === 0 && "#fccc12",
-            }}
+            color:`${imageIndexFocus === 0 && searchMenuIndex === 0
+               ? "black" : "white"}`}} 
           >
             <div
-              className="glass-icon"
+              className={imageIndexFocus === 0 && searchMenuIndex === 0 ? "glass-icon-black" : "glass-icon"}
               //   style={{ width: `${imageIndexFocus === 0 ? 80 : ""}%` }}
             ></div>
             <div className="search-text">
@@ -152,13 +153,15 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
             style={{
               backgroundColor:
                 imageIndexFocus === 0 && searchMenuIndex === 1 && "#fccc12",
-            }}
+                color:`${imageIndexFocus === 0 && searchMenuIndex ===1 
+                  ? "black" : "white"}`}}
+            
           >
             Back
           </div>
         </div>
       </div>
-      <div className="galery-title">Image Gallery</div>
+      {/* <div className="galery-title">Image Gallery</div> */}
       <div className="galery-images-wrapper">
         <div
           className="image-selector"
@@ -176,7 +179,8 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
             imagesToShow.map((image, index) => {
               return (
                 <div
-                  className="galery-image"
+                  className="galery-image" style = {{color:`${imageIndexFocus === (index +1) 
+                    ? "black" : "white"}`}}
                   //   style={{
                   //     backgroundColor: index === imageIndexFocus - 1 && "red",
                   //   }}
