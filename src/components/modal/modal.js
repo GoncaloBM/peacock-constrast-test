@@ -15,9 +15,10 @@ function Modal(props) {
       useEventListener("keydown", backToApp);
   return (
     <div className={`${props.modalIsOpen ? "helpOpen" : "helpClosed"}`}>
-      <p>Press space for full screen</p>
-      <h1> Exit</h1>
-    </div>
+      <div className="tittleMenu">Information</div>
+      <p>Press 5 for full screen</p>
+      <div className="exitButton"> Exit
+</div>    </div>
   );
 }
 export default Modal;

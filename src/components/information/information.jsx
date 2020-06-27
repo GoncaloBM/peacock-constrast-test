@@ -16,11 +16,23 @@ function Information(props) {
 
   return (
     <div className="information">
-      <h1> BackGround Color {props.backgroundColor} </h1>
-      <h1> Color Text {props.colorText} </h1>
-      <h1> Font Size {props.fontSize} </h1>
-      <h1> Font Style {props.fontStyle} </h1>
-      <h1 className="focus"> Exit</h1>
+      <div className="informationalign">
+        <p>
+          <span class="highlight">BackGround Color:</span>{" "}
+          {props.backgroundColor}
+        </p>
+        <p>
+          <strong>Color Text:</strong> {props.colorText}
+        </p>
+        <p>
+          <strong>Font Size: </strong>
+          {props.fontSize}
+        </p>
+        <p>
+          <strong>Font Style:</strong> {props.fontStyle}
+        </p>
+      </div>
+      <div className="focus"> Exit</div>
     </div>
   );
 }

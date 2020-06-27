@@ -15,7 +15,7 @@
     }
     .Menu {
         color: white;
-        margin-right: 95px;
+        margin-right: 105px;
         height: 70vh;
         width: 60vh;
         display: flex;
@@ -25,7 +25,7 @@
         position: absolute;
         right: 0;
         background-color: black;
-        top: 14vh;
+        top: 15vh;
         overflow: hidden;
         border-radius: 12px 12px 12px 12px;
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -73,7 +73,7 @@
     }
     .Menu {
         color: white;
-        margin-right: 95px;
+        margin-right: 105px;
         width: 568px;
         display: flex;
         flex-direction: column;
