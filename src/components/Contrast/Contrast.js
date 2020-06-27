@@ -27,6 +27,7 @@ const Contrast = ({
   showLateralBar,
   displayLateralBar,
   fromGalery,
+  linkIndex
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
@@ -125,6 +126,7 @@ const Contrast = ({
         <div className={lateralBar ? "showLateralBar menu" : "hideLateralBar "}>
           {lateralBar ? (
             <Menu
+            linkIndex={linkIndex}
               backToNavbar={returnToNavBar}
               colorText={colorText}
               backgroundColor={backgroundColor}

@@ -51,11 +51,14 @@ function App(props) {
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
 
-  const openModal = useCallback((e) => {
-    if (e.keyCode === 13) {
-      setIsOpen(!modalIsOpen);
-    }
-  }, [modalIsOpen]);
+  const openModal = useCallback(
+    (e) => {
+      if (e.keyCode === 13 && linkIndex === 2) {
+        setIsOpen(!modalIsOpen);
+      }
+    },
+    [modalIsOpen,linkIndex]
+  );
   useEffect(() => {
     fetchImages();
 
@@ -68,10 +71,20 @@ function App(props) {
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
-        if (e.keyCode === 39 && linkIndex === 1 && modalIsOpen === false) {
+        if (
+          e.keyCode === 39 &&
+          linkIndex === 1 &&
+          modalIsOpen === false &&
+          showLateralBar === false
+        ) {
           setLinkIndex(2);
         }
-        if (e.keyCode === 37 && linkIndex === 2 && modalIsOpen === false) {
+        if (
+          e.keyCode === 37 &&
+          linkIndex === 2 &&
+          modalIsOpen === false &&
+          showLateralBar === false
+        ) {
           setLinkIndex(1);
         }
         // if (e.keyCode === 13 && linkIndex === 1) {
@@ -130,16 +143,15 @@ function App(props) {
 
   const fetchImages = () => {
     console.log(process.env.REACT_APP_API_URL);
-    
+
     const dbUrl = `${process.env.REACT_APP_API_URL}getpictures`;
     axios.get(dbUrl).then((res) => {
-
       setImageDB(res.data.reverse());
     });
   };
 
   const changeBk = (bkUrl) => {
-    bkUrl = process.env.REACT_APP_API_URL + bkUrl
+    bkUrl = process.env.REACT_APP_API_URL + bkUrl;
     setBkImage(bkUrl);
     // console.log(bkUrl);
   };
@@ -216,8 +228,6 @@ function App(props) {
     setLinkIndex(3);
     console.log("joao");
   };
-
-  
 
   return (
     <Router>
@@ -357,6 +367,7 @@ function App(props) {
                 showLateralBar={showLateralBar}
                 displayLateralBar={displayLateralBar}
                 fromGalery={fromGalery}
+                linkIndex={linkIndex}
               />
             </Route>
           </Switch>
