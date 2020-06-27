@@ -4,13 +4,13 @@ import "./fonts/fonts.css";
 import FileUpload from "./components/fileUploader/fileUpload";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import Controller from "./components/Controller"
+import Modal from "./components/modal/modal";
+import Controller from "./components/Controller";
+import { useCallback } from "react";
 
 import Contrast from "./components/Contrast/Contrast";
 
 function App(props) {
-  
   let differentFontStyles = [
     "div",
     "p",
@@ -25,7 +25,7 @@ function App(props) {
   let startetTextPosition = { top: 0, right: 0 };
   let [backgroundColor, setBackgroundColor] = useState("#000000");
   let [colorText, setColorText] = useState("#F2F2F2");
-
+  const [modalIsOpen, setIsOpen] = React.useState(true);
   const [fontSize, setfontSize] = useState(4);
   const [fontSizeforText] = useState(fontSize + "rem");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
@@ -34,15 +34,15 @@ function App(props) {
   let [showLateralBar, setShowLateralBar] = useState(false);
   let [fromGalery, setFromGalery] = useState(false);
 
-  const getWindowLocation = () => {
-    if (window.location.pathname === "/") {
-      return 0;
-    } else if (window.location.pathname === "/contrast") {
-      return 1;
-    } 
-  };
+  // const getWindowLocation = () => {
+  //   if (window.location.pathname === "/") {
+  //     return 0;
+  //   } else if (window.location.pathname === "/contrast") {
+  //     return 1;
+  //   }
+  // };
 
-  let [linkIndex, setLinkIndex] = useState(getWindowLocation());
+  let [linkIndex, setLinkIndex] = useState(2);
   let [navBarNavigating, setNavBarNavigating] = useState(true);
   const [safeMargin, setSafeMargin] = useState(false);
   /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
@@ -51,6 +51,11 @@ function App(props) {
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
 
+  const openModal = useCallback((e) => {
+    if (e.keyCode === 13) {
+      setIsOpen(!modalIsOpen);
+    }
+  }, [modalIsOpen]);
   useEffect(() => {
     fetchImages();
 
@@ -63,21 +68,27 @@ function App(props) {
 
     const navBarNavigation = (e) => {
       if (navBarNavigating) {
-        if (e.keyCode === 13 && linkIndex === 1) {
-          if (window.location.pathname !== "/contrast") {
-            window.location.pathname = "/contrast";
-          }
+        if (e.keyCode === 39 && linkIndex === 1 && modalIsOpen === false) {
+          setLinkIndex(2);
         }
-        if (e.keyCode === 13 && linkIndex === 2) {
-          if (window.location.pathname !== "/about") {
-            window.location.pathname = "/about";
-          }
+        if (e.keyCode === 37 && linkIndex === 2 && modalIsOpen === false) {
+          setLinkIndex(1);
         }
-        if (e.keyCode === 13 && linkIndex === 0) {
-          if (window.location.pathname !== "/") {
-            window.location.pathname = "/";
-          }
-        }
+        // if (e.keyCode === 13 && linkIndex === 1) {
+        //   if (window.location.pathname !== "/contrast") {
+        //     window.location.pathname = "/contrast";
+        //   }
+        // }
+        // if (e.keyCode === 13 && linkIndex === 2) {
+        //   if (window.location.pathname !== "/about") {
+        //     window.location.pathname = "/about";
+        //   }
+        // }
+        // if (e.keyCode === 13 && linkIndex === 0) {
+        //   if (window.location.pathname !== "/") {
+        //     window.location.pathname = "/";
+        //   }
+        // }
         if (e.keyCode === 13 && linkIndex === 1) {
           setShowLateralBar(!showLateralBar);
           setFromGalery(false);
@@ -86,9 +97,12 @@ function App(props) {
     };
     window.addEventListener("keydown", navBarNavigation);
     window.addEventListener("keydown", showSafeMargin);
+    window.addEventListener("keydown", openModal);
+
     return () => {
       window.removeEventListener("keydown", navBarNavigation);
       window.removeEventListener("keydown", showSafeMargin);
+      window.removeEventListener("keydown", openModal);
     };
   }, [
     colorText,
@@ -101,6 +115,8 @@ function App(props) {
     safeMargin,
     fullscreen,
     showLateralBar,
+    modalIsOpen,
+    openModal,
   ]);
 
   let getColor = (color, isText) => {
@@ -197,10 +213,7 @@ function App(props) {
     console.log("joao");
   };
 
- 
-   
-
-
+  
 
   return (
     <Router>
@@ -250,10 +263,9 @@ function App(props) {
         </header> */}
 
         <div className="content">
-          
           <Switch>
-          <Route path="/upload">
-          <Controller></Controller>
+            <Route path="/upload">
+              <Controller></Controller>
 
               <FileUpload />
             </Route>
@@ -261,7 +273,6 @@ function App(props) {
               <Controller></Controller>
               <div className="headerino">
                 <div className="logospace">
-
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="sk-logo"
@@ -299,7 +310,10 @@ function App(props) {
                   </svg>
                 </div>
                 <div
-                  className={`hamburger ${linkIndex === 1 ? "focused" : ""} `}
+                  className="hamburger"
+                  style={{
+                    backgroundColor: `${linkIndex === 1 ? "white" : "black"}`,
+                  }}
                   onClick={displayLateralBar}
                 >
                   <div className="patty"></div>
@@ -310,7 +324,15 @@ function App(props) {
                     style={{ opacity: linkIndex === 1 ? "1" : "0" }}
                   ></div>
                 </div>
+                <div
+                  className="help"
+                  style={{
+                    backgroundColor: `${linkIndex === 2 ? "white" : "black"}`,
+                  }}
+                  onKeyDown={openModal}
+                ></div>
               </div>
+              <Modal modalIsOpen={modalIsOpen}></Modal>
               <Contrast
                 backgroundColor={backgroundColor}
                 colorText={colorText}
@@ -333,7 +355,6 @@ function App(props) {
                 fromGalery={fromGalery}
               />
             </Route>
-           
           </Switch>
         </div>
       </div>
