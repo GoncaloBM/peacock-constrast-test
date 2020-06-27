@@ -2,13 +2,14 @@ import React, { useEffect, useRef } from "react";
 
 import { useHistory } from "react-router-dom";
 
-const Controller = () => {
+const Controller = ({backToGallery}) => {
   let history = useHistory();
   const secretKey = useRef([]);
 
   function goBack() {
     secretKey.current = [];
     history.push("/");
+    backToGallery()
   }
 
   function goUpload() {
@@ -25,14 +26,14 @@ const Controller = () => {
     secretKey.current.push(e.keyCode)
   }
 
-    console.log(e.keyCode);
-    console.log("Secret Key+ ", secretKey.current);
+    ///console.log(e.keyCode);
+   // console.log("Secret Key+ ", secretKey.current);
     if (
       JSON.stringify(secretKey.current) ===
       JSON.stringify([37, 38, 39, 40, 37, 38, 39, 40])
     ) {
-      console.log("Secret Key accepted");
-      console.log(history.location);
+      //console.log("Secret Key accepted");
+      //console.log(history.location);
 
       history.location.pathname === "/upload" ? goBack() : goUpload();
     }

@@ -27,7 +27,8 @@ const Contrast = ({
   showLateralBar,
   displayLateralBar,
   fromGalery,
-  linkIndex
+  linkIndex,
+  fromUploadToGallery,
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
@@ -41,10 +42,24 @@ const Contrast = ({
   };
 
   useEffect(() => {
+    console.log("mostrar barra lateral: ",showLateralBar);
+    console.log('veio da página de upload: ', fromUploadToGallery)
     setlateralBar(showLateralBar);
 
+    if(fromUploadToGallery === true){
+      setOnGalery(fromUploadToGallery)
+      displayLateralBar(false, 'fromUpload');
+    }
+    if(fromUploadToGallery === false){
+      setOnGalery(fromUploadToGallery)
+    }
+
+
+    
+
+
     return () => {};
-  }, [showLateralBar, showTextPositionTool]);
+  }, [showLateralBar, showTextPositionTool, fromUploadToGallery]);
 
   /*  const handleClick = () => {
     returnToNavBar(lateralBar);
@@ -126,7 +141,7 @@ const Contrast = ({
         <div className={lateralBar ? "showLateralBar menu" : "hideLateralBar "}>
           {lateralBar ? (
             <Menu
-            linkIndex={linkIndex}
+              linkIndex={linkIndex}
               backToNavbar={returnToNavBar}
               colorText={colorText}
               backgroundColor={backgroundColor}

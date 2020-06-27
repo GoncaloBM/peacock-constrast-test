@@ -25,7 +25,7 @@ function App(props) {
   let startetTextPosition = { top: 0, right: 0 };
   let [backgroundColor, setBackgroundColor] = useState("#000000");
   let [colorText, setColorText] = useState("#F2F2F2");
-  const [modalIsOpen, setIsOpen] = React.useState(true);
+  const [modalIsOpen, setIsOpen] = useState(true);
   const [fontSize, setfontSize] = useState(4);
   const [fontSizeforText] = useState(fontSize + "rem");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
@@ -33,20 +33,11 @@ function App(props) {
   const [fullscreen, setFullscreen] = useState(false);
   let [showLateralBar, setShowLateralBar] = useState(false);
   let [fromGalery, setFromGalery] = useState(false);
-
-  // const getWindowLocation = () => {
-  //   if (window.location.pathname === "/") {
-  //     return 0;
-  //   } else if (window.location.pathname === "/contrast") {
-  //     return 1;
-  //   }
-  // };
-
+  let[fromUploadToGallery, setFromUploadToGallery] = useState(false)
   let [linkIndex, setLinkIndex] = useState(2);
   let [navBarNavigating, setNavBarNavigating] = useState(true);
   const [safeMargin, setSafeMargin] = useState(false);
-  /*  let[ShowTextPositionTool, setShowTextPositionTool] = useState(false);
-  let [contrast, setContrast] = useState(false); */
+
 
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
@@ -63,7 +54,7 @@ function App(props) {
     fetchImages();
 
     const showSafeMargin = (e) => {
-      if (e.keyCode === 32) {
+      if (e.keyCode === 101 || e.keyCode === 53) {
         setSafeMargin(!safeMargin);
         setFullscreen(!fullscreen);
       }
@@ -87,21 +78,7 @@ function App(props) {
         ) {
           setLinkIndex(1);
         }
-        // if (e.keyCode === 13 && linkIndex === 1) {
-        //   if (window.location.pathname !== "/contrast") {
-        //     window.location.pathname = "/contrast";
-        //   }
-        // }
-        // if (e.keyCode === 13 && linkIndex === 2) {
-        //   if (window.location.pathname !== "/about") {
-        //     window.location.pathname = "/about";
-        //   }
-        // }
-        // if (e.keyCode === 13 && linkIndex === 0) {
-        //   if (window.location.pathname !== "/") {
-        //     window.location.pathname = "/";
-        //   }
-        // }
+
         if (e.keyCode === 13 && linkIndex === 1) {
           setShowLateralBar(!showLateralBar);
           setFromGalery(false);
@@ -133,7 +110,6 @@ function App(props) {
   ]);
 
   let getColor = (color, isText) => {
-    console.log("JOAO");
     if (isText) {
       setColorText(color);
     } else {
@@ -142,7 +118,6 @@ function App(props) {
   };
 
   const fetchImages = () => {
-    console.log(process.env.REACT_APP_API_URL);
 
     const dbUrl = `${process.env.REACT_APP_API_URL}getpictures`;
     axios.get(dbUrl).then((res) => {
@@ -170,8 +145,8 @@ function App(props) {
   const changeFontSizeState = (increaseOrDecrease) => {
     setfontSize(fontSize + increaseOrDecrease);
 
-    console.log(fontSizeforText);
-    console.log(fontSize);
+    //console.log(fontSizeforText);
+    //console.log(fontSize);
   };
 
   const changeFontStyleState = (increaseOrDecrease) => {
@@ -218,68 +193,53 @@ function App(props) {
   };
 
   const displayLateralBar = (e, fromGalery) => {
-    console.log("from Galery: ", fromGalery);
-    if (fromGalery) {
-      setFromGalery(true);
-    } else {
-      setFromGalery(false);
+
+    if (fromGalery === "fromUpload"){
+
+
+    }else{
+      console.log("from Galery: ", fromGalery);
+      if (fromGalery === true) {
+        setFromGalery(true);
+        console.log('Joao')
+
+      } else {
+        setFromGalery(false);
+        console.log('Eduardo')
+      }
+      console.log('antes',showLateralBar)
+      setShowLateralBar(!showLateralBar);
+      console.log('depois',showLateralBar)
+      setFromUploadToGallery(false)
+      console.log("Reberti");
     }
-    setShowLateralBar(!showLateralBar);
-    setLinkIndex(3);
-    console.log("joao");
+
+   
   };
+
+  const backToGallery = () => {
+  //console.log('reberit');
+  setShowLateralBar(false);
+
+  setFromGalery(true)
+  setIsOpen(false)
+  setFromUploadToGallery(true)
+  setLinkIndex(-1)
+
+
+
+  
+  }
+
 
   return (
     <Router>
       <div className="App" style={{ fontFamily: "peacock" }}>
-        {/* <header className="header">
-          <ul className="buttons">
-            <li
-              onClick={() => setLinkIndex(0)}
-              className={linkIndex === 0 ? "focusedNavbar" : ""}
-            >
-              <Link
-                to="/"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                Home
-              </Link>
-            </li>
-
-            <li
-              onClick={() => setLinkIndex(1)}
-              className={linkIndex === 1 ? "focusedNavbar" : ""}
-            >
-              <Link
-                to="/contrast"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                Contrast
-              </Link>
-            </li>
-            <li
-              onClick={() => setLinkIndex(2)}
-              className={linkIndex === 2 ? "focusedNavbar" : ""}
-            >
-              <Link
-                to="/about"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                About
-              </Link>
-            </li>
-            {window.location.pathname === "/contrast" ? (
-              
-            ) : (
-              ""
-            )}
-          </ul>
-        </header> */}
 
         <div className="content">
           <Switch>
             <Route path="/upload">
-              <Controller></Controller>
+              <Controller backToGallery={backToGallery}></Controller>
 
               <FileUpload />
             </Route>
@@ -368,6 +328,7 @@ function App(props) {
                 displayLateralBar={displayLateralBar}
                 fromGalery={fromGalery}
                 linkIndex={linkIndex}
+                fromUploadToGallery={fromUploadToGallery}
               />
             </Route>
           </Switch>
