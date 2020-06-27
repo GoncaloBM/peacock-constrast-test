@@ -1,4 +1,6 @@
 .helpOpen {
+    border-radius: 12px;
+    text-align: center;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -7,15 +9,32 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 500px;
+    height: 300px;
     background: white;
     border: 1px solid #ccc;
     transition: 1.1s ease-out;
-    box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+    /* box-shadow: -2rem 2rem 2rem rgba(black, 0.2); */
     filter: blur(0);
     opacity: 1;
     visibility: visible;
+    color: white;
+    background-color: black;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 1px 3px #FBCD0F;
 }
 
 .helpClosed {
     display: none;
+}
+
+.tittleMenu {
+    font-size: 1.5rem;
+    height: 35%;
+}
+
+.exitButton {
+    margin-top: 120px;
+    font-size: 23px;
+    color: black;
+    background-color: #fccc12;
 }
