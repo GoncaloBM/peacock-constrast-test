@@ -129,6 +129,8 @@ function App(props) {
   };
 
   const fetchImages = () => {
+    console.log(process.env.REACT_APP_API_URL);
+    
     const dbUrl = `${process.env.REACT_APP_API_URL}getpictures`;
     axios.get(dbUrl).then((res) => {
       setImageDB(res.data.reverse());

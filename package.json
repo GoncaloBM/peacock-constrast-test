@@ -23,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "local" : "REACT_APP_API_URL=https://localhost:5001/ react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
