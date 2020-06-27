@@ -36,8 +36,9 @@ const TextDisplay = (props) => {
           <div
             className={`${
               props.showPositionTool ? "text-position-tool" : ""
-            } `}
+            } textLines`}
             style={{
+              fontSize: `${fontSize}rem`,
               transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
             }}
           >
@@ -73,9 +74,9 @@ const TextDisplay = (props) => {
         <h1
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } `}
+          } textLines`}
           style={{
-            
+            fontSize: `${fontSize}rem`,
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -95,158 +96,7 @@ const TextDisplay = (props) => {
       ) : (
         ""
       )}
-      {fontStyle === "h2" ? (
-        <div className="positioning-box">
-        {props.showPositionTool ? (
-          <i
-            style={{
-              transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(-45deg)`,
-            }}
-            className="arrowLeftText"
-          ></i>
-        ) : (
-          ""
-        )}
-
-        <h2
-          className={`${
-            props.showPositionTool ? "text-position-tool" : ""
-          } `}
-          style={{
-            
-            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
-          }}
-        >
-          This is Board in {fontStyle}
-        </h2>
-        {props.showPositionTool ? (
-          <i
-            style={{
-              transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(135deg)`,
-            }}
-            className="arrowRightText"
-          ></i>
-        ) : (
-          ""
-        )}
-      </div>
-      ) : (
-        ""
-      )}
-      {fontStyle === "h3" ? (
-        <div className="positioning-box">
-        {props.showPositionTool ? (
-          <i
-            style={{
-              transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(-45deg)`,
-            }}
-            className="arrowLeftText"
-          ></i>
-        ) : (
-          ""
-        )}
-
-        <h3
-          className={`${
-            props.showPositionTool ? "text-position-tool" : ""
-          } `}
-          style={{
-            
-            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
-          }}
-        >
-          This is Board in {fontStyle}
-        </h3>
-        {props.showPositionTool ? (
-          <i
-            style={{
-              transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(135deg)`,
-            }}
-            className="arrowRightText"
-          ></i>
-        ) : (
-          ""
-        )}
-      </div>
-      ) : (
-        ""
-      )}
-      {fontStyle === "h4" ? (
-       <div className="positioning-box">
-       {props.showPositionTool ? (
-         <i
-           style={{
-             transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(-45deg)`,
-           }}
-           className="arrowLeftText"
-         ></i>
-       ) : (
-         ""
-       )}
-
-       <h4
-         className={`${
-           props.showPositionTool ? "text-position-tool" : ""
-         } `}
-         style={{
-           
-           transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
-         }}
-       >
-         This is Board in {fontStyle}
-       </h4>
-       {props.showPositionTool ? (
-         <i
-           style={{
-             transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(135deg)`,
-           }}
-           className="arrowRightText"
-         ></i>
-       ) : (
-         ""
-       )}
-     </div>
-      ) : (
-        ""
-      )}
-      {fontStyle === "h5" ? (
-       <div className="positioning-box">
-       {props.showPositionTool ? (
-         <i
-           style={{
-             transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(-45deg)`,
-           }}
-           className="arrowLeftText"
-         ></i>
-       ) : (
-         ""
-       )}
-
-       <h5
-         className={`${
-           props.showPositionTool ? "text-position-tool" : ""
-         } `}
-         style={{
-           
-           transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
-         }}
-       >
-         This is Board in {fontStyle}
-       </h5>
-       {props.showPositionTool ? (
-         <i
-           style={{
-             transform: `translate(${textPosition.right}px,${textPosition.top}px) rotate(135deg)`,
-           }}
-           className="arrowRightText"
-         ></i>
-       ) : (
-         ""
-       )}
-     </div>
-      ) : (
-        ""
-      )}
+      
       {fontStyle === "p" ? (
         <div className="positioning-box">
         {props.showPositionTool ? (
@@ -263,9 +113,9 @@ const TextDisplay = (props) => {
         <p
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } `}
+          } textLines`}
           style={{
-            
+            fontSize: `${fontSize}rem`,
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -301,9 +151,9 @@ const TextDisplay = (props) => {
         <i
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } `}
+          } textLines`}
           style={{
-            
+            fontSize: `${fontSize}rem`,
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -339,9 +189,9 @@ const TextDisplay = (props) => {
        <b
          className={`${
            props.showPositionTool ? "text-position-tool" : ""
-         } `}
+         } textLines`}
          style={{
-           
+           fontSize: `${fontSize}rem`,
            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
          }}
        >

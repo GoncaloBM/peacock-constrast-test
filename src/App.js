@@ -15,10 +15,6 @@ function App(props) {
     "div",
     "p",
     "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
     "i",
     "b",
   ];
@@ -27,7 +23,7 @@ function App(props) {
   let [colorText, setColorText] = useState("#F2F2F2");
   const [modalIsOpen, setIsOpen] = useState(true);
   const [fontSize, setfontSize] = useState(4);
-  const [fontSizeforText] = useState(fontSize + "rem");
+  const [fontSizeforText] = useState(fontSize + "px");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
   const [textPosition, setTextPosition] = useState(startetTextPosition);
   const [fullscreen, setFullscreen] = useState(false);
