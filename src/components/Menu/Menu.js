@@ -57,7 +57,7 @@ const Menu = (props) => {
         } else if (newIndex === 1) {
           props.setkeyboardText(true);
         }
-        if (props.showVirtualKeyboard === false) {
+        if (props.showVirtualKeyboard === false && props.linkIndex === -1) {
           console.log("enter");
           props.setShowVirtualKeyboard(true);
         }
