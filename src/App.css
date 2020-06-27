@@ -69,7 +69,7 @@ body {
 .headerino {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     width: 100vw;
     position: absolute;
@@ -77,19 +77,38 @@ body {
 }
 
 .hamburger {
-    padding-right: 150px;
-    padding-top: 65px;
+    /* padding-right: 150px;
+    padding-top: 65px; */
+    background: url("./images/Menu.png") no-repeat;
     z-index: 1000;
+    margin-right: 5px;
+    margin-top: 65px;
+    width: 35px;
+    height: 35px;
+}
+
+.iconsMenu {
+    display: flex;
 }
 
 .help {
-    position: fixed;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFaSURBVHgB7VbtbYMwED11AkbwBs0mZYN2g7BB2AQ2QJ0AdYNuQDegG1zt9p1yshp8xo7yhyc5RObdt7kz0YEDGWDmxq+LX7NfC1+xYu/sl6PaCEphwIqhmiOIalWRBuWtNuD/n7A3RlnpqARIt2AKJTDIuMiRC+0BIhdkR+Jl+t3yiELS3m/w3vx63XjfqXI4ynBAUjgkjAu2nJjAmclo3CnFroIDjcpm8gzptA0G7mYJFG9MlVOTZ5BfqBL47xO1lUGl62Tg/sLAk7IuZCCblNbiPtGD8Z8DX+GHKw4VVc5vsjrg8Uz14PD8JIMDH3i2VA+i6z3JROOQ9tkkuMlDaG1ssdAMgYnKHUi2dbrhtfSD3TOdr+M8bxhBuFOpy57pXDjORUmvlAyWKHCGJiXXUwmQiTVypFXftpSsxTt9fSu7kkUGRrZj5jvejs8woLOyYC+UrKEDBzLwA0ES5YdtzeusAAAAAElFTkSuQmCC) no-repeat;
+    /* position: fixed;
     padding-right: 35px;
-    padding-top: 65px;
     right: 95px;
     top: 65px;
     z-index: 1000;
+    width: 40px;
+    height: 33px; */
+    margin-right: 95px;
+    margin-top: 65px;
+    width: 35px;
+    height: 35px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFaSURBVHgB7VbtbYMwED11AkbwBs0mZYN2g7BB2AQ2QJ0AdYNuQDegG1zt9p1yshp8xo7yhyc5RObdt7kz0YEDGWDmxq+LX7NfC1+xYu/sl6PaCEphwIqhmiOIalWRBuWtNuD/n7A3RlnpqARIt2AKJTDIuMiRC+0BIhdkR+Jl+t3yiELS3m/w3vx63XjfqXI4ynBAUjgkjAu2nJjAmclo3CnFroIDjcpm8gzptA0G7mYJFG9MlVOTZ5BfqBL47xO1lUGl62Tg/sLAk7IuZCCblNbiPtGD8Z8DX+GHKw4VVc5vsjrg8Uz14PD8JIMDH3i2VA+i6z3JROOQ9tkkuMlDaG1ssdAMgYnKHUi2dbrhtfSD3TOdr+M8bxhBuFOpy57pXDjORUmvlAyWKHCGJiXXUwmQiTVypFXftpSsxTt9fSu7kkUGRrZj5jvejs8woLOyYC+UrKEDBzLwA0ES5YdtzeusAAAAAElFTkSuQmCC) no-repeat;
+}
+
+.focusedMenu {
+    border: 1px solid blue;
+    box-shadow: 0 0 3px white;
 }
 
 .patty {
@@ -102,7 +121,7 @@ body {
 }
 
 .sk-logo {
-    width: 100px;
+    width: 150px;
     z-index: 1000;
     fill: white;
 }

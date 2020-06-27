@@ -33,11 +33,10 @@ function App(props) {
   const [fullscreen, setFullscreen] = useState(false);
   let [showLateralBar, setShowLateralBar] = useState(false);
   let [fromGalery, setFromGalery] = useState(false);
-  let[fromUploadToGallery, setFromUploadToGallery] = useState(false)
+  let [fromUploadToGallery, setFromUploadToGallery] = useState(false);
   let [linkIndex, setLinkIndex] = useState(2);
   let [navBarNavigating, setNavBarNavigating] = useState(true);
   const [safeMargin, setSafeMargin] = useState(false);
-
 
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
@@ -48,7 +47,7 @@ function App(props) {
         setIsOpen(!modalIsOpen);
       }
     },
-    [modalIsOpen,linkIndex]
+    [modalIsOpen, linkIndex]
   );
   useEffect(() => {
     fetchImages();
@@ -118,7 +117,6 @@ function App(props) {
   };
 
   const fetchImages = () => {
-
     const dbUrl = `${process.env.REACT_APP_API_URL}getpictures`;
     axios.get(dbUrl).then((res) => {
       setImageDB(res.data.reverse());
@@ -193,49 +191,37 @@ function App(props) {
   };
 
   const displayLateralBar = (e, fromGalery) => {
-
-    if (fromGalery === "fromUpload"){
-
-
-    }else{
+    if (fromGalery === "fromUpload") {
+    } else {
       console.log("from Galery: ", fromGalery);
       if (fromGalery === true) {
         setFromGalery(true);
-        console.log('Joao')
-
+        console.log("Joao");
       } else {
         setFromGalery(false);
-        console.log('Eduardo')
+        console.log("Eduardo");
       }
-      console.log('antes',showLateralBar)
+      console.log("antes", showLateralBar);
       setShowLateralBar(!showLateralBar);
-      console.log('depois',showLateralBar)
-      setFromUploadToGallery(false)
+      console.log("depois", showLateralBar);
+      setFromUploadToGallery(false);
       console.log("Reberti");
     }
-
-   
   };
 
   const backToGallery = () => {
-  //console.log('reberit');
-  setShowLateralBar(false);
+    //console.log('reberit');
+    setShowLateralBar(false);
 
-  setFromGalery(true)
-  setIsOpen(false)
-  setFromUploadToGallery(true)
-  setLinkIndex(-1)
-
-
-
-  
-  }
-
+    setFromGalery(true);
+    setIsOpen(false);
+    setFromUploadToGallery(true);
+    setLinkIndex(-1);
+  };
 
   return (
     <Router>
       <div className="App" style={{ fontFamily: "peacock" }}>
-
         <div className="content">
           <Switch>
             <Route path="/upload">
@@ -283,28 +269,25 @@ function App(props) {
                     ></path>
                   </svg>
                 </div>
-                <div
-                  className="hamburger"
-                  style={{
-                    backgroundColor: `${linkIndex === 1 ? "white" : "black"}`,
-                  }}
-                  onClick={displayLateralBar}
-                >
-                  <div className="patty"></div>
-                  <div className="patty"></div>
-                  <div className="patty"></div>
+                <div className="iconsMenu">
                   <div
-                    className="focus-hamburger"
-                    style={{ opacity: linkIndex === 1 ? "1" : "0" }}
+                    className={`hamburger ${linkIndex === 1 ? "focusedMenu" : ""}`}
+                    onClick={displayLateralBar}
+                  >
+                    {/* <div className="patty"></div>
+                    <div className="patty"></div>
+                    <div className="patty"></div> */}
+                    <div
+                      className="focus-hamburger"
+                      style={{ opacity: linkIndex === 1 ? "1" : "0" }}
+                    ></div>
+                  </div>
+
+                  <div
+                    className={`help ${linkIndex === 2 ? "focusedMenu" : ""}`}
+                    onKeyDown={openModal}
                   ></div>
                 </div>
-                <div
-                  className="help"
-                  style={{
-                    backgroundColor: `${linkIndex === 2 ? "white" : "black"}`,
-                  }}
-                  onKeyDown={openModal}
-                ></div>
               </div>
               <Modal modalIsOpen={modalIsOpen}></Modal>
               <Contrast
