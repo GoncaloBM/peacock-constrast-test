@@ -88,7 +88,7 @@ const FileUpload = () => {
     };
     /*         delete options.headers['Content-Type'];
      */ console.log(window.location);
-    fetch("http://joaoreberti.tech:5001/upload", options).then((result) => {
+    fetch(`${process.env.REACT_APP_API_URL}upload`, options).then((result) => {
       if(result.status === 200){
           console.log('Sucesso')
           setUploading(false)

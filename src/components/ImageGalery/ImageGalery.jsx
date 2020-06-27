@@ -17,6 +17,9 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
   const leftArrow = 37;
   const rightArrow = 39;
 
+  console.log('This is imageDB: ', imageDB)
+
+
   const changeIndex = (e) => {
     if (onGalery) {
       if (e.keyCode === downArrow) {
@@ -203,7 +206,7 @@ export const ImageGalery = ({ imageDB, changeBk, onGalery, goToGalery }) => {
                   <div className="image-text">{image.id}</div>
                   <div
                     className="image shadow"
-                    style={{ backgroundImage: `url(${image.url})` }}
+                    style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL+ image.url})` }}
                   ></div>
                 </div>
               );
