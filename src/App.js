@@ -129,7 +129,7 @@ function App(props) {
   };
 
   const fetchImages = () => {
-    const dbUrl = `http://joaoreberti.tech:5001/getpictures`;
+    const dbUrl = `${process.env.REACT_APP_API_URL}getpictures`;
     axios.get(dbUrl).then((res) => {
       setImageDB(res.data.reverse());
     });
