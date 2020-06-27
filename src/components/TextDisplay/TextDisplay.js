@@ -36,9 +36,8 @@ const TextDisplay = (props) => {
           <div
             className={`${
               props.showPositionTool ? "text-position-tool" : ""
-            } textLines`}
+            } `}
             style={{
-              fontSize: `${fontSize}rem`,
               transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
             }}
           >
@@ -74,9 +73,9 @@ const TextDisplay = (props) => {
         <h1
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } textLines`}
+          } `}
           style={{
-            fontSize: `${fontSize}rem`,
+            
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -112,9 +111,9 @@ const TextDisplay = (props) => {
         <h2
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } textLines`}
+          } `}
           style={{
-            fontSize: `${fontSize}rem`,
+            
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -150,9 +149,9 @@ const TextDisplay = (props) => {
         <h3
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } textLines`}
+          } `}
           style={{
-            fontSize: `${fontSize}rem`,
+            
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -188,9 +187,9 @@ const TextDisplay = (props) => {
        <h4
          className={`${
            props.showPositionTool ? "text-position-tool" : ""
-         } textLines`}
+         } `}
          style={{
-           fontSize: `${fontSize}rem`,
+           
            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
          }}
        >
@@ -226,9 +225,9 @@ const TextDisplay = (props) => {
        <h5
          className={`${
            props.showPositionTool ? "text-position-tool" : ""
-         } textLines`}
+         } `}
          style={{
-           fontSize: `${fontSize}rem`,
+           
            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
          }}
        >
@@ -264,9 +263,9 @@ const TextDisplay = (props) => {
         <p
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } textLines`}
+          } `}
           style={{
-            fontSize: `${fontSize}rem`,
+            
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -302,9 +301,9 @@ const TextDisplay = (props) => {
         <i
           className={`${
             props.showPositionTool ? "text-position-tool" : ""
-          } textLines`}
+          } `}
           style={{
-            fontSize: `${fontSize}rem`,
+            
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
@@ -340,9 +339,9 @@ const TextDisplay = (props) => {
        <b
          className={`${
            props.showPositionTool ? "text-position-tool" : ""
-         } textLines`}
+         } `}
          style={{
-           fontSize: `${fontSize}rem`,
+           
            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
          }}
        >
