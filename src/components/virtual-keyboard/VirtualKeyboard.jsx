@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
+import { back } from "./Delete.png";
 
 export const VirtualKeyboard = (props) => {
   const isText = props.isText;
@@ -19,7 +20,7 @@ export const VirtualKeyboard = (props) => {
     if (!isText) {
       props.changeBk("");
     }
-    getColor(color, isText);  
+    getColor(color, isText);
   };
 
   // convert hex from keyboard to rgb
@@ -112,14 +113,14 @@ export const VirtualKeyboard = (props) => {
           return (
             <div
               key={index}
-              className="key"
+              className={`key ${key === "Back" && "back"}`}
               value={key}
               style={{
                 backgroundColor: index + 11 === currentKeyValue && "#FCCC12",
                 color: index + 11 === currentKeyValue && "black",
               }}
             >
-              {key}
+              {key === "Back" ? "" : key}
             </div>
           );
         })}
