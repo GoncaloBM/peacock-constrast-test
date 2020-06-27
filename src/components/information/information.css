@@ -14,7 +14,7 @@
 .information h1 {
     width: 429px;
     height: 45px;
-    color: black;
+    /* color: white; */
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -24,11 +24,17 @@
     .information {
         width: 568px;
         height: 70vh;
+        top: 5vh;
+        right: 0;
     }
     .focus {
         background-color: #fccc12;
         position: fixed;
-        bottom: 542px;
+        bottom: 300px;
+        color: black;
+    }
+    .information h1 {
+        font-size: 1.5rem;
     }
 }
 
@@ -43,8 +49,9 @@
         font-size: 1.5rem;
     }
     .focus {
+        color: black;
         background-color: #fccc12;
         position: fixed;
-        bottom: 300px;
+        bottom: 150px;
     }
 }
