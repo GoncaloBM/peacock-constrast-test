@@ -52,9 +52,18 @@
     .focus {
         position: fixed;
         bottom: 300px;
+        height: 44px;
+        width: 565px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .information h1 {
         font-size: 1.5rem;
+    }
+    .informationalign {
+        margin-top: 100px;
+        margin-left: 60px;
     }
 }
 
