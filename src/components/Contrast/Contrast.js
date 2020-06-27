@@ -50,7 +50,7 @@ const Contrast = ({
       setOnGalery(fromUploadToGallery)
       displayLateralBar(false, 'fromUpload');
     }
-    if(fromUploadToGallery === false){
+    if(fromUploadToGallery === false && onGalery === false){
       setOnGalery(fromUploadToGallery)
     }
 
