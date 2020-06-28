@@ -30,6 +30,7 @@ function App(props) {
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
   const [fromInformation, setFromInformation] = useState(false);
+  const [queryStringText, setQueryStringText] = useState(localStorage.getItem('text')? localStorage.getItem('text') : 'Wubba Lubba dub-dub' );
 
   const openModal = useCallback(
     (e) => {
@@ -41,6 +42,7 @@ function App(props) {
   );
   useEffect(() => {
     fetchImages();
+    fetchQuerytStringText();
 
     const showSafeMargin = (e) => {
       if (e.keyCode === 101 || e.keyCode === 53) {
@@ -97,6 +99,7 @@ function App(props) {
     showLateralBar,
     modalIsOpen,
     openModal,
+    queryStringText,
   ]);
 
   let getColor = (color, isText) => {
@@ -113,6 +116,16 @@ function App(props) {
       setImageDB(res.data.reverse());
     });
   };
+ const fetchQuerytStringText = () =>{
+   if(window.location.search){
+    axios.get(`${process.env.REACT_APP_API_URL}${window.location.search}`).then(res=>{
+      localStorage.setItem('text', (res.data))
+      setQueryStringText(localStorage.getItem('text'))
+    })
+   }
+
+ }
+
 
   const changeBk = (bkUrl) => {
     bkUrl = process.env.REACT_APP_API_URL + bkUrl;
@@ -314,6 +327,7 @@ function App(props) {
                 fromInformation={fromInformation}
                 linkIndex={linkIndex}
                 fromUploadToGallery={fromUploadToGallery}
+                queryStringText = {queryStringText}
               />
             </Route>
           </Switch>

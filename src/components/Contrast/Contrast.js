@@ -30,6 +30,7 @@ const Contrast = ({
   linkIndex,
   fromUploadToGallery,
   fromInformation,
+  queryStringText
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
@@ -117,6 +118,7 @@ const Contrast = ({
                 fontSize={fontSize}
                 textPosition={textPosition}
                 fontStyle={fontStyle}
+                queryStringText={queryStringText}
               />
             </div>
             {safeMargin && <SafeMargin />}
