@@ -11,13 +11,7 @@ import { useCallback } from "react";
 import Contrast from "./components/Contrast/Contrast";
 
 function App(props) {
-  let differentFontStyles = [
-    "div",
-    "p",
-    "h1",
-    "i",
-    "b",
-  ];
+  let differentFontStyles = ["div", "p", "h1", "i", "b"];
   let startetTextPosition = { top: 0, right: 0 };
   let [backgroundColor, setBackgroundColor] = useState("#000000");
   let [colorText, setColorText] = useState("#F2F2F2");
@@ -33,9 +27,10 @@ function App(props) {
   let [linkIndex, setLinkIndex] = useState(2);
   let [navBarNavigating, setNavBarNavigating] = useState(true);
   const [safeMargin, setSafeMargin] = useState(false);
-
   const [bkImage, setBkImage] = useState("");
   const [imageDB, setImageDB] = useState("");
+  const [fromInformation, setFromInformation] = useState(false);
+  const [queryStringText, setQueryStringText] = useState(localStorage.getItem('text')? localStorage.getItem('text') : 'Wubba Lubba dub-dub' );
 
   const openModal = useCallback(
     (e) => {
@@ -47,6 +42,7 @@ function App(props) {
   );
   useEffect(() => {
     fetchImages();
+    fetchQuerytStringText();
 
     const showSafeMargin = (e) => {
       if (e.keyCode === 101 || e.keyCode === 53) {
@@ -77,6 +73,7 @@ function App(props) {
         if (e.keyCode === 13 && linkIndex === 1) {
           setShowLateralBar(!showLateralBar);
           setFromGalery(false);
+          setFromInformation(false);
         }
       }
     };
@@ -102,6 +99,7 @@ function App(props) {
     showLateralBar,
     modalIsOpen,
     openModal,
+    queryStringText,
   ]);
 
   let getColor = (color, isText) => {
@@ -118,6 +116,16 @@ function App(props) {
       setImageDB(res.data.reverse());
     });
   };
+ const fetchQuerytStringText = () =>{
+   if(window.location.search){
+    axios.get(`${process.env.REACT_APP_API_URL}${window.location.search}`).then(res=>{
+      localStorage.setItem('text', (res.data))
+      setQueryStringText(localStorage.getItem('text'))
+    })
+   }
+
+ }
+
 
   const changeBk = (bkUrl) => {
     bkUrl = process.env.REACT_APP_API_URL + bkUrl;
@@ -188,6 +196,11 @@ function App(props) {
 
   const displayLateralBar = (e, fromGalery) => {
     if (fromGalery === "fromUpload") {
+      setFromGalery(true);
+
+      setShowLateralBar(false);
+      setFromUploadToGallery(false);
+      console.log("Reberti");
     } else {
       console.log("from Galery: ", fromGalery);
       if (fromGalery === true) {
@@ -197,16 +210,19 @@ function App(props) {
         setFromGalery(false);
         console.log("Eduardo");
       }
-      console.log("antes", showLateralBar);
+      if (fromGalery === "information") {
+        setFromInformation(true);
+      } else {
+        setFromInformation(false);
+      }
       setShowLateralBar(!showLateralBar);
-      console.log("depois", showLateralBar);
       setFromUploadToGallery(false);
       console.log("Reberti");
     }
   };
 
   const backToGallery = () => {
-    //console.log('reberit');
+    console.log("reberit");
     setShowLateralBar(false);
 
     setFromGalery(true);
@@ -267,7 +283,9 @@ function App(props) {
                 </div>
                 <div className="iconsMenu">
                   <div
-                    className={`hamburger ${linkIndex === 1 ? "focusedMenu" : ""}`}
+                    className={`hamburger ${
+                      linkIndex === 1 ? "focusedMenu" : ""
+                    }`}
                     onClick={displayLateralBar}
                   >
                     {/* <div className="patty"></div>
@@ -306,8 +324,10 @@ function App(props) {
                 showLateralBar={showLateralBar}
                 displayLateralBar={displayLateralBar}
                 fromGalery={fromGalery}
+                fromInformation={fromInformation}
                 linkIndex={linkIndex}
                 fromUploadToGallery={fromUploadToGallery}
+                queryStringText = {queryStringText}
               />
             </Route>
           </Switch>

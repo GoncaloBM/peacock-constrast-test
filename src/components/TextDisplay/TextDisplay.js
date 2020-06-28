@@ -42,7 +42,7 @@ const TextDisplay = (props) => {
               transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
             }}
           >
-            This is Board in {fontStyle}
+            {props.queryStringText} {fontStyle}
           </div>
           {props.showPositionTool ? (
             <i
@@ -80,7 +80,7 @@ const TextDisplay = (props) => {
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
-          This is Board in {fontStyle}
+          {props.queryStringText} {fontStyle}
         </h1>
         {props.showPositionTool ? (
           <i
@@ -119,7 +119,7 @@ const TextDisplay = (props) => {
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
-          This is Board in {fontStyle}
+          {props.queryStringText} {fontStyle}
         </p>
         {props.showPositionTool ? (
           <i
@@ -157,7 +157,7 @@ const TextDisplay = (props) => {
             transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
           }}
         >
-          This is Board in {fontStyle}
+          {props.queryStringText} {fontStyle}
         </i>
         {props.showPositionTool ? (
           <i
@@ -195,7 +195,7 @@ const TextDisplay = (props) => {
            transform: `translate(${textPosition.right}px,${textPosition.top}px)`,
          }}
        >
-         This is Board in {fontStyle}
+         {props.queryStringText} {fontStyle}
        </b>
        {props.showPositionTool ? (
          <i
