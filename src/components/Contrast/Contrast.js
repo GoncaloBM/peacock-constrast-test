@@ -29,6 +29,7 @@ const Contrast = ({
   fromGalery,
   linkIndex,
   fromUploadToGallery,
+  fromInformation,
 }) => {
   let [lateralBar, setlateralBar] = useState(showLateralBar);
   const [onGalery, setOnGalery] = useState(false);
@@ -42,24 +43,23 @@ const Contrast = ({
   };
 
   useEffect(() => {
-    console.log("mostrar barra lateral: ",showLateralBar);
-    console.log('veio da página de upload: ', fromUploadToGallery)
     setlateralBar(showLateralBar);
 
-    if(fromUploadToGallery === true){
-      setOnGalery(fromUploadToGallery)
-      displayLateralBar(false, 'fromUpload');
+    if (fromUploadToGallery === true) {
+      console.log('bananas')
+      setOnGalery(true);
+      displayLateralBar(false, "fromUpload");
     }
-    if(fromUploadToGallery === false && onGalery === false){
-      setOnGalery(fromUploadToGallery)
-    }
-
-
-    
-
+   
 
     return () => {};
-  }, [showLateralBar, showTextPositionTool, fromUploadToGallery]);
+  }, [
+    showLateralBar,
+    showTextPositionTool,
+    fromUploadToGallery,
+    fromInformation,
+    onGalery
+  ]);
 
   /*  const handleClick = () => {
     returnToNavBar(lateralBar);
@@ -67,13 +67,16 @@ const Contrast = ({
   }; */
 
   const goToGalery = () => {
+    console.log("onGallery state: ", onGalery);
     setOnGalery(!onGalery);
+    console.log("onGallery state: ", onGalery);
+
     displayLateralBar(false, true);
   };
 
   const goToInformation = () => {
     setOnInformation(!onInformation);
-    displayLateralBar(false, true);
+    displayLateralBar(false, "information");
   };
   const getTextPositionTool = () => {
     setShowTextPositionTool(!showTextPositionTool);
@@ -155,6 +158,7 @@ const Contrast = ({
               picker={picker}
               goToGalery={goToGalery}
               fromGalery={fromGalery}
+              fromInformation={fromInformation}
               getTextPositionTool={getTextPositionTool}
               showTextPositionTool={showTextPositionTool}
               goToInformation={goToInformation}
