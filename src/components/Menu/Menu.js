@@ -5,7 +5,7 @@ import HuePicker from "../huepicker/HuePicker";
 
 const Menu = (props) => {
   let [indexFocusedItem, setIndexFocusedItem] = useState(
-    props.fromGalery === true ? 5 : -1
+    props.fromGalery === true ? 5 : props.fromInformation === true ? 6 : -1
   );
 
   useEffect(() => {
@@ -57,8 +57,8 @@ const Menu = (props) => {
         } else if (newIndex === 1) {
           props.setkeyboardText(true);
         }
-        if (props.showVirtualKeyboard === false && props.linkIndex === -1) {
-          //console.log("enter");
+        if (props.showVirtualKeyboard === false && props.linkIndex === -1 && (indexFocusedItem === 0 || indexFocusedItem === 1)) {
+          console.log("enter");
           props.setShowVirtualKeyboard(true);
         }
       }
@@ -128,7 +128,7 @@ const Menu = (props) => {
 
   const fontSelector = (index) => {
     if (index === 2) {
-      return { top: "46%", opacity: "1" };
+      return { top: "41%", opacity: "1" };
     } else if (index === 3) {
       return { top: "61%", opacity: "1" };
     } else if (index === 4) {
