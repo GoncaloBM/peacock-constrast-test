@@ -128,7 +128,7 @@ const Menu = (props) => {
 
   const fontSelector = (index) => {
     if (index === 2) {
-      return { top: "46%", opacity: "1" };
+      return { top: "41%", opacity: "1" };
     } else if (index === 3) {
       return { top: "61%", opacity: "1" };
     } else if (index === 4) {
