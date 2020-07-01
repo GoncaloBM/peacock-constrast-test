@@ -17,7 +17,6 @@ function App(props) {
   let [colorText, setColorText] = useState("#F2F2F2");
   const [modalIsOpen, setIsOpen] = useState(true);
   const [fontSize, setfontSize] = useState(4);
-  const [fontSizeforText] = useState(fontSize + "px");
   const [fontStyle, setFontStyle] = useState(differentFontStyles[0]);
   const [textPosition, setTextPosition] = useState(startetTextPosition);
   const [fullscreen, setFullscreen] = useState(false);

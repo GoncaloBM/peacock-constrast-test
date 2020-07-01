@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
-import { back } from "./Delete.png";
 
 export const VirtualKeyboard = (props) => {
   const isText = props.isText;
