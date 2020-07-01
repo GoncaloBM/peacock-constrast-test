@@ -18,18 +18,18 @@ function Information(props) {
     <div className="information">
       <div className="informationalign">
         <p>
-          <span class="highlight">BackGround Color:</span>{" "}
+          <span class="highlight">BackGround Color:</span>
           {props.backgroundColor}
         </p>
         <p>
-          <strong>Color Text:</strong> {props.colorText}
+        <span class="highlight">Color Text:</span> {props.colorText}
         </p>
         <p>
-          <strong>Font Size: </strong>
+        <span class="highlight">Font Size:</span>
           {props.fontSize}
         </p>
         <p>
-          <strong>Font Style:</strong> {props.fontStyle}
+        <span class="highlight">Font Style:</span> {props.fontStyle}
         </p>
       </div>
       <div className="focus"> Exit</div>
