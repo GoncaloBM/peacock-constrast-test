@@ -100,6 +100,7 @@ function App(props) {
     modalIsOpen,
     openModal,
     queryStringText,
+    fromUploadToGallery
   ]);
 
   let getColor = (color, isText) => {
