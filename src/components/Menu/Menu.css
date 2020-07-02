@@ -15,6 +15,7 @@
         height: 19%;
         z-index: 1;
     }
+
     .Menu {
         color: white;
         margin-right: 105px;
@@ -165,4 +166,9 @@
 
 .displayNone {
     opacity: 0;
+}
+
+.showOk{
+    display: inline;
+    transition: 1.1s all;
 }

@@ -276,15 +276,15 @@ const Menu = (props) => {
           <i
             className={`${
               indexFocusedItem === 4
-                ? "arrowLeftFonts"
+                ? "arrowLeftFonts displayNone"
                 : " arrowLeftFonts displayNone"
             }`}
           ></i>
-          Font Move
+          Font Move {indexFocusedItem === 4 ? <div className="showOk">(OK)</div> : ""}
           <i
             className={`${
               indexFocusedItem === 4
-                ? "arrowRightFonts"
+                ? "arrowRightFonts displayNone"
                 : "arrowRightFonts displayNone"
             }`}
           ></i>
