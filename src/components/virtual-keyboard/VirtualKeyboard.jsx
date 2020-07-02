@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "./use-event-listener";
 import "./VirtualKeyboard.css";
-import { back } from "./Delete.png";
 
 export const VirtualKeyboard = (props) => {
   const isText = props.isText;
@@ -12,7 +11,7 @@ export const VirtualKeyboard = (props) => {
 
   const keyNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const keyLetters = ["A", "B", "C", "D", "E", "F", "C", "Back", "OK", "Exit"];
+  const keyLetters = ["A", "B", "C", "D", "E", "F", "Clear", "Back", "OK", "Exit"];
 
   //after press ok on keyboard sets background with the value
   const sendColorFromVirtualKeyboard = (color) => {

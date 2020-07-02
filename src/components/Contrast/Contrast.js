@@ -59,7 +59,8 @@ const Contrast = ({
     showTextPositionTool,
     fromUploadToGallery,
     fromInformation,
-    onGalery
+    onGalery,
+    displayLateralBar
   ]);
 
   /*  const handleClick = () => {
