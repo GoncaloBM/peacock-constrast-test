@@ -15,7 +15,7 @@ function Modal(props) {
   useEventListener("keydown", backToApp);
   return (
     <div className={`${props.modalIsOpen ? "helpOpen" : "helpClosed"}`}>
-      <div className="tittleMenu">Information</div>
+      <div className="tittleMenu">Help</div>
       <p>
         Press <span style={{ fontWeight: "bold" , fontSize:'1.2rem'}}>5</span> for Full Screen
       </p>

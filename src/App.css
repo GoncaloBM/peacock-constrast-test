@@ -103,7 +103,7 @@ body {
     margin-top: 65px;
     width: 35px;
     height: 35px;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFaSURBVHgB7VbtbYMwED11AkbwBs0mZYN2g7BB2AQ2QJ0AdYNuQDegG1zt9p1yshp8xo7yhyc5RObdt7kz0YEDGWDmxq+LX7NfC1+xYu/sl6PaCEphwIqhmiOIalWRBuWtNuD/n7A3RlnpqARIt2AKJTDIuMiRC+0BIhdkR+Jl+t3yiELS3m/w3vx63XjfqXI4ynBAUjgkjAu2nJjAmclo3CnFroIDjcpm8gzptA0G7mYJFG9MlVOTZ5BfqBL47xO1lUGl62Tg/sLAk7IuZCCblNbiPtGD8Z8DX+GHKw4VVc5vsjrg8Uz14PD8JIMDH3i2VA+i6z3JROOQ9tkkuMlDaG1ssdAMgYnKHUi2dbrhtfSD3TOdr+M8bxhBuFOpy57pXDjORUmvlAyWKHCGJiXXUwmQiTVypFXftpSsxTt9fSu7kkUGRrZj5jvejs8woLOyYC+UrKEDBzLwA0ES5YdtzeusAAAAAElFTkSuQmCC) no-repeat;
+    background: url('./images/help.svg') no-repeat;
 }
 
 .focusedMenu {
