@@ -103,7 +103,7 @@ body {
     margin-top: 65px;
     width: 35px;
     height: 35px;
-    /* background: url('./images/help.svg') no-repeat; */
+    background: url('./images/help.svg') no-repeat;
 }
 
 .focusedMenu {
