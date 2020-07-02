@@ -26,7 +26,7 @@ function App(props) {
   let [linkIndex, setLinkIndex] = useState(2);
   let [navBarNavigating, setNavBarNavigating] = useState(true);
   const [safeMargin, setSafeMargin] = useState(false);
-  const [bkImage, setBkImage] = useState("");
+  const [bkImage, setBkImage] = useState(`${process.env.REACT_APP_API_URL}images/1.png`);
   const [imageDB, setImageDB] = useState("");
   const [fromInformation, setFromInformation] = useState(false);
   const [queryStringText, setQueryStringText] = useState(localStorage.getItem('text')? localStorage.getItem('text') : 'Wubba Lubba dub-dub' );
